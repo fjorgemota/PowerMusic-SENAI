@@ -63,6 +63,9 @@ public abstract class Esfera extends GameObject{
     public void step(long timeElapsed) {
         this.y += 10; 
         try {
+            //A linha abaixo captura o valor do atributo estatico 'serie' e 
+            //multiplica pela largura de cada botao, somando com a margem
+            //e posicionando a esfera corretamente
             this.x = this.getClass().getField("serie").getInt(null)*this.width+this.margem;
         } catch (Exception ex) {
         } 
