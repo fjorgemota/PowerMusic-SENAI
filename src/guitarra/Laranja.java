@@ -9,8 +9,5 @@ package guitarra;
  * @author fernando_mota
  */
 class Laranja extends Esfera {
-
-    public Laranja() {
-    }
     
 }
