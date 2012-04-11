@@ -10,7 +10,5 @@ package guitarra;
  */
 class Amarela extends Esfera {
 
-    public Amarela() {
-    }
     
 }

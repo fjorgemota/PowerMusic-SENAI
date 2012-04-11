@@ -10,7 +10,5 @@ package guitarra;
  */
 class Verde extends Esfera {
 
-    public Verde() {
-    }
     
 }

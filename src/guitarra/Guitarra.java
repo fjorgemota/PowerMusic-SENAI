@@ -7,6 +7,7 @@ package guitarra;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import javaPlay.GameObject;
+import utilidades.Utilidades;
 
 /**
  *
@@ -14,6 +15,10 @@ import javaPlay.GameObject;
  */
 public class Guitarra extends GameObject{
     public static Guitarra instancia = null;
+
+    public boolean podeEspecial() {
+        return Utilidades.sorteia() && this.podeEspecial();
+    }
     protected int[][] notas;
     protected Esfera[] esferas;
     protected int level;
@@ -21,11 +26,14 @@ public class Guitarra extends GameObject{
     protected long timeElapsed;
     public Guitarra(){
         this.esferas = new Esfera[5];
-        this.esferas[0] = new Vermelha();
-        this.esferas[1] = new Azul();
-        this.esferas[2] = new Verde();
-        this.esferas[3] = new Laranja();
-        this.esferas[4] = new Amarela();
+        this.esferas[0] = new Verde();
+        this.esferas[1] = new Vermelha();
+        this.esferas[2] = new Amarela();
+        this.esferas[3] = new Azul();
+        this.esferas[4] = new Laranja();
+        for(int c=0;c<this.esferas.length;c++){
+            this.esferas[c].setSerie(c+1);
+        }
         this.notasEsferas = new ArrayList<Esfera>();
     }
     static Guitarra getInstance() {
@@ -47,6 +55,7 @@ public class Guitarra extends GameObject{
                 for(int c=0;c<this.level;c++){
                     esferasNotas[c] = this.esferas[nota[c]].getNewInstance();
                 }
+                return esferasNotas;
             }
         }
     }
@@ -65,5 +74,9 @@ public class Guitarra extends GameObject{
         for(Esfera nota: this.notasEsferas){
             nota.draw(g);
         }
+    }
+
+    void adicionaPontos(int pontos) {
+        
     }
 }
