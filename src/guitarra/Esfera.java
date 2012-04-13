@@ -18,7 +18,7 @@ import utilidades.Utilidades;
  */
 public abstract class Esfera extends GameObject{
     protected boolean especial;
-    protected int serie;
+    protected static int serie;
     protected Color cor;
     protected boolean pressionado;
     private int width = 40;
@@ -33,7 +33,11 @@ public abstract class Esfera extends GameObject{
         this.especial = Guitarra.getInstance().podeEspecial();
     }
     public int getSerie(){
-        return this.serie;
+         try {
+            return this.getClass().getField("serie").getInt(null);
+        } catch (Exception ex) {
+            return 0;
+        } 
     }
     public boolean isEspecial(){
         return this.especial;
