@@ -1,6 +1,7 @@
 package powermusic;
 
 import java.awt.Graphics;
+import javaPlay.GameEngine;
 import javaPlay.GameObject;
 import javaPlay.GameStateController;
 import javaPlay.Mouse;
@@ -31,9 +32,8 @@ public class TelaInicial implements GameStateController {
     }
 
     public void step(long timeElapsed) {
-         System.out.println(Utilidades.estaClicandoEm(450, 290, 83, 64)?"Verdadeiro":"Falso");
-        if(Utilidades.estaClicandoEm(450, 290, 83, 64)){
-            JOptionPane.showMessageDialog(null,"Cliquei!");
+        if(Utilidades.estaClicandoEm(600, 490, 89, 75)){
+            GameEngine.getInstance().setNextGameStateController(3);
         }
     }
 
@@ -41,7 +41,7 @@ public class TelaInicial implements GameStateController {
         g.fillRect(0, 0, 3000, 2400);
 
         this.bgImage.draw(g, 0, 0);
-        this.bgImageHelp.draw(g, 450, 290);
+        this.bgImageHelp.draw(g, 600, 490);
     }
 
     public void stop() {
