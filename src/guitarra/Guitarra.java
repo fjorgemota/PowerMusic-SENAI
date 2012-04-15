@@ -58,6 +58,7 @@ public class Guitarra extends GameObject{
                 return esferasNotas;
             }
         }
+        return new Esfera[0];
     }
     protected int getSecondsElapsed(){
         return (int) (this.timeElapsed/1000);
