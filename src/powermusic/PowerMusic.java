@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 package powermusic;
-import fases.faseteste;
+import fases.TelaInicial;
+import fases.Ajuda;
 import javaPlay.GameEngine;
 /**
  *
@@ -18,10 +19,9 @@ public class PowerMusic {
      */
     public static void main(String[] args) {
         //Fase umaFase = new Fase();       
-        GameEngine.getInstance().addGameStateController( 1 , new faseteste());
-        GameEngine.getInstance().addGameStateController( 2 , new TelaInicial());
-        GameEngine.getInstance().addGameStateController( 3 , new Ajuda());
-        GameEngine.getInstance().setStartingGameStateController( 2 );
+        GameEngine.getInstance().addGameStateController( 1 , new TelaInicial());
+        GameEngine.getInstance().addGameStateController( 2 , new Ajuda());
+        GameEngine.getInstance().setStartingGameStateController( 1 );
         
         GameEngine.getInstance().setFramesPerSecond( 30 );
 
