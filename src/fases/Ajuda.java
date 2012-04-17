@@ -14,13 +14,19 @@ public class Ajuda implements GameStateController {
 
     private Imagem bgImageHelp_desc;
     private Imagem bgImageVoltar;
+    private Imagem bgImageVoltar1;
+    private Imagem bgImageVoltar2;
     private Imagem bgImagePiano;
     private Mouse mouse;
 
     public void load() {
         try {
             this.bgImagePiano = new Imagem("img_cenario/musica.gif");
-            this.bgImageVoltar = new Imagem("img_cenario/voltar.png");
+            
+            this.bgImageVoltar1 = new Imagem("img_cenario/voltar.png");
+            this.bgImageVoltar2 = new Imagem("img_cenario/voltar2.png");
+            this.bgImageVoltar = this.bgImageVoltar1;
+            
             this.bgImageHelp_desc = new Imagem("img_cenario/help_desc.png");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -39,6 +45,13 @@ public class Ajuda implements GameStateController {
         if(Utilidades.estaClicandoEm(600,530,89,75)){
            GameEngine.getInstance().setNextGameStateController(2);
         }
+        
+         if(Utilidades.estaComOMouseEm(600,530,89,75)){
+           this.bgImageVoltar = this.bgImageVoltar2;
+         }
+         else{
+             this.bgImageVoltar = this.bgImageVoltar1;
+         }
     }
 
     public void draw(Graphics g) {
