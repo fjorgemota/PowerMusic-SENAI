@@ -1,5 +1,6 @@
 /build/*
 *.class
+*.properties
 
 # OS generated files #
 ######################
