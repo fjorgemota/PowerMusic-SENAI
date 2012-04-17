@@ -44,7 +44,7 @@ public class TelaInicial implements GameStateController {
 
     public void step(long timeElapsed) {
         
-        if(Utilidades.estaClicandoEm(548,385,89,75)){
+        if(Utilidades.estaClicandoEm(548,385,200,75)){
             GameEngine.getInstance().setNextGameStateController(4);
         }
         
