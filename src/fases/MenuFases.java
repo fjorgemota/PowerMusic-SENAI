@@ -40,12 +40,15 @@ public class MenuFases implements GameStateController {
     
     private Imagem bgImageDanca;
     private Imagem bgImageEstrela;
-    private Imagem bgImagemMidi;
+    
+    private Imagem bgImageMidi;
+    private Imagem bgImageMidi1;
+    private Imagem bgImageMidi2;
     private Mouse mouse;
 
     public void load() {
         try {
-            this.bgImagemMidi = new Imagem("img_cenario/Midi.png");
+            
             this.bgImagePergunta = new Imagem("img_cenario/pergunta.png");
             
             this.bgImageFacil1 = new Imagem("img_cenario/facil.png");
@@ -68,6 +71,11 @@ public class MenuFases implements GameStateController {
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
             this.bgImageDanca = new Imagem("img_cenario/danca.gif");
             this.bgImageEstrela = new Imagem("img_cenario/estrela.gif");
+            
+            this.bgImageMidi1 = new Imagem("img_cenario/Midi.png");
+            this.bgImageMidi2 = new Imagem("img_cenario/midi_efeito.png");
+            this.bgImageMidi = this.bgImageMidi1;
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -118,6 +126,13 @@ public class MenuFases implements GameStateController {
         } else {
             this.bgImageDificil = this.bgImageDificil1;
         }
+            
+            if (Utilidades.estaComOMouseEm(300, 480, 100, 75)) {
+            this.bgImageMidi = this.bgImageMidi2;
+        }
+            else{
+                this.bgImageMidi = this.bgImageMidi1;
+            }
           
             if (Utilidades.estaComOMouseEm(620,520,89,75)) {
             this.bgImageVoltar = this.bgImageVoltar2;
@@ -137,7 +152,7 @@ public class MenuFases implements GameStateController {
         this.bgImageFacil.draw(g, 330, 180);
         this.bgImageMedio.draw(g, 300, 280);
         this.bgImageDificil.draw(g, 300, 380);
-        this.bgImagemMidi.draw(g, 300, 480);
+        this.bgImageMidi.draw(g, 300, 480);
 
         this.bgImageVoltar.draw(g, 620, 520);
         this.bgImageDanca.draw(g, 50, 520);
