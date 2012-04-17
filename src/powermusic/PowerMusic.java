@@ -4,7 +4,8 @@
  */
 package powermusic;
 import fases.MenuFases;
-import fases.faseteste;
+import fases.TelaInicial;
+import fases.Ajuda;
 import javaPlay.GameEngine;
 /**
  *
@@ -19,7 +20,7 @@ public class PowerMusic {
      */
     public static void main(String[] args) {
         //Fase umaFase = new Fase();       
-        GameEngine.getInstance().addGameStateController( 1 , new faseteste());
+        //GameEngine.getInstance().addGameStateController( 1 , new faseteste());
         GameEngine.getInstance().addGameStateController( 2 , new TelaInicial());
         GameEngine.getInstance().addGameStateController( 3 , new Ajuda());
         GameEngine.getInstance().addGameStateController( 4 , new MenuFases());

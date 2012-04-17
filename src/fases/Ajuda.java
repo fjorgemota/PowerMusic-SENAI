@@ -1,4 +1,4 @@
-package powermusic;
+package fases;
 
 import java.awt.Color;
 import java.awt.Graphics;
