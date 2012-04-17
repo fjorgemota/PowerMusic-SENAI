@@ -30,6 +30,7 @@ public class GameCanvas extends JFrame
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(defaultScreenWidth, defaultScreenHeight);
+        setResizable(false);
         setVisible(true);
 
         createBufferStrategy(2);

@@ -18,7 +18,7 @@ import utilidades.Utilidades;
  */
 public abstract class Esfera extends GameObject{
     protected boolean especial;
-    protected int serie;
+    protected static int serie;
     protected Color cor;
     protected boolean pressionado;
     private int width = 40;
@@ -33,7 +33,11 @@ public abstract class Esfera extends GameObject{
         this.especial = Guitarra.getInstance().podeEspecial();
     }
     public int getSerie(){
-        return this.serie;
+         try {
+            return this.getClass().getField("serie").getInt(null);
+        } catch (Exception ex) {
+            return 0;
+        } 
     }
     public boolean isEspecial(){
         return this.especial;
@@ -63,6 +67,9 @@ public abstract class Esfera extends GameObject{
     public void step(long timeElapsed) {
         this.y += 10; 
         try {
+            //A linha abaixo captura o valor do atributo estatico 'serie' e 
+            //multiplica pela largura de cada botao, somando com a margem
+            //e posicionando a esfera corretamente
             this.x = this.getClass().getField("serie").getInt(null)*this.width+this.margem;
         } catch (Exception ex) {
         } 

@@ -1,6 +1,6 @@
-/ChuckTetris-Project/build/*
+/build/*
 *.class
-
+/nbproject/*
 # OS generated files #
 ######################
 .DS_Store*

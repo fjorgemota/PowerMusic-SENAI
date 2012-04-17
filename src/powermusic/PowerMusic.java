@@ -1,27 +1,33 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package powermusic;
-
+import fases.MenuFases;
+import fases.TelaInicial;
+import fases.Ajuda;
 import javaPlay.GameEngine;
+/**
+ *
+ * @author fernando_mota
+ */
 
-
-import javaPlay.GameEngine;
 
 public class PowerMusic {
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-
         //Fase umaFase = new Fase();       
-        //GameEngine.getInstance().addGameStateController( 1 , umaFase);
+        //GameEngine.getInstance().addGameStateController( 1 , new faseteste());
+        GameEngine.getInstance().addGameStateController( 2 , new TelaInicial());
+        GameEngine.getInstance().addGameStateController( 3 , new Ajuda());
+        GameEngine.getInstance().addGameStateController( 4 , new MenuFases());
+        GameEngine.getInstance().setStartingGameStateController( 2 );
+        
+        GameEngine.getInstance().setFramesPerSecond( 10 );
 
-        //GameEngine.getInstance().setStartingGameStateController( 1 );
-
-
-        //Fase umaFase = new Fase();
-        //GameEngine.getInstance().addGameStateController( 1 , umaFase);
-
-        //GameEngine.getInstance().setStartingGameStateController( 1 );
-
-
-        GameEngine.getInstance().setFramesPerSecond(30);
         GameEngine.getInstance().run();
     }
 }
