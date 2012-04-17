@@ -27,6 +27,7 @@ public class MenuFases implements GameStateController{
     private Imagem bgImageVoltar;
     private Imagem bgImageDanca;
     private Imagem bgImageEstrela;
+    private Imagem bgImagemMidi;
     private Mouse mouse;
 
     public void load() {

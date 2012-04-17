@@ -5,7 +5,8 @@ package fases;
 import java.awt.Graphics;
 import javaPlay.GameStateController;
 
-public class FaseEasy implements GameStateController  {
+
+public class FaseHard implements GameStateController {
 
     @Override
     public void load() {
@@ -36,7 +37,5 @@ public class FaseEasy implements GameStateController  {
     public void stop() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-
 
 }

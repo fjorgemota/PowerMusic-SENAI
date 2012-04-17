@@ -1,11 +1,18 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package fases;
 
 import java.awt.Graphics;
 import javaPlay.GameStateController;
 
-public class FaseEasy implements GameStateController  {
+/**
+ *
+ * @author HP
+ */
+public class FaseMedium implements GameStateController {
 
     @Override
     public void load() {
@@ -36,7 +43,5 @@ public class FaseEasy implements GameStateController  {
     public void stop() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-
 
 }

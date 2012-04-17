@@ -62,7 +62,7 @@ public class TelaInicial implements GameStateController {
 
 
         this.bgImageFundo.draw(g, 0, 0);
-        this.bgImageHelp.draw(g, 450, 290);
+        
         this.bgImage.draw(g, 0, 0);
         this.bgImageNewGame.draw(g,548, 385);
         this.bgImageHelp.draw(g,590, 466);
