@@ -25,7 +25,7 @@ public class FaseHard implements GameStateController {
 
     @Override
     public void step(long timeElapsed) {
-       System.exit(0);
+      System.out.println("Em Implementação");
     }
 
     @Override

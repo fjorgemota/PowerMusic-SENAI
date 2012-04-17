@@ -149,14 +149,14 @@ public class MenuFases implements GameStateController {
 
         this.bgImageFundo.draw(g, 0, 0);
         this.bgImagePergunta.draw(g, 110, 70);
-        this.bgImageFacil.draw(g, 330, 180);
+        this.bgImageFacil.draw(g, 300, 180);
         this.bgImageMedio.draw(g, 300, 280);
         this.bgImageDificil.draw(g, 300, 380);
         this.bgImageMidi.draw(g, 300, 480);
 
         this.bgImageVoltar.draw(g, 620, 520);
         this.bgImageDanca.draw(g, 50, 520);
-        this.bgImageEstrela.draw(g, 295, 182);
+        this.bgImageEstrela.draw(g, 265, 182);
         this.bgImageEstrela.draw(g, 265, 288);
         this.bgImageEstrela.draw(g, 265, 392);
         this.bgImageEstrela.draw(g, 265, 492);
