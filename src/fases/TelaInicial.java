@@ -12,7 +12,8 @@ import utilidades.Utilidades;
 public class TelaInicial implements GameStateController {
 
     private Imagem bgImageHelp;
-
+  private Imagem bgImageHelp1; 
+  private Imagem bgImageHelp2;
     private Imagem bgImageFundo;
     private Imagem bgImageNewGame;
     private Imagem bgImageExit;
@@ -22,8 +23,10 @@ public class TelaInicial implements GameStateController {
 
     public void load() {
         try {
-            this.bgImageHelp = new Imagem("img_cenario/help.png");
-
+            this.bgImageHelp1 = new Imagem("img_cenario/help.png");
+            this.bgImageHelp2 = new Imagem("img_cenario/Help2.png");
+            this.bgImageHelp = this.bgImageHelp1;
+            
             this.bgImageFundo = new Imagem("img_cenario/logicamentefeito.png");
 
             this.bgImageNewGame = new Imagem("img_cenario/newgame.png");
@@ -54,6 +57,13 @@ public class TelaInicial implements GameStateController {
                 
         if(Utilidades.estaClicandoEm(590,555,89,75)){
             System.exit(0);
+        }
+        
+        if(Utilidades.estaComOMouseEm(590, 466, 89, 75)){
+            this.bgImageHelp = this.bgImageHelp2;
+        }
+        else{
+            this.bgImageHelp = this.bgImageHelp1;
         }
     }
 
