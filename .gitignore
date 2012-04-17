@@ -1,7 +1,11 @@
 /build/*
 *.class
+<<<<<<< HEAD
 *.properties
 
+=======
+/nbproject/*
+>>>>>>> df3abd6e749f4840661c5bbdd825e28f30c8fbda
 # OS generated files #
 ######################
 .DS_Store*

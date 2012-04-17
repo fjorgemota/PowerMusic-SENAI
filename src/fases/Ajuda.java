@@ -36,7 +36,7 @@ public class Ajuda implements GameStateController {
 
     public void step(long timeElapsed) {
         
-        if(Utilidades.estaClicandoEm(650,570,89,75)){
+        if(Utilidades.estaClicandoEm(600,530,89,75)){
            GameEngine.getInstance().setNextGameStateController(2);
         }
     }
@@ -46,7 +46,7 @@ public class Ajuda implements GameStateController {
         g.fillRect(0, 0, 3000, 2400);
         
         this.bgImageHelp_desc.draw(g,0, 8);
-        this.bgImageVoltar.draw(g, 650, 570);
+        this.bgImageVoltar.draw(g, 600, 530);
         this.bgImagePiano.draw(g, 6, 2);
         this.bgImagePiano.draw(g, 85, 2);
         this.bgImagePiano.draw(g, 165, 2);
