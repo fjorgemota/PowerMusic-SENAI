@@ -56,11 +56,11 @@ public class MenuFases implements GameStateController{
         if(Utilidades.estaClicandoEm(330, 180, 89, 75)){
             System.exit(0);
         }
-        if(Utilidades.estaClicandoEm(300,280,89,75)){
+        if(Utilidades.estaClicandoEm(300,280,150,75)){
             System.exit(0);
         }
         
-        if(Utilidades.estaClicandoEm(300,380,89,75)){
+        if(Utilidades.estaClicandoEm(300,380,150,75)){
             System.exit(0);
         }
         
