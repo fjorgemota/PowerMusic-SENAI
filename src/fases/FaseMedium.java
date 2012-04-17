@@ -16,7 +16,7 @@ public class FaseMedium implements GameStateController {
 
     @Override
     public void load() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     @Override
@@ -31,7 +31,7 @@ public class FaseMedium implements GameStateController {
 
     @Override
     public void step(long timeElapsed) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.exit(0);
     }
 
     @Override

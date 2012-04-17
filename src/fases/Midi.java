@@ -5,11 +5,12 @@ package fases;
 import java.awt.Graphics;
 import javaPlay.GameStateController;
 
-public class FaseEasy implements GameStateController  {
+
+public class Midi implements GameStateController{
 
     @Override
     public void load() {
-        
+    
     }
 
     @Override
@@ -24,7 +25,7 @@ public class FaseEasy implements GameStateController  {
 
     @Override
     public void step(long timeElapsed) {
-        System.exit(0);
+       System.exit(0);
     }
 
     @Override
@@ -36,7 +37,5 @@ public class FaseEasy implements GameStateController  {
     public void stop() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-
 
 }
