@@ -36,7 +36,7 @@ public class Ajuda implements GameStateController {
 
     public void step(long timeElapsed) {
         
-        if(Utilidades.estaClicandoEm(650,570,89,75)){
+        if(Utilidades.estaClicandoEm(600,530,89,75)){
            GameEngine.getInstance().setNextGameStateController(2);
         }
     }
