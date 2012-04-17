@@ -26,17 +26,17 @@ public class Guitarra extends GameObject{
     protected long timeElapsed;
     public Guitarra(){
         this.esferas = new Esfera[5];
-        this.esferas[0] = new Verde();
-        this.esferas[1] = new Vermelha();
-        this.esferas[2] = new Amarela();
-        this.esferas[3] = new Azul();
-        this.esferas[4] = new Laranja();
+        this.esferas[0] = new Verde(0);
+        this.esferas[1] = new Vermelha(1);
+        this.esferas[2] = new Amarela(2);
+        this.esferas[3] = new Azul(3);
+        this.esferas[4] = new Laranja(4);
         for(int c=0;c<this.esferas.length;c++){
             this.esferas[c].setSerie(c+1);
         }
         this.notasEsferas = new ArrayList<Esfera>();
     }
-    static Guitarra getInstance() {
+    public static Guitarra getInstance() {
         if(Guitarra.instancia == null){
             Guitarra.instancia = new Guitarra();
         }
