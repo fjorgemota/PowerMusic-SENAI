@@ -76,7 +76,7 @@ public class CenarioComColisao {
     }
 
     private void verificaColisao(ObjetoComGravidade obj) {
-        //Considera que não existe bloco abaixo
+        //Considera que nao existe bloco abaixo
         obj.saiuChao();
 
         ArrayList<TileInfo> tiles = this.scene.getTilesFromRect(obj.getPontoMin(), obj.getPontoMax());
@@ -92,11 +92,11 @@ public class CenarioComColisao {
 
     private DirecaoColisao pegaDirecaoColisao(ObjetoComGravidade obj, TileInfo tile) {
         /**
-         * Para calcular  de ond evem a direção
-         * verifica-se quais o ponto do Tile mais próximo do ponto central do objeto.
+         * Para calcular  de ond evem a direcao
+         * verifica-se quais o ponto do Tile mais proximo do ponto central do objeto.
          */
 
-        //Considera inicialmente que a colisão foi de cima para baixo
+        //Considera inicialmente que a colisao foi de cima para baixo
         DirecaoColisao direcao = DirecaoColisao.CIMA_PARA_BAIXO;
         double distancia = this.calculaDistancia(tile.getTopPoint(), obj.getPontoCentral());
         double distanciaTemp;
@@ -120,7 +120,7 @@ public class CenarioComColisao {
         }
 
         //Caso especial quando o objeto
-        //por causa da força da gravidade
+        //por causa da forï¿½a da gravidade
         //atravessa todo o tile.
         if (obj.getY() < tile.getCentralY() && obj.getMaxY() > tile.max.y && obj.getPontoCentral().x > tile.min.x && obj.getPontoCentral().x < tile.max.x && !obj.estaSubindo()) {
             direcao = DirecaoColisao.CIMA_PARA_BAIXO;
