@@ -22,12 +22,14 @@ public abstract class Esfera extends GameObject{
     protected boolean pressionado;
     protected Esfera anterior;
     protected Esfera proximo;
+    protected int second;
     private int width = 40;
     private int margem = 15;
     private int height;
     private Rectangle rect;
     public Esfera(){
         this.especial = Guitarra.getInstance().podeEspecial();
+        this.second = Guitarra.getInstance().getSecondsElapsed();
     }
     public abstract int getSerie();
     public boolean isEspecial(){
@@ -43,17 +45,15 @@ public abstract class Esfera extends GameObject{
         
     }
     public void step(long timeElapsed) {
-        this.y += 10; 
-        try {
-            //A linha abaixo captura o valor do atributo estatico 'serie' e 
-            //multiplica pela largura de cada botao, somando com a margem
-            //e posicionando a esfera corretamente
-            this.x = this.getSerie()*this.width+this.margem;
-        } catch (Exception ex) {
-        } 
+        this.y += 1; 
+        //A linha abaixo captura o valor do atributo estatico 'serie' e 
+        //multiplica pela largura de cada botao, somando com a margem
+        //e posicionando a esfera corretamente
+        this.x = this.getSerie()*this.width+this.margem;
     }
 
     public void draw(Graphics g) {
+        this.imagem.draw(g, this.x, this.y);
     }
     public Rectangle getRectangle(){
         if(this.rect == null){
@@ -64,4 +64,12 @@ public abstract class Esfera extends GameObject{
     }
 
     public abstract Esfera getNewInstance();
+
+    boolean foiPressionado() {
+        return this.pressionado;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
 }
