@@ -9,7 +9,7 @@ import fases.Ajuda;
 import fases.FaseEasy;
 import fases.FaseHard;
 import fases.FaseMedium;
-import fases.Midi;
+import fases.MenuMidi;
 import javaPlay.GameEngine;
 /**
  *
@@ -31,7 +31,7 @@ public class PowerMusic {
         GameEngine.getInstance().addGameStateController( 5 , new FaseEasy());
         GameEngine.getInstance().addGameStateController( 6 , new FaseMedium());
         GameEngine.getInstance().addGameStateController( 7 , new FaseHard());
-        GameEngine.getInstance().addGameStateController( 8 , new Midi());
+        GameEngine.getInstance().addGameStateController( 8 , new MenuMidi());
         GameEngine.getInstance().setStartingGameStateController( 2 );
         
         GameEngine.getInstance().setFramesPerSecond( 10 );
