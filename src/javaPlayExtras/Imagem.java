@@ -44,5 +44,8 @@ public class Imagem {
 				image.getHeight(null) + y, 0, 0, image.getWidth(null),
 				image.getHeight(null), null);
 	}
+        public void draw(Graphics graphics, int x, int y, int width, int height){
+            graphics.drawImage(image,x,y,width,height,null);
+        }
 
 }
