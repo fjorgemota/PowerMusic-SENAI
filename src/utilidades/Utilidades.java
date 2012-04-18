@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 import javaPlay.GameEngine;
 import javaPlay.Mouse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,5 +44,11 @@ public class Utilidades {
         Point ponto = mouse.getMousePos();
         Rectangle rect = new Rectangle(x, y, width, height);
         return rect.contains(ponto);
+    }
+    public static void alertar(String mensagem){
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
+    public static void alertar(String mensagem, String titulo){
+        JOptionPane.showMessageDialog(null, mensagem, titulo, 0);
     }
 }
