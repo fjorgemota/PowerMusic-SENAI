@@ -34,6 +34,7 @@ public class Guitarra extends GameObject{
     protected int lastSecond; // guarda o ultimo segundo no qual foi adicionado uma nova nota
     public Guitarra(){
         this.esferas = new Esfera[5];
+        
         this.esferas[0] = new Verde(0);
         this.esferas[1] = new Vermelha(1);
         this.esferas[2] = new Amarela(2);
@@ -72,6 +73,18 @@ public class Guitarra extends GameObject{
                 return esferasNotas;
             }
         }
+        /*
+         * [
+         *  [3, 0,1,2], // Quando passar 3 segundos, envia a nota Verde, vermelha e amarela
+         *  [5, 2] // Quando passar 5 segundos, envia a nota amarela.
+         * ]
+         * if(secondsElapsed == 3){
+         *  return new Esferas[]{new Verde(), new Vermelha(), new Amarela()}
+         * }
+         * else if(secondsElapsed == 5){
+         *  return new Esferas[]{new Amarela()}
+         * }
+         */
         return new Esfera[0];
     }
     protected int getSecondsElapsed(){

@@ -6,7 +6,10 @@ import javaPlay.GameObject;
 import javaPlay.GameStateController;
 import javaPlay.Mouse;
 import javaPlayExtras.Imagem;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import utilidades.Utilidades;
 
 public class TelaInicial implements GameStateController {
@@ -25,6 +28,15 @@ public class TelaInicial implements GameStateController {
     private Mouse mouse;
 
     public void load() {
+        JPanel pteste = new JPanel();
+        JLabel lteste = new JLabel("Teste");
+        lteste.setVisible(true);
+        lteste.setBounds(50,20,100,100);
+        pteste.add(lteste);
+        pteste.setBounds(0,0,100, 100);
+        pteste.setVisible(true);
+        
+        GameEngine.getInstance().getGameCanvas().setPanel(pteste);
         try {
             this.bgImageHelp1 = new Imagem("img_cenario/help.png");
             this.bgImageHelp2 = new Imagem("img_cenario/Help2.png");
@@ -56,7 +68,7 @@ public class TelaInicial implements GameStateController {
 
     public void start() {
     }
-
+    
     public void step(long timeElapsed) {
 
         if (Utilidades.estaClicandoEm(548, 385, 200, 75)) {
@@ -72,6 +84,7 @@ public class TelaInicial implements GameStateController {
         }
 
         if (Utilidades.estaComOMouseEm(548, 385, 200, 75)) {
+            GameEngine.getInstance().getGameCanvas().setPanel(null);
             this.bgImageNewGame = this.bgImageNewGame2;
         } else {
             this.bgImageNewGame = this.bgImageNewGame1;
