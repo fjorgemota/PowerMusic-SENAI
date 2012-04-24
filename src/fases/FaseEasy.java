@@ -16,15 +16,7 @@ public class FaseEasy implements GameStateController {
     private Imagem bgImageGuitarra;
 
     public void load() {
-        JPanel pteste = new JPanel();
-        JLabel lteste = new JLabel("Teste");
-        lteste.setVisible(true);
-        lteste.setBounds(50, 20, 100, 100);
-        pteste.add(lteste);
-        pteste.setBounds(0, 0, 100, 100);
-        pteste.setVisible(true);
-
-        GameEngine.getInstance().getGameCanvas().setPanel(pteste);
+       
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
@@ -41,8 +33,8 @@ public class FaseEasy implements GameStateController {
     }
 
     public void start() {
-     if (Utilidades.estaClicandoEm(330, 180, 89, 75)) {
-           GameEngine.getInstance().setNextGameStateController(5);
+     if (Utilidades.estaClicandoEm(330, 180, 400, 300)) {
+           GameEngine.getInstance().setNextGameStateController(9);
         }
     }
 
@@ -53,7 +45,7 @@ public class FaseEasy implements GameStateController {
         g.fillRect(0, 0, 3000, 2400);
         this.bgImageFundo.draw(g, 0, 0);
         this.bgImageGuitarra.draw(g, 50, 0);
-        this.bgImagePlay.draw(g, 400, 300);
+        this.bgImagePlay.draw(g, 000, 300);
 
     }
 
