@@ -15,7 +15,6 @@ public class MenuMidi implements GameStateController {
 
     @Override
     public void load() {
-
     }
 
 
