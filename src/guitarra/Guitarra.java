@@ -35,11 +35,11 @@ public class Guitarra extends GameObject{
     public Guitarra(){
         this.esferas = new Esfera[5];
         
-        this.esferas[0] = new Verde(0);
-        this.esferas[1] = new Vermelha(1);
-        this.esferas[2] = new Amarela(2);
-        this.esferas[3] = new Azul(3);
-        this.esferas[4] = new Laranja(4);
+        this.esferas[0] = new Verde();
+        this.esferas[1] = new Vermelha();
+        this.esferas[2] = new Amarela();
+        this.esferas[3] = new Azul();
+        this.esferas[4] = new Laranja();
         for(int c=0;c<this.esferas.length;c++){
             this.esferas[c].setSerie(c+1);
         }
@@ -62,7 +62,7 @@ public class Guitarra extends GameObject{
     }
     private Esfera[] getNotas(){
         for(int[] nota: notas){
-            if(nota.length<this.level){
+            if(nota.length>1){
                 continue;//Ignora notas com menos de 1 elemento
             }
             if(this.getSecondsElapsed() == nota[0]){//Verifica se é a nota à ser considerada
@@ -75,8 +75,11 @@ public class Guitarra extends GameObject{
         }
         /*
          * [
-         *  [3, 0,1,2], // Quando passar 3 segundos, envia a nota Verde, vermelha e amarela
-         *  [5, 2] // Quando passar 5 segundos, envia a nota amarela.
+         *  [3, 0,1,2], // Quando passar 3 segundos, envia a nota Verde, vermelha e amarela (veja lista de notas da linha 38 a 42 deste arquivo)
+         *  [5, 2], // Quando passar 5 segundos, envia a nota amarela (veja lista de notas da linha 38 a 42 deste arquivo).
+         *  [6, 9],
+         *  [7, 9]
+         * 
          * ]
          * if(secondsElapsed == 3){
          *  return new Esferas[]{new Verde(), new Vermelha(), new Amarela()}
@@ -86,6 +89,10 @@ public class Guitarra extends GameObject{
          * }
          */
         return new Esfera[0];
+    }
+
+    public void setNotas(int[][] notas) {
+        this.notas = notas;
     }
     protected int getSecondsElapsed(){
         return (int) (this.timeElapsed/1000);
