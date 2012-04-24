@@ -29,7 +29,7 @@ public class FaseEasy implements GameStateController {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
              this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageGuitarra = new Imagem("img_cenario/guitarra_fundo.png");
+            
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
