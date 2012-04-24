@@ -60,8 +60,8 @@ public class MenuFases implements GameStateController {
             this.bgImageMedio2 = new Imagem("img_cenario/medium2.png");
             this.bgImageMedio = this.bgImageMedio1;
             
-            this.bgImageDificil1 = new Imagem("img_cenario/dificil.png");
-            this.bgImageDificil2 = new Imagem ("img_cenario/dificult2.png");
+            this.bgImageDificil1 = new Imagem("img_cenario/hard.png");
+            this.bgImageDificil2 = new Imagem ("img_cenario/hard_efeito.png");
             this.bgImageDificil = this.bgImageDificil1;
             
             this.bgImageVoltar1 = new Imagem("img_cenario/voltar.png");
