@@ -18,13 +18,14 @@ public class FaseEasy implements GameStateController {
     private Imagem bgImageGuitarra;
     private Imagem bgImagePlayEfeito;
     private Imagem bgImageFundoEsquerda;
-  private Imagem bgImageFundoDireita;
+    private Imagem bgImageFundoDireita;
 
     public void load() {
-       
+
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
+<<<<<<< HEAD
 
              this.bgImagePlay1 = new Imagem("img_cenario/play.png");
              this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
@@ -35,6 +36,12 @@ public class FaseEasy implements GameStateController {
               this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
              this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
              this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
+=======
+            this.bgImagePlay = new Imagem("img_cenario/play.png");
+            this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
+            this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
+            this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
+>>>>>>> f156472387cd9b5bbc290ad99305768b57bb90a4
 
 
         } catch (Exception ex) {
@@ -47,11 +54,9 @@ public class FaseEasy implements GameStateController {
     }
 
     public void start() {
-     //    if (Utilidades.estaClicandoEm(200, 300, 89, 75)) {
-       //     GameEngine.getInstance().setNextGameStateController(9);
-       // }
-        
-    
+        //    if (Utilidades.estaClicandoEm(200, 300, 89, 75)) {
+        //     GameEngine.getInstance().setNextGameStateController(9);
+        // }
     }
 
     public void step(long timeElapsed) {
@@ -70,10 +75,10 @@ public class FaseEasy implements GameStateController {
     public void draw(Graphics g) {
         g.fillRect(0, 0, 3000, 2400);
         this.bgImageFundo.draw(g, 0, 0);
-        this.bgImageGuitarra.draw(g, 50, 0);
+      
         this.bgImagePlay.draw(g, 200, 300);
-this.bgImageFundoEsquerda.draw(g, 0, 0);
-this.bgImageFundoDireita.draw(g, 302, 620);
+        this.bgImageFundoEsquerda.draw(g, 0, 0);
+        this.bgImageFundoDireita.draw(g, 427, 0);
     }
 
     public void stop() {
