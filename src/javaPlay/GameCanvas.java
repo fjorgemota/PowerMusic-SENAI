@@ -79,7 +79,6 @@ public class GameCanvas extends JFrame
                 return;
             }
             this.remove(this.panel);
-            System.out.println("Restaurando para "+defaultScreenWidth+"x"+defaultScreenHeight);
             this.video.setBounds(0, 0, defaultScreenWidth, defaultScreenHeight);
             this.setVisible(false);
             this.setVisible(true);
