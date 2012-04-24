@@ -25,23 +25,18 @@ public class FaseEasy implements GameStateController {
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-<<<<<<< HEAD
 
-             this.bgImagePlay1 = new Imagem("img_cenario/play.png");
-             this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
-             this.bgImagePlay = this.bgImagePlay1;
-            
+            this.bgImagePlay1 = new Imagem("img_cenario/play.png");
+            this.bgImagePlay2 = new Imagem("img_cenario/play_efeito.png");
+            this.bgImagePlay = this.bgImagePlay1;
 
-             this.bgImagePlay = new Imagem("img_cenario/play.png");
-              this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
-             this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
-             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
-=======
+
             this.bgImagePlay = new Imagem("img_cenario/play.png");
             this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
             this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
->>>>>>> f156472387cd9b5bbc290ad99305768b57bb90a4
+
+
 
 
         } catch (Exception ex) {
@@ -54,19 +49,16 @@ public class FaseEasy implements GameStateController {
     }
 
     public void start() {
-        //    if (Utilidades.estaClicandoEm(200, 300, 89, 75)) {
-        //     GameEngine.getInstance().setNextGameStateController(9);
-        // }
     }
 
     public void step(long timeElapsed) {
-        
+
         if (Utilidades.estaClicandoEm(200, 300, 89, 75)) {
-            GameEngine.getInstance().setNextGameStateController(2);
+            GameEngine.getInstance().setNextGameStateController(9);
         }
 
-          if (Utilidades.estaComOMouseEm(200, 300, 89, 75)) {
-            this.bgImagePlay= this.bgImagePlay2;
+        if (Utilidades.estaComOMouseEm(200, 300, 89, 75)) {
+            this.bgImagePlay = this.bgImagePlay2;
         } else {
             this.bgImagePlay = this.bgImagePlay1;
         }
@@ -75,7 +67,7 @@ public class FaseEasy implements GameStateController {
     public void draw(Graphics g) {
         g.fillRect(0, 0, 3000, 2400);
         this.bgImageFundo.draw(g, 0, 0);
-      
+
         this.bgImagePlay.draw(g, 200, 300);
         this.bgImageFundoEsquerda.draw(g, 0, 0);
         this.bgImageFundoDireita.draw(g, 427, 0);
