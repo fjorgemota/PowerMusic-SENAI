@@ -1,6 +1,14 @@
 package fases;
 
+import java.awt.Component;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javaPlay.GameEngine;
 import javaPlay.GameObject;
 import javaPlay.GameStateController;
@@ -11,7 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
-
+import javax.media.Player;
+import javax.media.Manager;
+import javax.media.PlugInManager;
+import javax.media.Format;
+import javax.swing.*;
+import net.sourceforge.jffmpeg.AudioDecoder;
+import net.sourceforge.jffmpeg.VideoDecoder;
 public class TelaInicial implements GameStateController {
 
     private Imagem bgImageHelp;
@@ -28,15 +42,18 @@ public class TelaInicial implements GameStateController {
     private Mouse mouse;
 
     public void load() {
-        JPanel pteste = new JPanel();
-        JLabel lteste = new JLabel("Teste");
-        lteste.setVisible(true);
-        lteste.setBounds(50,20,100,100);
-        pteste.add(lteste);
-        pteste.setBounds(0,0,100, 100);
-        pteste.setVisible(true);
         
+        JPanel pteste = new JPanel();
+        Player thePlayer = Utilidades.loadVideo("ItsMyLife.mpg");
+        Component theVideo = thePlayer.getVisualComponent();
+        pteste.add(theVideo);
+        theVideo.setVisible(true);
+        theVideo.setBounds(0,0,200,200);
+        pteste.setBounds(0,0,200, 200); 
         GameEngine.getInstance().getGameCanvas().setPanel(pteste);
+        pteste.setVisible(true);
+        pteste.repaint();
+        thePlayer.start();
         try {
             this.bgImageHelp1 = new Imagem("img_cenario/help.png");
             this.bgImageHelp2 = new Imagem("img_cenario/Help2.png");
