@@ -13,6 +13,8 @@ public class FaseEasy implements GameStateController {
 
     private Imagem bgImageFundo;
     private Imagem bgImagePlay;
+    private Imagem bgImagePlay1;
+    private Imagem bgImagePlay2;
     private Imagem bgImageGuitarra;
 
     public void load() {
@@ -20,7 +22,9 @@ public class FaseEasy implements GameStateController {
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-             this.bgImagePlay = new Imagem("img_cenario/play.png");
+             this.bgImagePlay1 = new Imagem("img_cenario/play.png");
+             this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
+             this.bgImagePlay = this.bgImagePlay1;
             
 
         } catch (Exception ex) {
