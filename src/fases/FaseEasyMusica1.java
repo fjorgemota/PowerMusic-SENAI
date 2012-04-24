@@ -23,6 +23,8 @@ public class FaseEasyMusica1 implements GameStateController {
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
+           
+
             
 
         } catch (Exception ex) {
