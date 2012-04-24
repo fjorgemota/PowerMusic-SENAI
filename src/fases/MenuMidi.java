@@ -15,12 +15,12 @@ public class MenuMidi implements GameStateController {
 
     @Override
     public void load() {
-        throw new UnsupportedOperationException("Not supported yet.");
+     
     }
 
-    @Override
+
     public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     @Override
