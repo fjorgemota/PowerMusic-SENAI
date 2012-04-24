@@ -7,6 +7,7 @@ import fases.MenuFases;
 import fases.TelaInicial;
 import fases.Ajuda;
 import fases.FaseEasy;
+import fases.FaseEasyMusica1;
 import fases.FaseHard;
 import fases.FaseMedium;
 import fases.MenuMidi;
@@ -32,6 +33,7 @@ public class PowerMusic {
         GameEngine.getInstance().addGameStateController( 6 , new FaseMedium());
         GameEngine.getInstance().addGameStateController( 7 , new FaseHard());
         GameEngine.getInstance().addGameStateController( 8 , new MenuMidi());
+        GameEngine.getInstance().addGameStateController( 9 , new FaseEasyMusica1());
         GameEngine.getInstance().setStartingGameStateController( 2 );
         
         GameEngine.getInstance().setFramesPerSecond( 10 );
