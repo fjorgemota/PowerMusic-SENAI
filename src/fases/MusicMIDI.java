@@ -73,6 +73,7 @@ public class MusicMIDI implements GameStateController{
             }
         }
     }
+    }
     public void unload() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
