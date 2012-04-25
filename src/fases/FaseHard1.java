@@ -1,5 +1,9 @@
+
+
 package fases;
 
+import java.awt.Graphics;
+import javaPlay.GameStateController;
 import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
@@ -9,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
-public class FaseEasy implements GameStateController {
+public class FaseHard1 implements GameStateController {
 
     private Imagem bgImageFundo;
     private Imagem bgImagePlay;
@@ -17,8 +21,8 @@ public class FaseEasy implements GameStateController {
     private Imagem bgImagePlay2;
     private Imagem bgImageGuitarra;
     private Imagem bgImagePlayEfeito;
-    private Imagem bgImageFundoEsquerda;
-    private Imagem bgImageFundoDireita;
+    private Imagem bgImageFundo1;
+    private Imagem bgImageFundo2;
 
     public void load() {
 
@@ -32,8 +36,8 @@ public class FaseEasy implements GameStateController {
 
 
             this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
-            this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
+            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/DragonForce/dragon3.png");
+            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/DragonForce/dragon4.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
 
 
@@ -69,10 +73,11 @@ public class FaseEasy implements GameStateController {
         this.bgImageFundo.draw(g, 0, 0);
 
         this.bgImagePlay.draw(g, 200, 300);
-        this.bgImageFundoEsquerda.draw(g, 0, 0);
-        this.bgImageFundoDireita.draw(g, 427, 0);
+        this.bgImageFundo1.draw(g, 0, 0);
+        this.bgImageFundo2.draw(g, 426, 0);
     }
 
     public void stop() {
     }
 }
+
