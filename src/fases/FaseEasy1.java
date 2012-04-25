@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import utilidades.Utilidades;
 
 //MÚSICAS DA FASE
-
+// Gone
+//Tnt
+//Independencia
 
 public class FaseEasy1 implements GameStateController {
 

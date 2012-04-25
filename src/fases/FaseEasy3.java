@@ -17,6 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
+//MÚSICAS DA FASE
+//Um minuto para o fim do mundo
+//Throught the fire and flames
+//Heroes of our time
+
 public class FaseEasy3 implements GameStateController {
 
     private Imagem bgImageFundo;
