@@ -66,7 +66,7 @@ public class Guitarra extends GameObject{
             if(this.getSecondsElapsed() == nota[0]){//Verifica se é a nota à ser considerada
                 Esfera[] esferasNotas = new Esfera[this.level];
                 for(int c=1;c<nota.length;c++){
-                    if(nota[c] == 0 || nota[c] > this.esferas.length){
+                    if(nota[c] == 0 || nota[c] >= this.esferas.length-1){
                         continue;
                     }
                     System.out.println("Criando esfera "+this.esferas[nota[c]].getClass().getName()+"("+nota[c]+")");

@@ -119,7 +119,7 @@ public class Utilidades {
                     else if(shortmsg.getCommand() == ShortMessage.TIMING_CLOCK){
                         System.out.println("Timing clock!");
                     }
-                    else if(program==28){
+                    else if(program>=25 && program <= 32){
                         if(shortmsg.getCommand() == ShortMessage.NOTE_ON){
                             int note = shortmsg.getData1();
                             int noteChord = 1;

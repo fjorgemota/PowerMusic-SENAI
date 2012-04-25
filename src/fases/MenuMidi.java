@@ -24,7 +24,7 @@ public class MenuMidi implements GameStateController {
 
     @Override
     public void start() {
-        throw new UnsupportedOperationException("Not supported yet.");
+      
     }
 
     @Override
