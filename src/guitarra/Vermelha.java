@@ -4,6 +4,7 @@
  */
 package guitarra;
 
+import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
 import utilidades.Utilidades;
 
@@ -13,18 +14,14 @@ import utilidades.Utilidades;
  */
 class Vermelha extends Esfera {
     protected static int serie;
-    protected static Imagem imagemCache;
     public Vermelha(){
         super();
-        if(Vermelha.imagemCache==null){
-            try{
-                Vermelha.imagemCache = new Imagem("img_cenario/vermelha"+(this.isEspecial()?"-especial":"")+".png");
-            }
-            catch(Exception e){
-                Utilidades.alertar(e.getMessage());
-            }
+        try{
+            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_vermelho.png",9,49,28);
         }
-        this.imagem = Vermelha.imagemCache;
+        catch(Exception e){
+            Utilidades.alertar(e.getMessage());
+        }
     }
     public Vermelha(int serie){
         this();
@@ -36,7 +33,12 @@ class Vermelha extends Esfera {
     public void setSerie(int serie){
         Vermelha.serie = serie;
     }
-    public Esfera getNewInstance(){
+    public Vermelha getNewInstance(){
         return new Vermelha();
+    }
+    public void step(long timeElapsed){
+        super.preLocate(timeElapsed);
+        System.out.println("Definindo X como sendo "+((114/620.0000f)*this.y)+" na esfera "+this.getCor());
+        this.x -= (122/620.000f)*this.y;
     }
 }

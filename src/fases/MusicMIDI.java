@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javaPlay.GameStateController;
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
@@ -38,6 +39,9 @@ public class MusicMIDI implements GameStateController{
         return this.filename;
     }
     public void load() {
+<<<<<<< HEAD
+        
+=======
         Sequence sequencia;
         try {
             sequencia = MidiSystem.getSequence(new File(this.getFileName()));
@@ -74,6 +78,7 @@ public class MusicMIDI implements GameStateController{
                 }
             }
         }
+>>>>>>> 0ea1b775d0900b383930cc81d4f30d0335a4c3d1
     }
     }
     public void unload() {
