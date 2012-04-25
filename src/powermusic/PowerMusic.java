@@ -34,7 +34,7 @@ public class PowerMusic {
         GameEngine.getInstance().addGameStateController( 7 , new FaseHard());
         GameEngine.getInstance().addGameStateController( 8 , new MenuMidi());
         GameEngine.getInstance().addGameStateController( 9 , new FaseEasyMusica1());
-        GameEngine.getInstance().setStartingGameStateController( 2 );
+        GameEngine.getInstance().setStartingGameStateController( 5 );
         
         GameEngine.getInstance().setFramesPerSecond( 10 );
 

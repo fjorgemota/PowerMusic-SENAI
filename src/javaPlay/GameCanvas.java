@@ -39,9 +39,11 @@ public class GameCanvas extends JFrame
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(defaultScreenWidth, defaultScreenHeight);
+        setLayout(null);
+        
         setResizable(false);
         setVisible(true);
-
+        
         //createBufferStrategy(2);
 
         renderScreenStartX = this.getContentPane().getLocationOnScreen().x;
@@ -50,6 +52,7 @@ public class GameCanvas extends JFrame
         
         this.video = new Canvas(gc);
         this.video.setVisible(true);
+        this.video.setBounds(0, 0, defaultScreenWidth, defaultScreenHeight);
         add(this.video);
         this.video.createBufferStrategy(2);
         bf = this.video.getBufferStrategy();
@@ -90,6 +93,11 @@ public class GameCanvas extends JFrame
             Dimension d = panel.getSize();
             this.video.setBounds(d.width, 0, defaultScreenWidth-d.width, defaultScreenHeight);
             this.add(panel);
+            this.video.repaint();
+            panel.repaint();
+            this.repaint();
+            this.setVisible(false);
+            this.setVisible(true);
         }
         this.panel = panel;
     }
