@@ -1,5 +1,6 @@
 package fases;
 
+import guitarra.Guitarra;
 import java.awt.Component;
 import java.awt.Graphics;
 import javaPlay.GameEngine;
@@ -14,6 +15,7 @@ public class FaseEasyMusica1 implements GameStateController {
 
     private Imagem bgImageFundoDireita;
     private Imagem bgImageFundoEsquerda;
+  
 
     public void load() {
 
@@ -41,6 +43,7 @@ public class FaseEasyMusica1 implements GameStateController {
 
     @Override
     public void step(long timeElapsed) {
+
     }
 
     @Override
