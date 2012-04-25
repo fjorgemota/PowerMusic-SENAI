@@ -21,33 +21,90 @@ import utilidades.Utilidades;
 
 public class Intervalo implements GameStateController {
 
-    @Override
+    private Imagem bgImageEasy1;
+    private Imagem bgImagePlay;
+    private Imagem bgImagePlay1;
+    private Imagem bgImagePlay2;
+    private Imagem bgImageVoltar;
+    private Imagem bgImageVoltar1;
+    private Imagem bgImageVoltar2;
+    
     public void load() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        
+         try {
 
-    @Override
+            this.bgImageEasy1 = new Imagem("img_cenario/easy1.png");
+
+
+             this.bgImagePlay1 = new Imagem("img_cenario/play.png");
+             this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
+             this.bgImagePlay = this.bgImagePlay1;
+            
+
+             this.bgImageVoltar1 = new Imagem("img_cenario/voltar.png");
+             this.bgImageVoltar2 = new Imagem("img_cenario/voltar2.png");
+             this.bgImageVoltar =this.bgImageVoltar1;
+             
+
+
+
+
+
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }
+    
+   
+
+    
     public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    
+    public void start() {     
     }
-
-    @Override
+    
+    
     public void step(long timeElapsed) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        if (Utilidades.estaClicandoEm(200, 300, 89, 75)) {
+            GameEngine.getInstance().setNextGameStateController(9);
+        }
+
+        if (Utilidades.estaComOMouseEm(200, 300, 89, 75)) {
+            this.bgImagePlay = this.bgImagePlay2;
+        } else {
+            this.bgImagePlay = this.bgImagePlay1;
+        }
+        
+        if (Utilidades.estaClicandoEm(50, 520, 89, 75)) {
+            GameEngine.getInstance().setNextGameStateController(9);
+        }
+
+        if (Utilidades.estaComOMouseEm(50, 520, 89, 75)) {
+            this.bgImageVoltar = this.bgImageVoltar2;
+        } else {
+            this.bgImageVoltar = this.bgImageVoltar1;
+        }
+        
     }
 
-    @Override
+    
     public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
+        g.fillRect(0, 0, 3000, 2400);
+        this.bgImageEasy1.draw(g, 0, 0);
+
+        this.bgImagePlay.draw(g, 200, 300);
+        
+        this.bgImageVoltar.draw(g, 50, 520);
     }
 
-    @Override
+    
     public void stop() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 }

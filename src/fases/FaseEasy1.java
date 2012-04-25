@@ -31,10 +31,6 @@ public class FaseEasy1 implements GameStateController {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0b6d6578aae1d52d7d7c8a9a89aa0d1abdfc5671
 
              this.bgImagePlay1 = new Imagem("img_cenario/play.png");
              this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
@@ -45,20 +41,7 @@ public class FaseEasy1 implements GameStateController {
               this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
              this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
              this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
-<<<<<<< HEAD
 
-           
-=======
-
-            this.bgImagePlay1 = new Imagem("img_cenario/play.png");
-            this.bgImagePlay2 = new Imagem("img_cenario/play_efeito.png");
-            this.bgImagePlay = this.bgImagePlay1;
-
-
-          
-
-
->>>>>>> 0b6d6578aae1d52d7d7c8a9a89aa0d1abdfc5671
 
 
         } catch (Exception ex) {
