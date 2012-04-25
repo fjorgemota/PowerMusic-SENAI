@@ -65,7 +65,9 @@ public class MusicMIDI implements GameStateController{
                             for (int chord: chords){
                                 if (note < chord){
                                     break;
-                                noteChord = chord; 
+                                      //  noteChord = chord; 
+                                      
+                                     
                             }
                         }
                     }
@@ -85,7 +87,7 @@ public class MusicMIDI implements GameStateController{
 
     @Override
     public void step(long timeElapsed) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      
     }
 
     @Override

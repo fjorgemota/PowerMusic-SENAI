@@ -26,7 +26,6 @@ public class FaseEasy1 implements GameStateController {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
 
-<<<<<<< HEAD:src/fases/FaseEasy.java
 
              this.bgImagePlay1 = new Imagem("img_cenario/play.png");
              this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
@@ -37,22 +36,8 @@ public class FaseEasy1 implements GameStateController {
               this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
              this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
              this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
-=======
-            this.bgImagePlay1 = new Imagem("img_cenario/play.png");
-            this.bgImagePlay2 = new Imagem("img_cenario/play_efeito.png");
-            this.bgImagePlay = this.bgImagePlay1;
 
->>>>>>> 8953d5b72b696e31d1b50d57c4fbe942934f3701:src/fases/FaseEasy1.java
-
-            this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageFundoEsquerda = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc1.png");
-            this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
-            this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
-
-<<<<<<< HEAD:src/fases/FaseEasy.java
-=======
-
->>>>>>> 8953d5b72b696e31d1b50d57c4fbe942934f3701:src/fases/FaseEasy1.java
+           
 
 
         } catch (Exception ex) {

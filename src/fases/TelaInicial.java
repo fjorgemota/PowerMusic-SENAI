@@ -43,17 +43,17 @@ public class TelaInicial implements GameStateController {
 
     public void load() {
         
-        JPanel pteste = new JPanel();
-        Player thePlayer = Utilidades.loadVideo("ItsMyLife.mpg");
-        Component theVideo = thePlayer.getVisualComponent();
-        pteste.add(theVideo);
-        theVideo.setVisible(true);
-        theVideo.setBounds(0,0,200,200);
-        pteste.setBounds(0,0,200, 200); 
-        GameEngine.getInstance().getGameCanvas().setPanel(pteste);
-        pteste.setVisible(true);
-        pteste.repaint();
-        thePlayer.start();
+      //  JPanel pteste = new JPanel();
+       // Player thePlayer = Utilidades.loadVideo("ItsMyLife.mpg");
+       // Component theVideo = thePlayer.getVisualComponent();
+       // pteste.add(theVideo);
+      //  theVideo.setVisible(true);
+       // theVideo.setBounds(0,0,200,200);
+      //  pteste.setBounds(0,0,200, 200); 
+        //GameEngine.getInstance().getGameCanvas().setPanel(pteste);
+       // pteste.setVisible(true);
+      //  pteste.repaint();
+      //  thePlayer.start();
         try {
             this.bgImageHelp1 = new Imagem("img_cenario/help.png");
             this.bgImageHelp2 = new Imagem("img_cenario/Help2.png");
