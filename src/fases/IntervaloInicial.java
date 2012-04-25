@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
-public class Intervalo implements GameStateController {
+public class IntervaloInicial implements GameStateController {
 
     private Imagem bgImageEasy1;
     private Imagem bgImagePlay;
@@ -33,7 +33,7 @@ public class Intervalo implements GameStateController {
         
          try {
 
-            this.bgImageEasy1 = new Imagem("img_cenario/easy1.png");
+            this.bgImageEasy1 = new Imagem("img_cenario/Intervalos/easy1.png");
 
 
              this.bgImagePlay1 = new Imagem("img_cenario/play.png");
@@ -70,18 +70,18 @@ public class Intervalo implements GameStateController {
     
     public void step(long timeElapsed) {
         
-        if (Utilidades.estaClicandoEm(200, 300, 89, 75)) {
-            GameEngine.getInstance().setNextGameStateController(9);
+        if (Utilidades.estaClicandoEm(650, 520, 89, 75)) {
+            GameEngine.getInstance().setNextGameStateController(5);
         }
 
-        if (Utilidades.estaComOMouseEm(200, 300, 89, 75)) {
+        if (Utilidades.estaComOMouseEm(650, 520, 89, 75)) {
             this.bgImagePlay = this.bgImagePlay2;
         } else {
             this.bgImagePlay = this.bgImagePlay1;
         }
         
         if (Utilidades.estaClicandoEm(50, 520, 89, 75)) {
-            GameEngine.getInstance().setNextGameStateController(9);
+            GameEngine.getInstance().setNextGameStateController(2);
         }
 
         if (Utilidades.estaComOMouseEm(50, 520, 89, 75)) {
@@ -98,7 +98,7 @@ public class Intervalo implements GameStateController {
         g.fillRect(0, 0, 3000, 2400);
         this.bgImageEasy1.draw(g, 0, 0);
 
-        this.bgImagePlay.draw(g, 200, 300);
+        this.bgImagePlay.draw(g,650, 520);
         
         this.bgImageVoltar.draw(g, 50, 520);
     }

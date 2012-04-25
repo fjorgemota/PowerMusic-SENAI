@@ -17,7 +17,7 @@ import fases.FaseMedium1;
 import fases.FaseMedium2;
 import fases.FaseMedium3;
 import fases.MenuMidi;
-import fases.Intervalo;
+import fases.IntervaloInicial;
 import javaPlay.GameEngine;
 /**
  *
