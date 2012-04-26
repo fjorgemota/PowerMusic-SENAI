@@ -31,7 +31,7 @@ public class Guitarra extends GameObject{
     protected ArrayList<Esfera> notasEsferas; // Guarda uma lista com as esferas mostradas durante toda a execucao da musica
     protected long timeElapsed;// guarda o numero de milisegundos passados desde a ultima trocagem das notas
     protected int pontos;// guarda o numero de pontos
-    protected int lastSecond; // guarda o ultimo segundo no qual foi adicionado uma nova nota
+    protected float lastSecond; // guarda o ultimo segundo no qual foi adicionado uma nova nota
     protected float lastNote; // guarda o ultimo indice no qual foi adicionado uma nova nota
     public Guitarra(){
     }
@@ -62,11 +62,12 @@ public class Guitarra extends GameObject{
     }
     private Esfera[] getNotas(){
         for(float[] nota: notas){
-            if(nota.length==0){
+            if(nota.length==0 || nota[0] <= lastNote){
                 continue;//Ignora notas com menos de 1 elemento
             }
-            if(this.getPrecisionSecondsElapsed()-(620/GameEngine.getInstance().getFramesPerSecond()) <= nota[0] && lastNote != nota[0]){//Verifica se é a nota à ser considerada
+            if(this.getPrecisionSecondsElapsed()-(620/(float)GameEngine.getInstance().getFramesPerSecond()) >= nota[0] && lastNote != nota[0]){//Verifica se é a nota à ser considerada
                 lastNote = nota[0];
+                System.out.println("A ultima nota tocada foi "+lastNote);
                 Esfera[] esferasNotas = new Esfera[this.level];
                 for(int c=1;c<nota.length;c++){
                     int corda = (int)nota[c];
@@ -74,7 +75,6 @@ public class Guitarra extends GameObject{
                         continue;
                     }
                     corda = this.esferas.length-corda;
-                    System.out.println("Criando esfera "+this.esferas[corda].getClass().getName()+"("+corda+")");
                     esferasNotas[c-1] = this.esferas[corda].getNewInstance();
                 }
                 return esferasNotas;
@@ -123,9 +123,9 @@ public class Guitarra extends GameObject{
     }
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
-        if(this.getSecondsElapsed() != this.lastSecond){
+        if(this.getPrecisionSecondsElapsed() != this.lastSecond){
             System.out.println("Processando segundo "+this.lastSecond);
-            this.lastSecond = this.getSecondsElapsed();
+            this.lastSecond = this.getPrecisionSecondsElapsed();
             Esfera[] novasNotas = this.getNotas();
             for(int c=0;c<novasNotas.length;c++){
                 if(novasNotas[c] == null){
@@ -139,7 +139,6 @@ public class Guitarra extends GameObject{
         for(Esfera nota: this.notasEsferasAtuais){
             nota.step(timeElapsed);
             if(nota.getY()>620){
-                System.out.println("Migrando esfera "+nota.getCor()+" pois ela esta com Y "+nota.getY());
                 notasAntigas.add(nota);
             }
         }   

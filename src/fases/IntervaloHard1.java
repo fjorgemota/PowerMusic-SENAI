@@ -15,8 +15,9 @@ import utilidades.Utilidades;
  *
  * @author kamila_brito
  */
-public class IntervaloInicial3 implements GameStateController{
-     private Imagem bgImageEasy3;
+public class IntervaloHard1 implements GameStateController{
+  
+    private Imagem bgImageHard1;
     private Imagem bgImagePlay;
     private Imagem bgImagePlay1;
     private Imagem bgImagePlay2;
@@ -28,7 +29,7 @@ public class IntervaloInicial3 implements GameStateController{
         
          try {
 
-            this.bgImageEasy3 = new Imagem("img_cenario/Intervalos/easy3.png");
+            this.bgImageHard1 = new Imagem("img_cenario/Intervalos/hard1.png");
 
 
              this.bgImagePlay1 = new Imagem("img_cenario/play.png");
@@ -66,7 +67,7 @@ public class IntervaloInicial3 implements GameStateController{
     public void step(long timeElapsed) {
         
         if (Utilidades.estaClicandoEm(650, 520, 89, 75)) {
-            GameEngine.getInstance().setNextGameStateController(10);
+            GameEngine.getInstance().setNextGameStateController(7);
         }
 
         if (Utilidades.estaComOMouseEm(650, 520, 89, 75)) {
@@ -91,7 +92,7 @@ public class IntervaloInicial3 implements GameStateController{
     public void draw(Graphics g) {
        
         g.fillRect(0, 0, 3000, 2400);
-        this.bgImageEasy3.draw(g, 0, 0);
+        this.bgImageHard1.draw(g, 0, 0);
 
         this.bgImagePlay.draw(g,650, 520);
         

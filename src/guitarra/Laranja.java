@@ -15,6 +15,7 @@ import utilidades.Utilidades;
  */
 class Laranja extends Esfera {
     protected static int serie;
+
     protected static Sprite imagemCache;
     private int tecla = Keys.K;
     public Laranja(){
@@ -42,5 +43,11 @@ class Laranja extends Esfera {
     public void step(long timeElapsed){
         super.preLocate(timeElapsed);
         this.x += ((25/620.00000f)*this.y)-62;
+    }
+    public void pressionar() {
+     //   super.prePressionar();
+
+        
+        //Adiciona efeito aqui
     }
 }

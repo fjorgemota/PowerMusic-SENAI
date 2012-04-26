@@ -17,10 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
-// MÚSICAS DA FASE
-//Its my life
-//Swit of mine
-//Admiravel chip novo
+
 
 public class FaseEasy2 implements GameStateController {
 
