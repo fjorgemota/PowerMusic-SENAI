@@ -7,7 +7,9 @@ package guitarra;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import javaPlay.GameEngine;
 import javaPlay.GameObject;
+import javaPlay.Keyboard;
 import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
 import javaPlayExtras.Keys;
@@ -29,6 +31,7 @@ public abstract class Esfera extends GameObject{
     private int margem = 15;
     private int height;
     private Rectangle rect;
+    private int tecla = 0;
     public Esfera(){
         this.especial = Guitarra.getInstance().podeEspecial();
         this.second = Guitarra.getInstance().getSecondsElapsed();
@@ -41,12 +44,11 @@ public abstract class Esfera extends GameObject{
         return 10+(this.especial?5:0);
     }
     public abstract void setSerie(int serie);
-    public void pressionar(){
+    public void prePressionar(){
         Guitarra.getInstance().adicionaPontos(this.getPontos());
         this.pressionado = true;
-        
     }
-    
+    public abstract void pressionar();
     public abstract void step(long timeElapsed);
     
     public void preLocate(long timeElapsed) {
@@ -58,6 +60,10 @@ public abstract class Esfera extends GameObject{
         this.x = 82+this.getSerie()*this.width+this.margem;
         //Este metodo e sobreescrito e re-utilizado para permitir o alinhamento
         //Correto dos botoes
+        Keyboard teclado = GameEngine.getInstance().getKeyboard();
+        if(teclado.keyDown(this.tecla)){
+            this.pressionar();
+        }
     }
     public int getCurrentStep(){
         return Math.round(this.y/40);

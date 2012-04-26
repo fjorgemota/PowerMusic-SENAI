@@ -40,6 +40,9 @@ class Amarela extends Esfera {
         super.preLocate(timeElapsed);
         this.x -= 20+((70/620.0000f)*this.y);
     }
-
+    public void pressionar() {
+        super.prePressionar();
+        //Adiciona efeito aqui
+    }
     
 }
