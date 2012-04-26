@@ -1,5 +1,6 @@
 package fases;
 
+import guitarra.Esfera;
 import guitarra.Guitarra;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -31,6 +32,8 @@ public class FaseEasy1 implements GameStateController {
     private Player thePlayer;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
+    private Esfera botoes;
+
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
         try {
@@ -103,6 +106,7 @@ public class FaseEasy1 implements GameStateController {
             this.musicLoaded = true;
             thePlayer.start();
         }
+        
     }
 
     public void draw(Graphics g) {

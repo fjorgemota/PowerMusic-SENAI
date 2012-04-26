@@ -20,6 +20,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
+// MÚSICAS DA FASE
+//Its my life
+//Swit of mine
+//Admiravel chip novo
 
 public class FaseMedium1 implements GameStateController {
 
