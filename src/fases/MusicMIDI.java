@@ -39,9 +39,7 @@ public class MusicMIDI implements GameStateController{
         return this.filename;
     }
     public void load() {
-<<<<<<< HEAD
-        
-=======
+
         Sequence sequencia;
         try {
             sequencia = MidiSystem.getSequence(new File(this.getFileName()));
@@ -78,7 +76,7 @@ public class MusicMIDI implements GameStateController{
                 }
             }
         }
->>>>>>> 0ea1b775d0900b383930cc81d4f30d0335a4c3d1
+
     }
     }
     public void unload() {

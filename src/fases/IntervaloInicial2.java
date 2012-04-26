@@ -42,11 +42,6 @@ public class IntervaloInicial2 implements GameStateController {
              this.bgImageVoltar =this.bgImageVoltar1;
              
 
-
-
-
-
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -67,7 +62,7 @@ public class IntervaloInicial2 implements GameStateController {
     public void step(long timeElapsed) {
         
         if (Utilidades.estaClicandoEm(650, 520, 89, 75)) {
-            GameEngine.getInstance().setNextGameStateController(10);
+            GameEngine.getInstance().setNextGameStateController(9);
         }
 
         if (Utilidades.estaComOMouseEm(650, 520, 89, 75)) {
