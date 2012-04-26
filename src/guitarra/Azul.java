@@ -40,5 +40,9 @@ class Azul extends Esfera {
         super.preLocate(timeElapsed);
         this.x -= 45+(20/620.000f)*this.y;
     }
+    public void pressionar() {
+        super.prePressionar();
+        //Adiciona efeito aqui
+    }
     
 }

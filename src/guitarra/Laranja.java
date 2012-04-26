@@ -43,4 +43,8 @@ class Laranja extends Esfera {
         super.preLocate(timeElapsed);
         this.x += ((25/620.00000f)*this.y)-62;
     }
+    public void pressionar() {
+        super.prePressionar();
+        //Adiciona efeito aqui
+    }
 }
