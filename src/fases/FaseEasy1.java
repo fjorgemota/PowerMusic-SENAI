@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import utilidades.Utilidades;
 
 //MÚSICAS DA FASE
-// Gone
+//Gone
 //Tnt
 //Independencia
 
@@ -61,7 +61,7 @@ public class FaseEasy1 implements GameStateController {
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
-        thePlayer = Utilidades.carregaVideo("SweetChildOMine.mpg");
+        thePlayer = Utilidades.carregaVideo("TNT.mpg");
         Component theVideo = thePlayer.getVisualComponent();
                 
           

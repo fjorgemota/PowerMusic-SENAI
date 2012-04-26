@@ -66,7 +66,7 @@ public class IntervaloInicial3 implements GameStateController{
     public void step(long timeElapsed) {
         
         if (Utilidades.estaClicandoEm(650, 520, 89, 75)) {
-            GameEngine.getInstance().setNextGameStateController(11);
+            GameEngine.getInstance().setNextGameStateController(10);
         }
 
         if (Utilidades.estaComOMouseEm(650, 520, 89, 75)) {

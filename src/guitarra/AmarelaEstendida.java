@@ -42,5 +42,10 @@ public class AmarelaEstendida extends Esfera{
     public Esfera getNewInstance() {
         return new AmarelaEstendida();
     }
+
+    @Override
+    public void step(long timeElapsed) {
+       
+    }
     
 }
