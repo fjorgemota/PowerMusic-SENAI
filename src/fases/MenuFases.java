@@ -94,11 +94,11 @@ public class MenuFases implements GameStateController {
            GameEngine.getInstance().setNextGameStateController(15);
         }
         if (Utilidades.estaClicandoEm(300, 280, 150, 75)) {
-           GameEngine.getInstance().setNextGameStateController(6);
+           GameEngine.getInstance().setNextGameStateController(18);
         }
 
         if (Utilidades.estaClicandoEm(300, 380, 150, 75)) {
-            GameEngine.getInstance().setNextGameStateController(7);
+            GameEngine.getInstance().setNextGameStateController(21);
         }
 
         if (Utilidades.estaClicandoEm(300, 480, 100, 75)) {

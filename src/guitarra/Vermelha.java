@@ -4,8 +4,11 @@
  */
 package guitarra;
 
+import java.awt.event.KeyEvent;
+import javaPlay.Keyboard;
 import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
+import javaPlayExtras.Keys;
 import utilidades.Utilidades;
 
 /**
@@ -14,6 +17,7 @@ import utilidades.Utilidades;
  */
 class Vermelha extends Esfera {
     protected static int serie;
+    protected int tecla = Keys.S;
     public Vermelha(){
         super();
         try{
@@ -41,7 +45,8 @@ class Vermelha extends Esfera {
         this.x -= (122/620.000f)*this.y;
     }
     public void pressionar() {
-        super.prePressionar();
+    //    super.prePressionar();
+        
         //Adiciona efeito aqui
     }
 }

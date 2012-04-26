@@ -46,7 +46,7 @@ public class AmarelaEstendida extends Esfera{
        
     }
     public void pressionar() {
-        super.prePressionar();
+      //  super.prePressionar();
         //Adiciona efeito aqui
     }
 }
