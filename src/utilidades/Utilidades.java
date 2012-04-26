@@ -27,7 +27,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import net.sourceforge.jffmpeg.AudioDecoder;
 import net.sourceforge.jffmpeg.VideoDecoder;
-
+import com.sun.media.sound.MidiUtils;
 /**
  *
  * @author fernando_mota
@@ -68,58 +68,36 @@ public class Utilidades {
     public static void alertar(String mensagem, String titulo){
         JOptionPane.showMessageDialog(null, mensagem, titulo, 0);
     }
-    public static int[][] loadNotesFromMIDI(String filename){
+    public static float[][] loadNotesFromMIDI(String filename){
         Sequence sequencia;
+        Sequencer tocador;
+        MidiUtils.TempoCache tempo;
         try {
             sequencia = MidiSystem.getSequence(new File(filename));
+            tempo = new MidiUtils.TempoCache(sequencia);
+            tocador = MidiSystem.getSequencer(true);
+            tocador.setSequence(sequencia);
+            tocador.open();
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
             return null;
         }
-        float divisionType = sequencia.getDivisionType();
-        int trackNumber = 0, program = 0;
-        float timeElapsed = 0;
-        HashMap notesPlayed = new HashMap();
-        ArrayList< ArrayList<Integer> > notas = new ArrayList< ArrayList<Integer>>(); // Cria um ArrayList com as notas, que devem vir a ser a matriz com as notas por si so
+        int program = 0;
+        ArrayList< ArrayList<Number> > notas = new ArrayList< ArrayList<Number>>(); // Cria um ArrayList com as notas, que devem vir a ser a matriz com as notas por si so
         int[] chords = new int[]{64, 69, 74, 79, 83, 88};
-        float beatsPerMinute = 120.0f;
-        int ticksPerBeat = 0;
-        float ticksBySecond = 0;
         int maxNote = 0;
         for (Track track:  sequencia.getTracks()) {
             for(int c=0;c<track.size();++c){
                 MidiEvent event = track.get(c);
                 MidiMessage msg = event.getMessage();
-                if(msg instanceof MetaMessage){
-                    MetaMessage metamsg = (MetaMessage) msg;
-                    byte[] abData = metamsg.getData();
-                    if(metamsg.getType() == 81){
-                        float	nTempo = ((abData[0] & 0xFF) << 16)
-					| ((abData[1] & 0xFF) << 8)
-					| (abData[2] & 0xFF);           // tempo in microseconds per beat
-			if (nTempo <= 0) {
-                            nTempo = 0.1f;
-                        }
-			// truncate it to 2 digits after dot
-			beatsPerMinute = (float) (Math.round((60000000.0f / nTempo)*100.0f)/100.0f);
-                        System.out.println("Set Tempo "+beatsPerMinute+"bpm )");
-                    }
-                    else if(metamsg.getType() == 88){
-                        ticksPerBeat = abData[2] & 0xFF;
-                        System.out.println(ticksPerBeat+"tpb");
-                        ticksBySecond = (beatsPerMinute*sequencia.getResolution())/60;
-                        System.out.println("Tick "+event.getTick()+" Ticks por segundo: "+ticksBySecond);
-                    }
-                }
-                else if(msg instanceof ShortMessage){
+                if(msg instanceof ShortMessage){
                     ShortMessage shortmsg = (ShortMessage) msg;
                     if(shortmsg.getCommand() == ShortMessage.PROGRAM_CHANGE){
                         program = shortmsg.getData1();
                     }
-                    else if(shortmsg.getCommand() == ShortMessage.TIMING_CLOCK){
-                        System.out.println("Timing clock!");
-                    }
-                    else if(program>=25 && program <= 32){
+                    else if(program>=0 && program <= 128){
+                    //else if(program>=25 && program <= 40){
+                    //else if(program== 30){
                         if(shortmsg.getCommand() == ShortMessage.NOTE_ON){
                             int note = shortmsg.getData1();
                             int noteChord = 1;
@@ -129,23 +107,42 @@ public class Utilidades {
                                 }
                                 noteChord++; 
                             }
-                            int noteSecond = Math.round(event.getTick()/ticksBySecond);
+                            tocador.setTickPosition(event.getTick());
+                            //tocador.start();
+                            float noteSecond = MidiUtils.tick2microsecond(sequencia, event.getTick(), tempo)/1000000.0f;
                             //System.out.println("Play chord "+noteChord+" in "+noteSecond+" seconds");
-                            ArrayList<Integer> lastNote = new ArrayList<Integer>();
+                            ArrayList<Number> lastNote = new ArrayList<Number>();
                             if(notas.size() > 0){
                                 lastNote = notas.get(notas.size()-1);
-                                if(lastNote.get(0) == noteSecond){
-                                    lastNote.add(noteChord);
+                                int theIndex = 0;
+                                float lastSecond = (float) 0.0;
+                                boolean exists = false;
+                                for(ArrayList<Number> aNota: notas){
+                                    if(aNota.get(0).floatValue() == noteSecond){
+                                        exists = true;
+                                        lastNote = aNota;
+                                    }
+                                    else if(lastSecond<noteSecond && aNota.get(0).floatValue()>noteSecond){
+                                        exists = false;
+                                        break;
+                                    }
+                                    lastSecond = aNota.get(0).floatValue();
+                                    theIndex++;
+                                }
+                                if(exists){
+                                    if(!lastNote.contains(noteChord)){
+                                        lastNote.add(noteChord);
+                                    }
                                 }
                                 else{
-                                    lastNote = new ArrayList<Integer>();
+                                    lastNote = new ArrayList<Number>();
                                     lastNote.add(noteSecond);
                                     lastNote.add(noteChord);
-                                    notas.add(lastNote);
+                                    notas.add(theIndex,lastNote);
                                 }
                             }
                             else{
-                                lastNote = new ArrayList<Integer>();
+                                lastNote = new ArrayList<Number>();
                                 lastNote.add(noteSecond);
                                 lastNote.add(noteChord);
                                 notas.add(lastNote);
@@ -160,16 +157,35 @@ public class Utilidades {
                 }
             }
         }
-        System.out.println("tamanho da pista "+notas.size()+" e track "+maxNote);
-        int[][] notasVetor = new int[notas.size()][maxNote];
+        //System.out.println("tamanho da pista "+notas.size()+" e track "+maxNote);
+        float[][] notasVetor = new float[notas.size()][maxNote];
         for(int c=0;c < notas.size(); ++c){
-            ArrayList<Integer> notasTrack = notas.get(c);
+            ArrayList<Number> notasTrack = notas.get(c);
             for(int c2=0; c2<notasTrack.size(); ++c2){
-                notasVetor[c][c2] = (int)notasTrack.get(c2);
+                notasVetor[c][c2] = (float)notasTrack.get(c2).floatValue();
                 System.out.println("notasVetor["+c+"]["+c2+"] = "+notasVetor[c][c2]);
             }
         }
+       // GameEngine.getInstance().setFramesPerSecond((int)(((tocador.getMicrosecondLength()/1000000)/(notas.size()*1.0))*4000));
+       // System.out.println("(int)(("+sequencia.getMicrosecondLength()+"/1000000)/"+notas.size()+"="+(int)((sequencia.getMicrosecondLength()/1000000)/notas.size()))
         return notasVetor;
+    }
+    public static float[][] loadNotesFromMIDI(String filename, float videoDuration){
+        float[][] notas = loadNotesFromMIDI(filename);
+        if(notas.length == 0){
+            return notas;
+        }
+        float audioDuration  = notas[notas.length-1][0];
+        float ratio = audioDuration/videoDuration;
+        System.out.println("O Ratio é de "+ratio);
+        float[][] novaNotas = new float[notas.length][notas[0].length];
+        int c = 0;
+        for(float[] nota: notas){
+            novaNotas[c] = nota;
+            novaNotas[c][0] = novaNotas[c][0]/ratio;
+            ++c;
+        }
+        return novaNotas;
     }
             
     public static Player carregaVideo(String videopath){

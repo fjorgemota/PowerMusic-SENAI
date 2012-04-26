@@ -38,7 +38,6 @@ class Vermelha extends Esfera {
     }
     public void step(long timeElapsed){
         super.preLocate(timeElapsed);
-        System.out.println("Definindo X como sendo "+((114/620.0000f)*this.y)+" na esfera "+this.getCor());
         this.x -= (122/620.000f)*this.y;
     }
 }

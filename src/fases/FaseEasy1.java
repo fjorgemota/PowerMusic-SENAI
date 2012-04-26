@@ -57,10 +57,7 @@ public class FaseEasy1 implements GameStateController {
     }
 
     public void start() {
-        GameEngine.getInstance().setFramesPerSecond(80);
         this.guitarra = Guitarra.getInstance();
-        
-        
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
@@ -81,9 +78,8 @@ public class FaseEasy1 implements GameStateController {
         theVideo.repaint();
         this.bgImageFundoEsquerda.repaint();
         pteste.repaint();
-        thePlayer.start();
         GameEngine.getInstance().getGameCanvas().setPanel(pteste);
-        
+        GameEngine.getInstance().setFramesPerSecond(375);
     }
 
     public void step(long timeElapsed) {
@@ -91,15 +87,20 @@ public class FaseEasy1 implements GameStateController {
         this.guitarra.step(timeElapsed);
         if(!this.musicLoaded){
             this.guitarra.reset();
-            int[][] notas = new int[Utilidades.getNumeroRandomico(5, 200)][6];
+            /*int[][] notas = new int[Utilidades.getNumeroRandomico(5, 200)][6];
             for(int c=0;c<notas.length;++c){
                 notas[c][0] = Utilidades.getNumeroRandomico(1, 300);
                 for(int c2 = 1;c2<Utilidades.getNumeroRandomico(1, 5); ++c2){
                     notas[c][c2] = Utilidades.sorteia()?c2:0;
                 }
+            }*/
+            float[][] notas = Utilidades.loadNotesFromMIDI("musicas/gunsnroses-sweet_child_o_mine.mid",(float)thePlayer.getDuration().getSeconds());
+            for(int c=0;c<notas.length;++c){
+                //notas[c][0] = notas[c][0]/1.05f;
             }
-            this.guitarra.setNotas(Utilidades.loadNotesFromMIDI("musicas/gunsnroses-sweet_child_o_mine.mid"));
+            this.guitarra.setNotas(notas);
             this.musicLoaded = true;
+            thePlayer.start();
         }
     }
 

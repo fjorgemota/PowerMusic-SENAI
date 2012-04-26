@@ -39,47 +39,7 @@ public class MusicMIDI implements GameStateController{
         return this.filename;
     }
     public void load() {
-<<<<<<< HEAD
-        
-=======
-        Sequence sequencia;
-        try {
-            sequencia = MidiSystem.getSequence(new File(this.getFileName()));
-        } catch (Exception ex) {
-            Utilidades.alertar(ex.getMessage());
-            return;
-        }
-        int trackNumber = 0, program = 0;
-        HashMap notesPlayed = new HashMap();
-        ArrayList< ArrayList > notas = new ArrayList< ArrayList>(); // Cria um ArrayList com as notas, que devem vir a ser a matriz com as notas por si so
-        int[] chords = new int[]{64, 69, 74, 79, 83, 88};
-        for (Track track:  sequencia.getTracks()) {
-            for(int c=0;c<track.size();++c){
-                MidiEvent event = track.get(c);
-                MidiMessage msg = event.getMessage();
-                if(msg instanceof ShortMessage){
-                    ShortMessage shortmsg = (ShortMessage) msg;
-                    if(shortmsg.getCommand() == ShortMessage.PROGRAM_CHANGE){
-                        program = shortmsg.getData1();
-                    }
-                    else if(program>=25 && program <= 32){
-                        if(shortmsg.getCommand() == ShortMessage.NOTE_ON){
-                            int note = shortmsg.getData1();
-                            int noteChord;
-                            for (int chord: chords){
-                                if (note < chord){
-                                    break;
-                                      //  noteChord = chord; 
-                                      
-                                     
-                            }
-                        }
-                    }
-                }
-            }
-        }
->>>>>>> 0ea1b775d0900b383930cc81d4f30d0335a4c3d1
-    }
+      
     }
     public void unload() {
         throw new UnsupportedOperationException("Not supported yet.");

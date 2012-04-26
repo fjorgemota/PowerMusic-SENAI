@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 
 public class Imagem {
     private Image image;
-    private static int MAX_COUNT = 50;
+    private static int MAX_COUNT = 100;
 
     public Imagem(String filename) throws Exception
     {
@@ -15,7 +15,7 @@ public class Imagem {
         int count = 0;
 
         while(image.getWidth(null) == -1) {
-            Thread.sleep(1);
+            Thread.sleep(10);
             count++;
 
             if(count == MAX_COUNT) {

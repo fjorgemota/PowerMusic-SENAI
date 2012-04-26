@@ -20,7 +20,7 @@ public class Sprite
     private int currAnimFrame;
     private int animFrameWidth;
     private int animFrameHeight;
-    private int MAX_COUNT = 50;
+    private int MAX_COUNT = 100;
 
     public Sprite(String filename, int animFrameCount, int animFrameWidth,
             int animFrameHeight) throws Exception
@@ -31,7 +31,7 @@ public class Sprite
 
         while(image.getWidth(null) == -1)
         {
-            Thread.sleep(1);
+            Thread.sleep(10);
             count++;
 
             if(count == MAX_COUNT)

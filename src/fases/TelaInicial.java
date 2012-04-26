@@ -43,17 +43,17 @@ public class TelaInicial implements GameStateController {
 
     public void load() {
         
-        int[][] notas = Utilidades.loadNotesFromMIDI("musicas/gunsnroses-sweet_child_o_mine.mid");
+        /*float[][] notas = Utilidades.loadNotesFromMIDI("musicas/gunsnroses-sweet_child_o_mine.mid");
         System.out.println("[");
-        for(int[] nota: notas){
+        for(float[] nota: notas){
             System.out.print("    [");
-            for(int notaValue: nota){
+            for(float notaValue: nota){
                 System.out.print(nota.toString()+",");
             }
             System.out.print("    ],");
         }
         System.out.println("]");
-        System.out.println(notas.toString());
+        System.out.println(notas.toString());*/
         try {
             this.bgImageHelp1 = new Imagem("img_cenario/help.png");
             this.bgImageHelp2 = new Imagem("img_cenario/Help2.png");
