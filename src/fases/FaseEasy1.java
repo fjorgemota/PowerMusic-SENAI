@@ -31,6 +31,7 @@ public class FaseEasy1 implements GameStateController {
     private Player thePlayer;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
+    private boolean videoStarted = false;
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
         try {
@@ -61,7 +62,7 @@ public class FaseEasy1 implements GameStateController {
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
-        thePlayer = Utilidades.carregaVideo("TNT.mpg");
+        thePlayer = Utilidades.carregaVideo("ItsMyLife.mpg");
         Component theVideo = thePlayer.getVisualComponent();
                 
           
@@ -79,13 +80,13 @@ public class FaseEasy1 implements GameStateController {
         this.bgImageFundoEsquerda.repaint();
         pteste.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(pteste);
-        GameEngine.getInstance().setFramesPerSecond(450);
+        GameEngine.getInstance().setFramesPerSecond(500);
+        //this.guitarra.setMinorTime();
+        this.thePlayer.prefetch();
     }
 
     public void step(long timeElapsed) {
-        this.guitarra.setVideoTime((float)thePlayer.getMediaTime().getSeconds());
-        this.guitarra.step(timeElapsed);
-        if(!this.musicLoaded){
+        if(this.musicLoaded==false){
             
             /*int[][] notas = new int[Utilidades.getNumeroRandomico(5, 200)][6];
             for(int c=0;c<notas.length;++c){
@@ -94,14 +95,27 @@ public class FaseEasy1 implements GameStateController {
                     notas[c][c2] = Utilidades.sorteia()?c2:0;
                 }
             }*/
-            float[][] notas = Utilidades.loadNotesFromMIDI("musicas/gunsnroses-sweet_child_o_mine.mid",(float)thePlayer.getDuration().getSeconds());
+            
+            float[][] notas = Utilidades.loadNotesFromMIDI("musicas/ItsMyLife.mid",(float)thePlayer.getDuration().getSeconds());
+            //float[][] notas = Utilidades.loadNotesFromMIDI("musicas/SweetChildOMine.mid");
             for(int c=0;c<notas.length;++c){
                 //notas[c][0] = notas[c][0]/1.05f;
             }
             this.guitarra.reset();
+            
             this.guitarra.setNotas(notas);
             this.musicLoaded = true;
-            thePlayer.start();
+        }
+        else{
+            if(this.guitarra.isFirstNotePlayed() && this.videoStarted == false){
+                thePlayer.start();
+                this.videoStarted = true;
+            }
+            else if(this.videoStarted == true){
+                timeElapsed = 0;
+                this.guitarra.addVideoTime((float)(thePlayer.getMediaTime().getSeconds()*1000));
+            }
+            this.guitarra.step(timeElapsed);
         }
     }
 
