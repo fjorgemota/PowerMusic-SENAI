@@ -79,14 +79,14 @@ public class FaseEasy1 implements GameStateController {
         this.bgImageFundoEsquerda.repaint();
         pteste.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(pteste);
-        GameEngine.getInstance().setFramesPerSecond(375);
+        GameEngine.getInstance().setFramesPerSecond(450);
     }
 
     public void step(long timeElapsed) {
-        
+        this.guitarra.setVideoTime((float)thePlayer.getMediaTime().getSeconds());
         this.guitarra.step(timeElapsed);
         if(!this.musicLoaded){
-            this.guitarra.reset();
+            
             /*int[][] notas = new int[Utilidades.getNumeroRandomico(5, 200)][6];
             for(int c=0;c<notas.length;++c){
                 notas[c][0] = Utilidades.getNumeroRandomico(1, 300);
@@ -98,6 +98,7 @@ public class FaseEasy1 implements GameStateController {
             for(int c=0;c<notas.length;++c){
                 //notas[c][0] = notas[c][0]/1.05f;
             }
+            this.guitarra.reset();
             this.guitarra.setNotas(notas);
             this.musicLoaded = true;
             thePlayer.start();

@@ -6,6 +6,7 @@ package guitarra;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import javaPlay.GameEngine;
 import javaPlay.GameObject;
 import javaPlayExtras.Imagem;
 import utilidades.Utilidades;
@@ -64,7 +65,7 @@ public class Guitarra extends GameObject{
             if(nota.length==0){
                 continue;//Ignora notas com menos de 1 elemento
             }
-            if(this.getPrecisionSecondsElapsed() <= nota[0] && lastNote != nota[0]){//Verifica se é a nota à ser considerada
+            if(this.getPrecisionSecondsElapsed()-(620/GameEngine.getInstance().getFramesPerSecond()) <= nota[0] && lastNote != nota[0]){//Verifica se é a nota à ser considerada
                 lastNote = nota[0];
                 Esfera[] esferasNotas = new Esfera[this.level];
                 for(int c=1;c<nota.length;c++){
@@ -97,7 +98,12 @@ public class Guitarra extends GameObject{
          */
         return new Esfera[0];
     }
-
+    public void setVideoTime(float seconds){
+        this.timeElapsed = (long)seconds;
+    }
+    public void setVideoTime(double seconds){
+        this.timeElapsed = (long)seconds;
+    }
     public void setNotas(float[][] notas) {
         this.notas = notas;
        

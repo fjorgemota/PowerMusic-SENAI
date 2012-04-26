@@ -84,7 +84,8 @@ public class Utilidades {
         }
         int program = 0;
         ArrayList< ArrayList<Number> > notas = new ArrayList< ArrayList<Number>>(); // Cria um ArrayList com as notas, que devem vir a ser a matriz com as notas por si so
-        int[] chords = new int[]{64, 69, 74, 79, 83, 88};
+        //int[] chords = new int[]{64, 69, 74, 79, 83, 88};
+        int[] chords = new int[]{21, 43, 63, 84, 106, 128};        
         int maxNote = 0;
         for (Track track:  sequencia.getTracks()) {
             for(int c=0;c<track.size();++c){
