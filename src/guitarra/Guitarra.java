@@ -23,7 +23,7 @@ public class Guitarra extends GameObject{
         }
         return this.getProgresso(10)==100;
     }
-    protected int[][] notas = new int[0][0]; // Guarda uma matriz com as notas disponiveis para serem tocadas
+    protected float[][] notas = new float[0][0]; // Guarda uma matriz com as notas disponiveis para serem tocadas
     protected Esfera[] esferas; // Guarda um vetor com as esferas disponiveis para serem mostradas
     protected int level = 0; // Guarda a dificuldade (numero de notas a serem exibidas) mostradas na tela simultaneamente
     protected ArrayList<Esfera> notasEsferasAtuais; // Guarda uma lista com as esferas mostradas na tela atualmente
@@ -31,6 +31,7 @@ public class Guitarra extends GameObject{
     protected long timeElapsed;// guarda o numero de milisegundos passados desde a ultima trocagem das notas
     protected int pontos;// guarda o numero de pontos
     protected int lastSecond; // guarda o ultimo segundo no qual foi adicionado uma nova nota
+    protected float lastNote; // guarda o ultimo indice no qual foi adicionado uma nova nota
     public Guitarra(){
     }
     public void load(){
@@ -59,18 +60,21 @@ public class Guitarra extends GameObject{
         this.level = level+1;
     }
     private Esfera[] getNotas(){
-        for(int[] nota: notas){
+        for(float[] nota: notas){
             if(nota.length==0){
                 continue;//Ignora notas com menos de 1 elemento
             }
-            if(this.getSecondsElapsed() == nota[0]){//Verifica se é a nota à ser considerada
+            if(this.getPrecisionSecondsElapsed() <= nota[0] && lastNote != nota[0]){//Verifica se é a nota à ser considerada
+                lastNote = nota[0];
                 Esfera[] esferasNotas = new Esfera[this.level];
                 for(int c=1;c<nota.length;c++){
-                    if(nota[c] == 0 || nota[c] >= this.esferas.length-1){
+                    int corda = (int)nota[c];
+                    if(corda == 0 || corda >= this.esferas.length){
                         continue;
                     }
-                    System.out.println("Criando esfera "+this.esferas[nota[c]].getClass().getName()+"("+nota[c]+")");
-                    esferasNotas[c-1] = this.esferas[nota[c]].getNewInstance();
+                    corda = this.esferas.length-corda;
+                    System.out.println("Criando esfera "+this.esferas[corda].getClass().getName()+"("+corda+")");
+                    esferasNotas[c-1] = this.esferas[corda].getNewInstance();
                 }
                 return esferasNotas;
             }
@@ -94,19 +98,22 @@ public class Guitarra extends GameObject{
         return new Esfera[0];
     }
 
-    public void setNotas(int[][] notas) {
+    public void setNotas(float[][] notas) {
         this.notas = notas;
        
     }
     public void reset(){
         this.timeElapsed = 0;
         this.lastSecond = 0;
-        this.notas = new int[0][0];
+        this.notas = new float[0][0];
         this.notasEsferas.clear();
         this.notasEsferasAtuais.clear();
     }
     protected int getSecondsElapsed(){
         return (int) (this.timeElapsed/1000);
+    }
+    protected float getPrecisionSecondsElapsed(){
+        return (this.timeElapsed/1000.0f);
     }
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;

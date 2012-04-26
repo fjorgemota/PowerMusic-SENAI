@@ -40,6 +40,7 @@ public class MusicMIDI implements GameStateController{
     }
     public void load() {
 
+
         Sequence sequencia;
         try {
             sequencia = MidiSystem.getSequence(new File(this.getFileName()));
@@ -78,6 +79,7 @@ public class MusicMIDI implements GameStateController{
         }
 
     }
+
     }
     public void unload() {
         throw new UnsupportedOperationException("Not supported yet.");
