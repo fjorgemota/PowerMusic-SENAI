@@ -31,6 +31,7 @@ public class FaseEasy1 implements GameStateController {
     private Player thePlayer;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
+    
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
         try {

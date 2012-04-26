@@ -17,10 +17,16 @@ import fases.FaseHard3;
 import fases.FaseMedium1;
 import fases.FaseMedium2;
 import fases.FaseMedium3;
+import fases.IntervaloHard1;
+import fases.IntervaloHard2;
+import fases.IntervaloHard3;
 import fases.MenuMidi;
 import fases.IntervaloInicial;
 import fases.IntervaloInicial2;
 import fases.IntervaloInicial3;
+import fases.IntervaloMedium1;
+import fases.IntervaloMedium2;
+import fases.IntervaloMedium3;
 import javaPlay.GameEngine;
 
 /**
@@ -51,6 +57,12 @@ public class PowerMusic {
         GameEngine.getInstance().addGameStateController(15, new IntervaloInicial());
         GameEngine.getInstance().addGameStateController(16, new IntervaloInicial2());
         GameEngine.getInstance().addGameStateController(17, new IntervaloInicial3());
+        GameEngine.getInstance().addGameStateController(18, new IntervaloMedium1());
+        GameEngine.getInstance().addGameStateController(19, new IntervaloMedium2());
+        GameEngine.getInstance().addGameStateController(20, new IntervaloMedium3());
+        GameEngine.getInstance().addGameStateController(21, new IntervaloHard1());
+        GameEngine.getInstance().addGameStateController(22, new IntervaloHard2());
+        GameEngine.getInstance().addGameStateController(23, new IntervaloHard3());
 
         GameEngine.getInstance().setStartingGameStateController(2);
 
