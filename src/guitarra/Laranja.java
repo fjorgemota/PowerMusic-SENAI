@@ -4,7 +4,9 @@
  */
 package guitarra;
 
+import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
+import javaPlayExtras.Keys;
 import utilidades.Utilidades;
 
 /**
@@ -13,18 +15,16 @@ import utilidades.Utilidades;
  */
 class Laranja extends Esfera {
     protected static int serie;
-    protected static Imagem imagemCache;
+    protected static Sprite imagemCache;
+    private int tecla = Keys.K;
     public Laranja(){
         super();
-        if(Laranja.imagemCache==null){
-            try{
-                Laranja.imagemCache = new Imagem("img_cenario/laranja"+(this.isEspecial()?"-especial":"")+".png");
-            }
-            catch(Exception e){
-                Utilidades.alertar(e.getMessage());
-            }
+        try{
+            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_laranja.png",9,49,28);
         }
-        this.imagem = Laranja.imagemCache;
+        catch(Exception e){
+            Utilidades.alertar(e.getMessage());
+        }
     }
     public Laranja(int serie){
         this();
@@ -38,5 +38,9 @@ class Laranja extends Esfera {
     }
     public Esfera getNewInstance(){
         return new Laranja();
+    }
+    public void step(long timeElapsed){
+        super.preLocate(timeElapsed);
+        this.x += ((25/620.00000f)*this.y)-62;
     }
 }
