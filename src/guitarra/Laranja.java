@@ -15,6 +15,7 @@ import utilidades.Utilidades;
  */
 class Laranja extends Esfera {
     protected static int serie;
+
     protected static Sprite imagemCache;
     private int tecla = Keys.K;
     public Laranja(){

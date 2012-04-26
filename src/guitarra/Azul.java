@@ -6,6 +6,7 @@ package guitarra;
 
 import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
+import javaPlayExtras.Keys;
 import utilidades.Utilidades;
 
 /**
@@ -14,6 +15,7 @@ import utilidades.Utilidades;
  */
 class Azul extends Esfera {
     protected static int serie;
+    protected int tecla = Keys.J;
     public Azul(){
         super();
         try{

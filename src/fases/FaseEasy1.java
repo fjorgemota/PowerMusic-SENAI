@@ -32,7 +32,7 @@ public class FaseEasy1 implements GameStateController {
     private Player thePlayer;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
-    private Esfera botoes;
+    private Guitarra botoes;
 
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
@@ -64,7 +64,7 @@ public class FaseEasy1 implements GameStateController {
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
-        thePlayer = Utilidades.carregaVideo("TNT.mpg");
+        thePlayer = Utilidades.carregaVideo("SweetChildOMine.mpg");
         Component theVideo = thePlayer.getVisualComponent();
                 
           
@@ -107,6 +107,8 @@ public class FaseEasy1 implements GameStateController {
             thePlayer.start();
         }
         
+
+        
     }
 
     public void draw(Graphics g) {
@@ -115,11 +117,7 @@ public class FaseEasy1 implements GameStateController {
        
         this.bgImageFundoDireita.draw(g, 0, 0);
         this.guitarra.draw(g);
-        if (Utilidades.estaComOMouseEm(200, 300, 89, 75)) {
-            this.bgImagePlay = this.bgImagePlay2;
-        } else {
-            this.bgImagePlay = this.bgImagePlay1;
-        }
+       
     }
     public void stop() {
         thePlayer.stop();
