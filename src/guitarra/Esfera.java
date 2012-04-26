@@ -45,6 +45,7 @@ public abstract class Esfera extends GameObject{
     }
     public abstract void setSerie(int serie);
     public void prePressionar(){
+        
         Guitarra.getInstance().adicionaPontos(this.getPontos());
         this.pressionado = true;
     }
