@@ -22,9 +22,7 @@ import utilidades.Utilidades;
 public class FaseEasy1 implements GameStateController {
 
     private Imagem bgImageFundo;
-    private Imagem bgImagePlay;
-    private Imagem bgImagePlay1;
-    private Imagem bgImagePlay2;
+   
     private Imagem bgImageGuitarra;
     private Imagem bgImagePlayEfeito;
     private JLabel bgImageFundoEsquerda;
@@ -32,12 +30,10 @@ public class FaseEasy1 implements GameStateController {
     private Player thePlayer;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
-<<<<<<< HEAD
-    private Guitarra botoes;
 
-=======
     
->>>>>>> a5e944410e5e37ae54148a3e4a5adf5e56459852
+
+
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
         try {

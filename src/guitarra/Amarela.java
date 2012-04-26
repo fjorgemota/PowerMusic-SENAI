@@ -43,7 +43,7 @@ class Amarela extends Esfera {
         this.x -= 20+((70/620.0000f)*this.y);
     }
     public void pressionar() {
-        super.prePressionar();
+     //   super.Pressionar();
         //Adiciona efeito aqui
     }
     

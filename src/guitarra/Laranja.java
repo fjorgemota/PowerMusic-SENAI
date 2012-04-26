@@ -45,7 +45,9 @@ class Laranja extends Esfera {
         this.x += ((25/620.00000f)*this.y)-62;
     }
     public void pressionar() {
-        super.prePressionar();
+     //   super.prePressionar();
+
+        
         //Adiciona efeito aqui
     }
 }

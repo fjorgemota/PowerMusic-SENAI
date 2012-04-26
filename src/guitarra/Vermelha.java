@@ -45,7 +45,7 @@ class Vermelha extends Esfera {
         this.x -= (122/620.000f)*this.y;
     }
     public void pressionar() {
-        super.prePressionar();
+    //    super.prePressionar();
         
         //Adiciona efeito aqui
     }
