@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import net.sourceforge.jffmpeg.AudioDecoder;
 import net.sourceforge.jffmpeg.VideoDecoder;
 import com.sun.media.sound.MidiUtils;
+import java.util.Map;
 /**
  *
  * @author fernando_mota
@@ -87,6 +88,7 @@ public class Utilidades {
         //int[] chords = new int[]{64, 69, 74, 79, 83, 88};
         int[] chords = new int[]{21, 43, 63, 84, 106, 128};        
         int maxNote = 0;
+        HashMap<Integer, Float> lastTimeNote = new HashMap<Integer, Float>();
         for (Track track:  sequencia.getTracks()) {
             for(int c=0;c<track.size();++c){
                 MidiEvent event = track.get(c);
@@ -97,6 +99,7 @@ public class Utilidades {
                         program = shortmsg.getData1();
                     }
                     else if(program>=0 && program <= 128){
+                        System.out.println("Tocando instrumento "+program);
                     //else if(program>=25 && program <= 40){
                     //else if(program== 30){
                         if(shortmsg.getCommand() == ShortMessage.NOTE_ON){
@@ -111,6 +114,13 @@ public class Utilidades {
                             tocador.setTickPosition(event.getTick());
                             //tocador.start();
                             float noteSecond = MidiUtils.tick2microsecond(sequencia, event.getTick(), tempo)/1000000.0f;
+                            if(!lastTimeNote.containsKey(noteChord)){
+                                lastTimeNote.put(noteChord, 0.0f);
+                            }
+                            if(noteSecond-lastTimeNote.get(noteChord).floatValue()<=0.5){
+                                continue;
+                            }
+                            lastTimeNote.put(noteChord,noteSecond);
                             //System.out.println("Play chord "+noteChord+" in "+noteSecond+" seconds");
                             ArrayList<Number> lastNote = new ArrayList<Number>();
                             if(notas.size() > 0){
@@ -178,7 +188,6 @@ public class Utilidades {
         }
         float audioDuration  = notas[notas.length-1][0];
         float ratio = audioDuration/videoDuration;
-        System.out.println("O Ratio é de "+ratio);
         float[][] novaNotas = new float[notas.length][notas[0].length];
         int c = 0;
         for(float[] nota: notas){

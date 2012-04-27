@@ -65,7 +65,6 @@ public abstract class Esfera extends GameObject {
     public void pressionar() {
         Guitarra.getInstance().adicionaPontos(this.getPontos());
         this.pressionado = true;
-
     }
     //public abstract void pressionar();
 
