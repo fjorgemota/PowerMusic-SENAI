@@ -41,10 +41,10 @@ class Azul extends Esfera {
     public void step(long timeElapsed){
         super.preLocate(timeElapsed);
         this.x -= 45+(20/620.000f)*this.y;
+         if(teclado.keyDown(  Keys.J ) && this.podePressionar()){
+           this.pressionar();
+        }
     }
-    public void pressionar() {
-      //  super.prePressionar();
-        //Adiciona efeito aqui
-    }
+   
     
 }
