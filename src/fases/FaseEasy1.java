@@ -1,19 +1,16 @@
 package fases;
 
-import guitarra.Esfera;
 import guitarra.Guitarra;
 import java.awt.Component;
 import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlayExtras.Imagem;
-import javax.media.Player;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.MIDIReader;
-import utilidades.Utilidades;
 import utilidades.Video;
 
 //MÚSICAS DA FASE
@@ -66,8 +63,8 @@ public class FaseEasy1 implements GameStateController {
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
-        video = new Video("ItsMyLife.mpg");
-        Component theVideo = video.getSwingComponent();
+        this.video = new Video("ItsMyLife.mpg");
+        Component theVideo = this.video.getSwingComponent();
                 
           
         pteste.add(this.bgImageFundoEsquerda);
