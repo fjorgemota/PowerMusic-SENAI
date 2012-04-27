@@ -4,31 +4,14 @@
  */
 package utilidades;
 
-import java.awt.Component;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javaPlay.GameEngine;
 import javaPlay.Mouse;
-import javax.media.Format;
-import javax.media.Manager;
 import javax.media.Player;
-import javax.media.PlugInManager;
-import javax.sound.midi.*;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import net.sourceforge.jffmpeg.AudioDecoder;
-import net.sourceforge.jffmpeg.VideoDecoder;
-import com.sun.media.sound.MidiUtils;
-import java.util.Map;
 /**
  *
  * @author fernando_mota
