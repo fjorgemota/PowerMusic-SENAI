@@ -50,20 +50,19 @@ public class FaseEasy1 implements GameStateController {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
+        this.video = new Video("ItsMyLife.mpg");
+        this.musica = new MIDIReader("musicas/ItsMyLife.mid");
     }
     
     public void unload() {
     }
 
     public void start() {
-        
-        this.musica = new MIDIReader("musicas/ItsMyLife.mid");
         this.guitarra = Guitarra.getInstance();
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
-        this.video = new Video("ItsMyLife.mpg");
+        
         Component theVideo = this.video.getSwingComponent();
                 
           
@@ -135,7 +134,6 @@ public class FaseEasy1 implements GameStateController {
        
     }
     public void stop() {
-        video.stop();
-        video.close();
+        video.pause();
     }
 }
