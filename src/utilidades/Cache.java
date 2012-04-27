@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 
 public class Cache {
-    private HashMap<Object, Object> data;
+     private HashMap<Object, Object> data;
     public static Cache instance;
     public Cache(){
         this.data = new HashMap<Object,Object>();
