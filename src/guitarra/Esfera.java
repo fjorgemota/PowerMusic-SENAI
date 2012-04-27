@@ -30,7 +30,7 @@ public abstract class Esfera extends GameObject {
     protected boolean bloqueado;
     protected Esfera anterior;
     protected Esfera proximo;
-    protected int second;
+    protected float second;
     private int width = 40;
     private int margem = 15;
     private int height;
@@ -43,9 +43,9 @@ public abstract class Esfera extends GameObject {
 
     public Esfera() {
         this.especial = Guitarra.getInstance().podeEspecial();
-        this.second = Guitarra.getInstance().getSecondsElapsed();
+        this.second = Guitarra.getInstance().getPrecisionSecondsElapsed();
         try {
-            this.explosao = new Sprite("img_cenario/explosao.png", 24, 83, 48);
+            this.explosao = new Sprite("img_cenario/explosao_finalizada.png", 24, 58, 48);
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
         }
@@ -77,7 +77,7 @@ public abstract class Esfera extends GameObject {
         return this.bloqueado;
     }
     public boolean podePressionar() {
-        return !this.bloqueado &&  this.getY() >= 400 && this.getY() <= 440;
+        return !this.bloqueado &&  this.getY() >= 390 && this.getY() <= 448;
     }
 
     public void preLocate(long timeElapsed) {
@@ -137,7 +137,7 @@ public abstract class Esfera extends GameObject {
         return this.pressionado;
     }
 
-    public int getSecond() {
+    public float getSecond() {
         return this.second;
     }
 }
