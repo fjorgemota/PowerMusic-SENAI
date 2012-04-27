@@ -43,11 +43,9 @@ class Laranja extends Esfera {
     public void step(long timeElapsed){
         super.preLocate(timeElapsed);
         this.x += ((25/620.00000f)*this.y)-62;
+         if(teclado.keyDown(  Keys.K ) && this.podePressionar()){
+           this.pressionar();
+        }
     }
-    public void pressionar() {
-     //   super.prePressionar();
-
-        
-        //Adiciona efeito aqui
-    }
+   
 }

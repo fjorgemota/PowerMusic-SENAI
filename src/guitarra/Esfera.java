@@ -91,7 +91,7 @@ public abstract class Esfera extends GameObject {
             if (this.frame >= 24) {
                 return; //Parou animação
             }
-            this.timeElapsedInMiliseconds += timeElapsed;
+            this.timeElapsedInMiliseconds += timeElapsed*100;
             if (this.timeElapsedInMiliseconds > 100) {
                 this.frame = (this.frame + 1);
                 this.explosao.setCurrAnimFrame(this.frame);

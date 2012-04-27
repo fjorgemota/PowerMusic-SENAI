@@ -41,10 +41,9 @@ class Amarela extends Esfera {
     public void step(long timeElapsed){
         super.preLocate(timeElapsed);
         this.x -= 20+((70/620.0000f)*this.y);
+         if(teclado.keyDown(  Keys.D ) && this.podePressionar()){
+           this.pressionar();
+        }
     }
-    public void pressionar() {
-     //   super.Pressionar();
-        //Adiciona efeito aqui
-    }
-    
+   
 }
