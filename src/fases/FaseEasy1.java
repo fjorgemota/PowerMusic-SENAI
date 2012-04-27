@@ -37,23 +37,20 @@ public class FaseEasy1 implements GameStateController {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
 
-<<<<<<< HEAD
-
-
-             this.bgImagePlay1 = new Imagem("img_cenario/play.png");
+            this.bgImagePlay1 = new Imagem("img_cenario/play.png");
              this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
              this.bgImagePlay = this.bgImagePlay1;
-=======
+
              //this.bgImagePlay1 = new Imagem("img_cenario/play.png");
              //this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
              //this.bgImagePlay = this.bgImagePlay1;
->>>>>>> b7cc14e48f1f38d72b61b5e4150326612402bb13
+
             
 
              //this.bgImagePlay = new Imagem("img_cenario/play.png");
              this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
              this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
-<<<<<<< HEAD
+
 
             this.bgImagePlay1 = new Imagem("img_cenario/play.png");
             this.bgImagePlay2 = new Imagem("img_cenario/play_efeito.png");
@@ -66,8 +63,8 @@ public class FaseEasy1 implements GameStateController {
             this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
 
-=======
->>>>>>> b7cc14e48f1f38d72b61b5e4150326612402bb13
+
+
 
 
         } catch (Exception ex) {
