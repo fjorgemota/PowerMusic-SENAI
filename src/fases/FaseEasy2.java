@@ -17,6 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
+// MÚSICAS DA FASE
+//Its my life
+//Swit of mine
+//Admiravel chip novo
+
 public class FaseEasy2 implements GameStateController {
 
     private Imagem bgImageFundo;
@@ -33,12 +38,7 @@ public class FaseEasy2 implements GameStateController {
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-
-            this.bgImagePlay1 = new Imagem("img_cenario/play.png");
-            this.bgImagePlay2 = new Imagem("img_cenario/play_efeito.png");
-            this.bgImagePlay = this.bgImagePlay1;
-
-
+           
             this.bgImagePlay = new Imagem("img_cenario/play.png");
             this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot1.png");
             this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot2.png");
@@ -57,6 +57,7 @@ public class FaseEasy2 implements GameStateController {
     }
 
     public void start() {
+        
     }
 
     public void step(long timeElapsed) {

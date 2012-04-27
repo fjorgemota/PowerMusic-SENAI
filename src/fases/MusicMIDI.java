@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javaPlay.GameStateController;
 import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MetaMessage;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
@@ -38,6 +39,8 @@ public class MusicMIDI implements GameStateController{
         return this.filename;
     }
     public void load() {
+
+
         Sequence sequencia;
         try {
             sequencia = MidiSystem.getSequence(new File(this.getFileName()));
@@ -65,14 +68,18 @@ public class MusicMIDI implements GameStateController{
                             for (int chord: chords){
                                 if (note < chord){
                                     break;
-                                noteChord = chord; 
+                                      //  noteChord = chord; 
+                                      
+                                     
                             }
                         }
                     }
                 }
             }
         }
+
     }
+
     }
     public void unload() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -85,7 +92,7 @@ public class MusicMIDI implements GameStateController{
 
     @Override
     public void step(long timeElapsed) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      
     }
 
     @Override

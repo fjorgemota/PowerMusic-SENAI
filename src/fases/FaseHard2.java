@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package fases;
 
-/**
- *
- * @author Samara
- */
 import java.awt.Graphics;
 import javaPlay.GameStateController;
 import java.awt.Graphics;
@@ -42,8 +36,8 @@ public class FaseHard2 implements GameStateController {
 
 
             this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/cpm22/cpm1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/cpm22/cpm2.png");
+            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/DragonForce/dragon3.png");
+            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/DragonForce/dragon4.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
 
 

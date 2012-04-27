@@ -4,6 +4,7 @@
  */
 package guitarra;
 
+import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
 import utilidades.Utilidades;
 
@@ -14,12 +15,12 @@ import utilidades.Utilidades;
  */
 public class AmarelaEstendida extends Esfera{
     protected static int serie;
-    private static Imagem imagemCache;
+    private static Sprite imagemCache;
     public AmarelaEstendida(){
         super();
         if(AmarelaEstendida.imagemCache==null){
             try{
-                AmarelaEstendida.imagemCache = new Imagem("img_cenario/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
+                //AmarelaEstendida.imagemCache = new Sprite("img_cenario/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
             }
             catch(Exception e){
                 Utilidades.alertar(e.getMessage());
@@ -40,6 +41,11 @@ public class AmarelaEstendida extends Esfera{
 
     public Esfera getNewInstance() {
         return new AmarelaEstendida();
+    }
+
+    @Override
+    public void step(long timeElapsed) {
+       
     }
     
 }

@@ -153,7 +153,9 @@ public class GameEngine
 	public void setFramesPerSecond(int framesPerSecond) {
 		this.framesPerSecond = framesPerSecond;
 	}
-
+        public int getFramesPerSecond(){
+            return this.framesPerSecond;
+        }
 
 	private boolean timeElapsedToFrame(long currentTime){
 		if((currentTime - this.timeElapsed) > (1000/this.framesPerSecond)){
