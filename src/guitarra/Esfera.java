@@ -38,13 +38,13 @@ public abstract class Esfera extends GameObject {
     private Sprite explosao;
     Keyboard teclado = GameEngine.getInstance().getKeyboard();
     private int frame;
-    private int timeElapsedInMiliseconds;
+    private int framesElapsedInMiliseconds;
 
     public Esfera() {
         this.especial = Guitarra.getInstance().podeEspecial();
         this.second = Guitarra.getInstance().getSecondsElapsed();
         try {
-            this.explosao = new Sprite("img_cenario/explosao.png", 24, 65, 48);
+            this.explosao = new Sprite("img_cenario/explosao.png", 24, 83, 48);
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
         }
@@ -71,7 +71,7 @@ public abstract class Esfera extends GameObject {
     public abstract void step(long timeElapsed);
 
     public boolean podePressionar() {
-        return this.getY() >= 414 && this.getY() <= 450;
+        return this.getY() >= 400 && this.getY() <= 440;
     }
 
     public void preLocate(long timeElapsed) {
@@ -84,31 +84,25 @@ public abstract class Esfera extends GameObject {
         //Este metodo e sobreescrito e re-utilizado para permitir o alinhamento
         //Correto dos botoes
         Keyboard teclado = GameEngine.getInstance().getKeyboard();
-        if (teclado.keyDown(this.tecla)) {
-            this.pressionar();
-        }
+        
         if (this.foiPressionado()) {
-            if (this.frame >= 24) {
-                return; //Parou animação
-            }
-            this.timeElapsedInMiliseconds += timeElapsed;
-            if (this.timeElapsedInMiliseconds > 100) {
-                this.frame = (this.frame + 1);
+            this.framesElapsedInMiliseconds += 1;
+            if (this.framesElapsedInMiliseconds > 2) {
+                ++this.frame;
                 this.explosao.setCurrAnimFrame(this.frame);
-                this.timeElapsedInMiliseconds -= 100;
+                this.framesElapsedInMiliseconds = 0;
             }
         }
     }
 
     public int getCurrentStep() {
-        return Math.round(this.y / 40);
+        return Math.round(this.y / 40)+1;
     }
 
     public void draw(Graphics g) {
         this.imagem.draw(g, this.x, this.y);
-        if (this.foiPressionado()) {
-
-            this.explosao.draw(g, this.x, this.y);
+        if (this.foiPressionado() && this.frame <= 24) {
+            this.explosao.draw(g, this.x-10, this.y-28);
 
         }
     }
