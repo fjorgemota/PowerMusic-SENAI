@@ -12,7 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import utilidades.MIDIReader;
 import utilidades.Utilidades;
+import utilidades.Video;
 
 //MÚSICAS DA FASE
 //Gone
@@ -27,10 +29,11 @@ public class FaseEasy1 implements GameStateController {
     private Imagem bgImagePlayEfeito;
     private JLabel bgImageFundoEsquerda;
     private Imagem bgImageFundoDireita;
-    private Player thePlayer;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
     private boolean videoStarted = false;
+    private MIDIReader musica;
+    private Video video;
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
         try {
@@ -57,12 +60,14 @@ public class FaseEasy1 implements GameStateController {
     }
 
     public void start() {
+        
+        this.musica = new MIDIReader("musicas/ItsMyLife.mid");
         this.guitarra = Guitarra.getInstance();
         this.guitarra.setLevel(5);
         JPanel pteste = new JPanel();
         pteste.setLayout(null);
-        thePlayer = Utilidades.carregaVideo("ItsMyLife.mpg");
-        Component theVideo = thePlayer.getVisualComponent();
+        video = new Video("ItsMyLife.mpg");
+        Component theVideo = video.getSwingComponent();
                 
           
         pteste.add(this.bgImageFundoEsquerda);
@@ -79,9 +84,10 @@ public class FaseEasy1 implements GameStateController {
         this.bgImageFundoEsquerda.repaint();
         pteste.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(pteste);
-        GameEngine.getInstance().setFramesPerSecond(500);
-        //this.guitarra.setMinorTime();
-        this.thePlayer.prefetch();
+        GameEngine.getInstance().setFramesPerSecond(100);
+        this.guitarra.setMinorTime();
+        this.musica.setInterval(1.0f);
+        this.musica.refresh();
     }
 
     public void step(long timeElapsed) {
@@ -95,7 +101,9 @@ public class FaseEasy1 implements GameStateController {
                 }
             }*/
             
-            float[][] notas = Utilidades.loadNotesFromMIDI("musicas/ItsMyLife.mid",(float)thePlayer.getDuration().getSeconds());
+            
+            this.musica.setDuration(video.getDuration());
+            float[][] notas = this.musica.getNotes();
             //float[][] notas = Utilidades.loadNotesFromMIDI("musicas/SweetChildOMine.mid");
             for(int c=0;c<notas.length;++c){
                 //notas[c][0] = notas[c][0]/1.05f;
@@ -107,12 +115,12 @@ public class FaseEasy1 implements GameStateController {
         }
         else{
             if(this.guitarra.isFirstNotePlayed() && this.videoStarted == false){
-                thePlayer.start();
+                this.video.play();
                 this.videoStarted = true;
             }
             else if(this.videoStarted == true){
                 timeElapsed = 0;
-                this.guitarra.addVideoTime((float)(thePlayer.getMediaTime().getSeconds()*1000));
+                this.guitarra.addVideoTime(this.video.getActualTime()*1000);
             }
             this.guitarra.step(timeElapsed);
         }
@@ -130,6 +138,7 @@ public class FaseEasy1 implements GameStateController {
        
     }
     public void stop() {
-        thePlayer.stop();
+        video.stop();
+        video.close();
     }
 }
