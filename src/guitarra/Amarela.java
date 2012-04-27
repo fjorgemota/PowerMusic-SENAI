@@ -15,7 +15,6 @@ import utilidades.Utilidades;
  */
 class Amarela extends Esfera {
     protected static int serie;
-    protected int tecla = Keys.D;
     public Amarela(){
         super();
         try{
@@ -24,6 +23,7 @@ class Amarela extends Esfera {
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
         }
+        this.tecla = Keys.D;
     }
     public Amarela(int serie){
         this();
@@ -39,12 +39,11 @@ class Amarela extends Esfera {
         return new Amarela();
     }
     public void step(long timeElapsed){
+        if (teclado.keyDown(this.tecla) && this.podePressionar()) {
+            this.pressionar();
+        }
         super.preLocate(timeElapsed);
         this.x -= 20+((70/620.0000f)*this.y);
     }
-    public void pressionar() {
-     //   super.Pressionar();
-        //Adiciona efeito aqui
-    }
-    
+   
 }

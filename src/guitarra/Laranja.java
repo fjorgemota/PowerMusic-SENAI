@@ -17,7 +17,6 @@ class Laranja extends Esfera {
     protected static int serie;
 
     protected static Sprite imagemCache;
-    private int tecla = Keys.K;
     public Laranja(){
         super();
         try{
@@ -26,6 +25,7 @@ class Laranja extends Esfera {
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
         }
+        this.tecla = Keys.K;
     }
     public Laranja(int serie){
         this();
@@ -41,13 +41,11 @@ class Laranja extends Esfera {
         return new Laranja();
     }
     public void step(long timeElapsed){
+        if (teclado.keyDown(this.tecla) && this.podePressionar()) {
+            this.pressionar();
+        }
         super.preLocate(timeElapsed);
         this.x += ((25/620.00000f)*this.y)-62;
     }
-    public void pressionar() {
-     //   super.prePressionar();
-
-        
-        //Adiciona efeito aqui
-    }
+   
 }

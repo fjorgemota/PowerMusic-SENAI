@@ -7,8 +7,12 @@ package guitarra;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import javaPlay.GameEngine;
 import javaPlay.GameObject;
+import javaPlay.Keyboard;
 import javaPlayExtras.Imagem;
 import utilidades.Utilidades;
 
@@ -37,6 +41,7 @@ public class Guitarra extends GameObject{
     protected float lastSecond; // guarda o ultimo segundo no qual foi adicionado uma nova nota
     protected float lastNote; // guarda o ultimo indice no qual foi adicionado uma nova nota
     protected float minorTime; // guarda o tempo que uma esfera demora ate descer
+    protected HashMap<Integer, Integer> blocked; // Guarda o tempo em que cada esfera foi bloqueada
     public Guitarra(){
     }
     public void load(){
@@ -48,9 +53,10 @@ public class Guitarra extends GameObject{
         this.esferas[3] = new Amarela();
         this.esferas[4] = new Azul();
         this.esferas[5] = new Laranja();
-        
+        this.blocked = new HashMap<Integer, Integer>();
         for(int c=1;c<this.esferas.length;c++){
             this.esferas[c].setSerie(c);
+            this.blocked.put(this.esferas[c].getTecla(),0);
         }
         
     }
@@ -141,27 +147,46 @@ public class Guitarra extends GameObject{
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
         if(this.getPrecisionSecondsElapsed() != this.lastSecond){
-            System.out.println("Processando segundo "+this.lastSecond);
             this.lastSecond = this.getPrecisionSecondsElapsed();
             Esfera[] novasNotas = this.getNotas();
             for(int c=0;c<novasNotas.length;c++){
                 if(novasNotas[c] == null){
                     continue;
                 }
-                System.out.println("Adicionando esfera "+novasNotas[c].getCor());
                 this.notasEsferasAtuais.add(novasNotas[c]);
             }
         }        
         ArrayList<Esfera> notasAntigas = new ArrayList<Esfera>();
+        Keyboard teclado = GameEngine.getInstance().getKeyboard();
+        HashMap<Integer, ArrayList<Boolean>> pressionado = new HashMap<Integer, ArrayList<Boolean>>();
         for(Esfera nota: this.notasEsferasAtuais){
             nota.step(timeElapsed);
             if(nota.getY()>400){
                 this.firstNotePlayed = true;
             }
+            if(!pressionado.containsKey(nota.getTecla())){
+                pressionado.put(nota.getTecla(), new ArrayList<Boolean>());
+            }
+            pressionado.get(nota.getTecla()).add(nota.podePressionar());
             if(nota.getY()>620){
                 notasAntigas.add(nota);
             }
         }   
+        int framesSec = GameEngine.getInstance().getFramesPerSecond()/2; // Numero de frames diferentes
+        for(int tecla: pressionado.keySet()){
+            if(this.blocked.get(tecla).intValue() >= framesSec && !pressionado.get(tecla).contains(true) && teclado.keyDown(tecla)){
+                Collections.reverse(this.notasEsferasAtuais);
+                for(Esfera nota: this.notasEsferasAtuais){
+                    if(tecla == nota.getTecla()){
+                        nota.bloquearTecla();
+                        blocked.put(tecla, 0);
+                        break;
+                    }
+                }
+                Collections.reverse(this.notasEsferasAtuais);
+            }
+            this.blocked.put(tecla,this.blocked.get(tecla).intValue()+1);
+        }
         for(Esfera nota: notasAntigas){
             this.notasEsferas.add(nota);
             this.notasEsferasAtuais.remove(nota);
