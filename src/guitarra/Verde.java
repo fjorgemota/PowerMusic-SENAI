@@ -42,7 +42,6 @@ class Verde extends Esfera {
     }
 
     public Esfera getNewInstance() {
-        System.out.println("Retornando nova instancia de esfera Verde");
         return new Verde();
     }
 
