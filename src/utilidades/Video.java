@@ -46,6 +46,9 @@ public class Video{
     public Component getSwingComponent(){
         return player.getVisualComponent();
     }
+    public void setVolume(float volume){
+        this.player.getGainControl().setLevel(volume);
+    }
     public float getDuration(){
         return (float)player.getDuration().getSeconds();
     }
