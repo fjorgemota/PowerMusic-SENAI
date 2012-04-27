@@ -41,12 +41,10 @@ class Vermelha extends Esfera {
         return new Vermelha();
     }
     public void step(long timeElapsed){
+        if (teclado.keyDown(this.tecla) && this.podePressionar()) {
+            this.pressionar();
+        }
         super.preLocate(timeElapsed);
         this.x -= (122/620.000f)*this.y;
-    }
-    public void pressionar() {
-    //    super.prePressionar();
-        
-        //Adiciona efeito aqui
     }
 }
