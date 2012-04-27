@@ -41,6 +41,7 @@ public class Guitarra extends GameObject{
     protected float lastSecond; // guarda o ultimo segundo no qual foi adicionado uma nova nota
     protected float lastNote; // guarda o ultimo indice no qual foi adicionado uma nova nota
     protected float minorTime; // guarda o tempo que uma esfera demora ate descer
+    protected HashMap<Integer, Integer> blocked; // Guarda o tempo em que cada esfera foi bloqueada
     public Guitarra(){
     }
     public void load(){
@@ -52,9 +53,10 @@ public class Guitarra extends GameObject{
         this.esferas[3] = new Amarela();
         this.esferas[4] = new Azul();
         this.esferas[5] = new Laranja();
-        
+        this.blocked = new HashMap<Integer, Integer>();
         for(int c=1;c<this.esferas.length;c++){
             this.esferas[c].setSerie(c);
+            this.blocked.put(this.esferas[c].getTecla(),0);
         }
         
     }
@@ -166,21 +168,24 @@ public class Guitarra extends GameObject{
                 pressionado.put(nota.getTecla(), new ArrayList<Boolean>());
             }
             pressionado.get(nota.getTecla()).add(nota.podePressionar());
-            if(nota.getY()>620 || nota.isBloqueado()){
+            if(nota.getY()>620){
                 notasAntigas.add(nota);
             }
         }   
+        int framesSec = GameEngine.getInstance().getFramesPerSecond()/2; // Numero de frames diferentes
         for(int tecla: pressionado.keySet()){
-            if(!pressionado.get(tecla).contains(true) && teclado.keyDown(tecla)){
+            if(this.blocked.get(tecla).intValue() >= framesSec && !pressionado.get(tecla).contains(true) && teclado.keyDown(tecla)){
                 Collections.reverse(this.notasEsferasAtuais);
                 for(Esfera nota: this.notasEsferasAtuais){
                     if(tecla == nota.getTecla()){
                         nota.bloquearTecla();
+                        blocked.put(tecla, 0);
                         break;
                     }
                 }
                 Collections.reverse(this.notasEsferasAtuais);
             }
+            this.blocked.put(tecla,this.blocked.get(tecla).intValue()+1);
         }
         for(Esfera nota: notasAntigas){
             this.notasEsferas.add(nota);
