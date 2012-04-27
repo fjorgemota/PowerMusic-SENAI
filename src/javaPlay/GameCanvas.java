@@ -70,6 +70,7 @@ public class GameCanvas extends JFrame
 
     public Graphics getGameGraphics()
     {        
+        this.video.requestFocusInWindow();
         g = bf.getDrawGraphics();
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
