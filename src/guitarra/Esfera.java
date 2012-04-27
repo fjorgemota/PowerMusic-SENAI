@@ -27,6 +27,7 @@ public abstract class Esfera extends GameObject {
     protected boolean especial;
     protected Sprite imagem;
     protected boolean pressionado;
+    protected boolean bloqueado;
     protected Esfera anterior;
     protected Esfera proximo;
     protected int second;
@@ -34,7 +35,7 @@ public abstract class Esfera extends GameObject {
     private int margem = 15;
     private int height;
     private Rectangle rect;
-    private int tecla = 0;
+    protected int tecla = 0;
     private Sprite explosao;
     Keyboard teclado = GameEngine.getInstance().getKeyboard();
     private int frame;
@@ -69,9 +70,14 @@ public abstract class Esfera extends GameObject {
     //public abstract void pressionar();
 
     public abstract void step(long timeElapsed);
-
+    public void bloquearTecla(){
+        this.bloqueado = true;
+    }
+    public boolean isBloqueado(){
+        return this.bloqueado;
+    }
     public boolean podePressionar() {
-        return this.getY() >= 400 && this.getY() <= 440;
+        return !this.bloqueado &&  this.getY() >= 400 && this.getY() <= 440;
     }
 
     public void preLocate(long timeElapsed) {
@@ -100,10 +106,13 @@ public abstract class Esfera extends GameObject {
     }
 
     public void draw(Graphics g) {
-        this.imagem.draw(g, this.x, this.y);
+        
         if (this.foiPressionado() && this.frame <= 24) {
             this.explosao.draw(g, this.x-10, this.y-28);
 
+        }
+        else if(!this.foiPressionado() && !this.isBloqueado()){
+            this.imagem.draw(g, this.x, this.y);
         }
     }
 
@@ -114,7 +123,9 @@ public abstract class Esfera extends GameObject {
         this.rect.setLocation(this.x, this.y);
         return this.rect;
     }
-
+    public int getTecla(){
+        return this.tecla;
+    }
     public String getCor() {
         return this.getClass().getName();
     }

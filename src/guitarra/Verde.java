@@ -9,7 +9,6 @@ import javaPlay.Keyboard;
 import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
 import javaPlayExtras.Keys;
-import sun.net.www.http.KeepAliveCache;
 import utilidades.Utilidades;
 
 /**
@@ -26,6 +25,7 @@ class Verde extends Esfera {
         } catch (Exception e) {
             Utilidades.alertar(e.getMessage());
         }
+        this.tecla = Keys.A;
     }
 
     public Verde(int serie) {
@@ -47,11 +47,11 @@ class Verde extends Esfera {
     }
 
     public void step(long timeElapsed) {
+        if (teclado.keyDown(this.tecla)) {
+            this.pressionar();
+        }
         super.preLocate(timeElapsed);
         this.x -= -20 + ((165 / 620.00000f) * this.y);
-        if(teclado.keyDown(  Keys.A ) && this.podePressionar()){
-           this.pressionar();
-        }
     }
 
 }
