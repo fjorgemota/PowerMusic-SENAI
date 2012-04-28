@@ -52,7 +52,15 @@ public abstract class Esfera extends GameObject {
             Utilidades.alertar(ex.getMessage());
         }
     }
-
+    public Esfera(float second) {
+        this.especial = Guitarra.getInstance().podeEspecial();
+        this.second = second;
+        try {
+            this.explosao = new Sprite("img_cenario/explosaoo.png", 24, 60, 48);
+        } catch (Exception ex) {
+            Utilidades.alertar(ex.getMessage());
+        }
+    }
     public abstract int getSerie();
 
     public boolean isEspecial() {
@@ -132,7 +140,7 @@ public abstract class Esfera extends GameObject {
         return this.getClass().getName();
     }
 
-    public abstract Esfera getNewInstance();
+    public abstract Esfera getNewInstance(float second);
 
     boolean foiPressionado() {
 

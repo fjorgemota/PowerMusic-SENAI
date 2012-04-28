@@ -35,33 +35,26 @@ public class Video implements ControllerListener, Runnable{
     }
     public URL getURL(){
         try {
-            System.out.println("Criando URL para o player "+this.filename);
             URL url = new URL("file://"+System.getProperty("user.dir")+"/videos/"+this.filename);
-            System.out.println("URL criado para o player "+this.filename);
             return url;
         } catch (Exception ex) {
-            Utilidades.alertar("Alerta 2:"+ex.getMessage());
+            Utilidades.alertar("Problema ao criar a URL para o video:"+ex.getMessage());
             return null;
         }
     }
     public void load(){
-        System.out.println("Executando Thread..");
         theThread = new Thread(this);
         theThread.setDaemon(true);
         theThread.setPriority(Thread.MAX_PRIORITY);
         theThread.start();
-        System.out.println("Terminou de executar a Thread");
     }
     public void run(){
         try {
-            System.out.println("Criando player "+this.filename);
             this.player = Manager.createPlayer(this.getURL());
-            System.out.println("Adicionando controlador ao player "+this.filename);
             this.player.addControllerListener(this);
-            System.out.println("Realizando player "+this.filename);
             this.player.realize();
         } catch (Exception ex) {
-            Utilidades.alertar("Alerta 3:"+ex.getMessage()+" with file "+this.filename);
+            Utilidades.alertar("Erro ao criar o player:"+ex.getMessage()+" para o arquivo "+this.filename);
         }
     }
     public Component getSwingComponent(){
@@ -121,18 +114,12 @@ public class Video implements ControllerListener, Runnable{
     public void controllerUpdate(ControllerEvent ce) {
         switch(this.player.getState()){
             case Player.Realized:
-                System.out.println("Player "+this.filename+" Realizado!");
-                //this.player.prefetch();
+                this.player.prefetch();
                 this.canPlay = true;
                 break;
             case Player.Prefetched:
-                System.out.println("Player "+this.filename+" pre-capturado!");
-                break;
             case Player.Realizing:
-                System.out.println("Realizando Player "+this.filename+" ..");
-                break;
             case Player.Prefetching:
-                System.out.println("Pre-capturando Player "+this.filename+" ...");
                 break;             
         }
     }
