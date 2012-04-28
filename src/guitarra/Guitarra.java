@@ -109,13 +109,15 @@ public class Guitarra extends GameObject{
             if(this.getPrecisionSecondsElapsed() >= nota[0] && lastNote != nota[0]){//Verifica se é a nota à ser considerada
                 lastNote = nota[0];
                 Esfera[] esferasNotas = new Esfera[this.level];
+                int noteCount = 0;
                 for(int c=1;c<nota.length;c++){
                     int corda = (int)nota[c];
-                    if(corda == 0 || corda >= this.esferas.length){
+                    if(corda == 0 || corda >= this.esferas.length || this.esferas.length-corda >= this.level){
                         continue;
                     }
                     corda = this.esferas.length-corda;
-                    esferasNotas[c-1] = this.esferas[corda].getNewInstance(lastNote);
+                    esferasNotas[noteCount] = this.esferas[corda].getNewInstance(lastNote);
+                    ++noteCount;
                 }
                 return esferasNotas;
             }
