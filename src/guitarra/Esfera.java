@@ -46,7 +46,7 @@ public abstract class Esfera extends GameObject {
         this.second = Guitarra.getInstance().getPrecisionSecondsElapsed();
         try {
 
-            this.explosao = new Sprite("img_cenario/explosaoo.png", 24, 60, 45);
+            this.explosao = new Sprite("img_cenario/explosaoo.png", 24, 58, 45);
 
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
@@ -56,7 +56,7 @@ public abstract class Esfera extends GameObject {
         this.especial = Guitarra.getInstance().podeEspecial();
         this.second = second;
         try {
-            this.explosao = new Sprite("img_cenario/explosao_finalizada.png", 24, 58, 48);
+            this.explosao = new Sprite("img_cenario/explosaoo.png", 24, 58, 48);
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
         }
