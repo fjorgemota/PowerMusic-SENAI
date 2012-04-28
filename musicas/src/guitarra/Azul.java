@@ -6,40 +6,45 @@ package guitarra;
 
 import javaPlay.Sprite;
 import javaPlayExtras.Imagem;
+import javaPlayExtras.Keys;
 import utilidades.Utilidades;
 
 /**
  *
  * @author fernando_mota
  */
-class Verde extends Esfera {
+class Azul extends Esfera {
     protected static int serie;
-    public Verde(){
+    protected int tecla = Keys.J;
+    public Azul(){
         super();
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_verde.png",9,49,28);
+            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
         }
     }
-    public Verde(int serie){
+    public Azul(int serie){
         this();
-        Verde.serie = serie;
+        Azul.serie = serie;
     }
     public int getSerie(){
-        return Verde.serie;
+        return Azul.serie;
     }
     public void setSerie(int serie){
-        Verde.serie = serie;
+        Azul.serie = serie;
     }
     public Esfera getNewInstance(){
-        System.out.println("Retornando nova instancia de esfera Verde");
-        return new Verde();
+        return new Azul();
     }
-     public void step(long timeElapsed){
+    public void step(long timeElapsed){
         super.preLocate(timeElapsed);
-        this.x -= -20+((165/620.00000f)*this.y);
+        this.x -= 45+(20/620.000f)*this.y;
     }
-
+    public void pressionar() {
+      //  super.prePressionar();
+        //Adiciona efeito aqui
+    }
+    
 }

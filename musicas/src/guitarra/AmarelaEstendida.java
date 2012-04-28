@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Implementacao de teste duma esfera estendida
  */
 package guitarra;
 
@@ -43,9 +42,11 @@ public class AmarelaEstendida extends Esfera{
         return new AmarelaEstendida();
     }
 
-    @Override
     public void step(long timeElapsed) {
        
     }
-    
+    public void pressionar() {
+      //  super.prePressionar();
+        //Adiciona efeito aqui
+    }
 }

@@ -9,8 +9,6 @@ package fases;
  * @author Samara
  */
 import java.awt.Graphics;
-import javaPlay.GameStateController;
-import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlayExtras.Imagem;
@@ -19,7 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
-public class FaseHard1 implements GameStateController {
+
+
+public class FaseEasy2 implements GameStateController {
 
     private Imagem bgImageFundo;
     private Imagem bgImagePlay;
@@ -35,15 +35,10 @@ public class FaseHard1 implements GameStateController {
         try {
 
             this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-
-            this.bgImagePlay1 = new Imagem("img_cenario/play.png");
-            this.bgImagePlay2 = new Imagem("img_cenario/play_efeito.png");
-            this.bgImagePlay = this.bgImagePlay1;
-
-
+           
             this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/cpm22/cpm1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/cpm22/cpm2.png");
+            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot1.png");
+            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot2.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
 
 
@@ -59,6 +54,7 @@ public class FaseHard1 implements GameStateController {
     }
 
     public void start() {
+        
     }
 
     public void step(long timeElapsed) {
@@ -80,7 +76,7 @@ public class FaseHard1 implements GameStateController {
 
         this.bgImagePlay.draw(g, 200, 300);
         this.bgImageFundo1.draw(g, 0, 0);
-        this.bgImageFundo2.draw(g, 426, 0);
+        this.bgImageFundo2.draw(g, 427, 0);
     }
 
     public void stop() {

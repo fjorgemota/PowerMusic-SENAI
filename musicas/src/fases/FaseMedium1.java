@@ -2,12 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fases;
 
 /**
  *
  * @author Samara
  */
+
+import java.awt.Graphics;
+import javaPlay.GameStateController;
 import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
@@ -16,13 +20,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
+// MÚSICAS DA FASE
+//Its my life
+//Swit of mine
+//Admiravel chip novo
 
-//MÚSICAS DA FASE
-//Um minuto para o fim do mundo
-//Throught the fire and flames
-//Heroes of our time
-
-public class FaseEasy3 implements GameStateController {
+public class FaseMedium1 implements GameStateController {
 
     private Imagem bgImageFundo;
     private Imagem bgImagePlay;
@@ -45,8 +48,8 @@ public class FaseEasy3 implements GameStateController {
 
 
             this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/capital_inicial/capinicial1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/capital_inicial/capinicial2.png");
+            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/guns/guns1.png");
+            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/guns/guns2.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
 
 
@@ -83,9 +86,10 @@ public class FaseEasy3 implements GameStateController {
 
         this.bgImagePlay.draw(g, 200, 300);
         this.bgImageFundo1.draw(g, 0, 0);
-        this.bgImageFundo2.draw(g, 427, 0);
+        this.bgImageFundo2.draw(g, 426, 0);
     }
 
     public void stop() {
     }
 }
+

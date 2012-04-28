@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package fases;
 
 /**
  *
  * @author Samara
  */
-
 import java.awt.Graphics;
 import javaPlay.GameStateController;
 import java.awt.Graphics;
@@ -21,7 +19,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
-public class FaseMedium1 implements GameStateController {
+//MÚSICAS DA FASE
+//Um minuto para o fim do mundo
+//Throught the fire and flames
+//Heroes of our time
+public class FaseHard1 implements GameStateController {
 
     private Imagem bgImageFundo;
     private Imagem bgImagePlay;
@@ -44,8 +46,8 @@ public class FaseMedium1 implements GameStateController {
 
 
             this.bgImagePlay = new Imagem("img_cenario/play.png");
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/guns/guns1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/guns/guns2.png");
+            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/cpm22/cpm1.png");
+            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/cpm22/cpm2.png");
             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
 
 
@@ -88,4 +90,3 @@ public class FaseMedium1 implements GameStateController {
     public void stop() {
     }
 }
-
