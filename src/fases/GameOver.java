@@ -16,7 +16,7 @@ import utilidades.Utilidades;
  *
  * @author Samara
  */
-<<<<<<< HEAD
+
 import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
@@ -49,50 +49,15 @@ public class GameOver implements GameStateController{
              
 
 
-
-
-
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
-=======
-public class GameOver implements GameStateController{
-    private Imagem imagem;
-    public void load() {
-        try {
-            this.imagem = new Imagem("img_cenario/gameover.png");
-        } catch (Exception ex) {
-            Utilidades.alertar("Erro ao carregar a imagem de GameOver: "+ex.getMessage());
-        }
+                
     }
 
-    public void unload() {
-    }
-
-    public void start() {
-        
-    }
-
-    public void step(long timeElapsed) {
-        if(Utilidades.estaClicandoEm(0, 0, 800, 620)){
-            GameEngine.getInstance().setNextGameStateController(2);
-        }
-    }
-
-    public void draw(Graphics g) {
-        this.imagem.draw(g, 0, 0);
-    }
-
-    public void stop() {
->>>>>>> aef3ee6bd05ae587af52c647a732edd99fc3c4cb
-    }
-    
+     
    
-
-    
-    public void unload() {
+     public void unload() {
     }
 
     
