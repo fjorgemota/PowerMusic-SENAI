@@ -27,6 +27,16 @@ class Laranja extends Esfera {
         }
         this.tecla = Keys.K;
     }
+    public Laranja(float second){
+        super(second);
+        try{
+            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_laranja.png",9,49,28);
+        }
+        catch(Exception e){
+            Utilidades.alertar(e.getMessage());
+        }
+        this.tecla = Keys.K;
+    }
     public Laranja(int serie){
         this();
         Laranja.serie = serie;
@@ -37,8 +47,8 @@ class Laranja extends Esfera {
     public void setSerie(int serie){
         Laranja.serie = serie;
     }
-    public Esfera getNewInstance(){
-        return new Laranja();
+    public Esfera getNewInstance(float second){
+        return new Laranja(second);
     }
     public void step(long timeElapsed){
         if (teclado.keyDown(this.tecla) && this.podePressionar()) {

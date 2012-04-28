@@ -25,6 +25,16 @@ class Azul extends Esfera {
         }
         this.tecla = Keys.J;
     }
+    public Azul(float second){
+        super(second);
+        try{
+            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
+        }
+        catch(Exception e){
+            Utilidades.alertar(e.getMessage());
+        }
+        this.tecla = Keys.J;
+    }
     public Azul(int serie){
         this();
         Azul.serie = serie;
@@ -35,8 +45,8 @@ class Azul extends Esfera {
     public void setSerie(int serie){
         Azul.serie = serie;
     }
-    public Esfera getNewInstance(){
-        return new Azul();
+    public Esfera getNewInstance(float second){
+        return new Azul(second);
     }
     public void step(long timeElapsed){
         if (teclado.keyDown(this.tecla) && this.podePressionar()) {

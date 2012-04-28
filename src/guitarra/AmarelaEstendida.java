@@ -27,6 +27,18 @@ public class AmarelaEstendida extends Esfera{
         }
         this.imagem = AmarelaEstendida.imagemCache;
     }
+    public AmarelaEstendida(float second){
+        super(second);
+        if(AmarelaEstendida.imagemCache==null){
+            try{
+                //AmarelaEstendida.imagemCache = new Sprite("img_cenario/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
+            }
+            catch(Exception e){
+                Utilidades.alertar(e.getMessage());
+            }
+        }
+        this.imagem = AmarelaEstendida.imagemCache;
+    }
     public AmarelaEstendida(int serie){
         this();
         Azul.serie = serie;
@@ -38,8 +50,8 @@ public class AmarelaEstendida extends Esfera{
         AmarelaEstendida.serie = serie;
     }
 
-    public Esfera getNewInstance() {
-        return new AmarelaEstendida();
+    public Esfera getNewInstance(float second) {
+        return new AmarelaEstendida(second);
     }
 
     public void step(long timeElapsed) {

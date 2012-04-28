@@ -79,25 +79,25 @@ public class Guitarra extends GameObject{
         this.level = level+1;
     }
     public JLabel getImageProgress(){
-        float progresso = this.getProgresso();
+        int progresso = (int) this.getProgresso(30);
         JLabel imagem;
         if(progresso == 100){
-            imagem = this.progressos[5];
+            imagem = this.progressos[6];
         }
         else if(progresso >= 90){
-            imagem = this.progressos[4];
+            imagem = this.progressos[5];
         }
         else if(progresso >= 75){
-            imagem = this.progressos[3];
+            imagem = this.progressos[4];
         }
         else if(progresso >= 55){
-            imagem = this.progressos[2];
+            imagem = this.progressos[3];
         }
         else if(progresso >= 40){
-            imagem = this.progressos[1];
+            imagem = this.progressos[2];
         }
         else{
-            imagem = this.progressos[0];
+            imagem = this.progressos[1];
         }
         return imagem;
     }
@@ -115,7 +115,7 @@ public class Guitarra extends GameObject{
                         continue;
                     }
                     corda = this.esferas.length-corda;
-                    esferasNotas[c-1] = this.esferas[corda].getNewInstance();
+                    esferasNotas[c-1] = this.esferas[corda].getNewInstance(lastNote);
                 }
                 return esferasNotas;
             }
@@ -151,8 +151,15 @@ public class Guitarra extends GameObject{
            
        }
     }
+    public float getAutoMinorTime(){
+        return (620/(float)GameEngine.getInstance().getFramesPerSecond());
+    }
     public void setMinorTime(){
-        this.minorTime = (620/(float)GameEngine.getInstance().getFramesPerSecond());
+        this.minorTime = this.getAutoMinorTime();
+        System.out.println("Cada musica tera subtraido cerca de "+this.minorTime+" segundos");
+    }
+    public void setMinorTime(float minorTime){
+        this.minorTime = minorTime;
         System.out.println("Cada musica tera subtraido cerca de "+this.minorTime+" segundos");
     }
     public void reset(){

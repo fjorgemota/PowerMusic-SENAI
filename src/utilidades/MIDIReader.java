@@ -21,6 +21,7 @@ public class MIDIReader {
     private MidiUtils.TempoCache tempoProcessor;
     private float duration;
     private float[][] notes;
+    private float[][] realNotes;
     private float interval;
     public MIDIReader(String filename){
         this.filename = filename;
