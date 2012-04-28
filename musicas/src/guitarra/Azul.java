@@ -15,7 +15,6 @@ import utilidades.Utilidades;
  */
 class Azul extends Esfera {
     protected static int serie;
-    protected int tecla = Keys.J;
     public Azul(){
         super();
         try{
@@ -24,6 +23,17 @@ class Azul extends Esfera {
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
         }
+        this.tecla = Keys.J;
+    }
+    public Azul(float second){
+        super(second);
+        try{
+            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
+        }
+        catch(Exception e){
+            Utilidades.alertar(e.getMessage());
+        }
+        this.tecla = Keys.J;
     }
     public Azul(int serie){
         this();
@@ -35,16 +45,16 @@ class Azul extends Esfera {
     public void setSerie(int serie){
         Azul.serie = serie;
     }
-    public Esfera getNewInstance(){
-        return new Azul();
+    public Esfera getNewInstance(float second){
+        return new Azul(second);
     }
     public void step(long timeElapsed){
+        if (teclado.keyDown(this.tecla) && this.podePressionar()) {
+            this.pressionar();
+        }
         super.preLocate(timeElapsed);
         this.x -= 45+(20/620.000f)*this.y;
     }
-    public void pressionar() {
-      //  super.prePressionar();
-        //Adiciona efeito aqui
-    }
+   
     
 }

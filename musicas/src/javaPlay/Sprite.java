@@ -48,9 +48,14 @@ public class Sprite
     }
 
     public void setCurrAnimFrame(int frame){
+        if(frame >= this.animFrameCount){
+            frame = this.animFrameCount;
+        }
         currAnimFrame = frame - 1;
     }
-
+    public int getCurrAnimFrame(){
+        return currAnimFrame;
+    }
     public void draw(Graphics g, int x, int y)
     {
         GameCanvas canvas = GameEngine.getInstance().getGameCanvas();
