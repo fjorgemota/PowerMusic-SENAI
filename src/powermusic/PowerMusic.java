@@ -27,6 +27,7 @@ import fases.IntervaloInicial3;
 import fases.IntervaloMedium1;
 import fases.IntervaloMedium2;
 import fases.IntervaloMedium3;
+import fases.GameOver;
 import javaPlay.GameEngine;
 
 /**
@@ -63,6 +64,7 @@ public class PowerMusic {
         GameEngine.getInstance().addGameStateController(21, new IntervaloHard1());
         GameEngine.getInstance().addGameStateController(22, new IntervaloHard2());
         GameEngine.getInstance().addGameStateController(23, new IntervaloHard3());
+        GameEngine.getInstance().addGameStateController(24, new GameOver());
 
         GameEngine.getInstance().setStartingGameStateController(2);
 

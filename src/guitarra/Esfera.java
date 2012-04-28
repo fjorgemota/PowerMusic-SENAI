@@ -45,7 +45,7 @@ public abstract class Esfera extends GameObject {
         this.especial = Guitarra.getInstance().podeEspecial();
         this.second = Guitarra.getInstance().getSecondsElapsed();
         try {
-            this.explosao = new Sprite("img_cenario/explosao.png", 24, 83, 48);
+            this.explosao = new Sprite("img_cenario/explosao.png", 24, 60, 45);
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
         }
