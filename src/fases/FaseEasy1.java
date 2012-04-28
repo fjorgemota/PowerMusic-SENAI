@@ -54,8 +54,9 @@ public class FaseEasy1 implements GameStateController {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        this.video = new Video("ItsMyLife.mpg");
-        this.musica = new MIDIReader("musicas/ItsMyLife.mid");
+        String musicName = "SweetChildOMine";
+        this.video = new Video(musicName+".mpg");
+        this.musica = new MIDIReader("musicas/"+musicName+".mid");
     }
     
     public void unload() {
@@ -84,9 +85,9 @@ public class FaseEasy1 implements GameStateController {
         this.bgImageFundoEsquerda.repaint();
         thePanel.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(thePanel);
-        GameEngine.getInstance().setFramesPerSecond(100);
+        GameEngine.getInstance().setFramesPerSecond(200);
         this.guitarra.setMinorTime();
-        this.musica.setInterval(1.0f);
+        this.musica.setInterval(0.5f);
         this.musica.refresh();
         this.changeProgressImage();
     }
@@ -99,7 +100,8 @@ public class FaseEasy1 implements GameStateController {
         novoProgresso.setVisible(true);
         novoProgresso.setLayout(null);
         this.progresso = novoProgresso;
-        thePanel.add(novoProgresso);
+        thePanel.add(novoProgresso, new Integer(1),0);
+        thePanel.repaint();
         
     }
     public void step(long timeElapsed) {
