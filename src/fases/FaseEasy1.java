@@ -3,6 +3,7 @@ package fases;
 import guitarra.Guitarra;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlayExtras.Imagem;
@@ -25,12 +26,15 @@ public class FaseEasy1 implements GameStateController {
     private Imagem bgImageGuitarra;
     private Imagem bgImagePlayEfeito;
     private JLabel bgImageFundoEsquerda;
+    private JLabel progresso;
     private Imagem bgImageFundoDireita;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
     private boolean videoStarted = false;
     private MIDIReader musica;
     private Video video;
+    private JPanel thePanel;
+    private Component theVideo;
     public void load() {
         this.bgImageFundoEsquerda =  new JLabel(new ImageIcon("img_cenario/FOTOS_BANDAS/acdc/acdc1.png"));
         try {
@@ -60,33 +64,46 @@ public class FaseEasy1 implements GameStateController {
     public void start() {
         this.guitarra = Guitarra.getInstance();
         this.guitarra.setLevel(5);
-        JPanel pteste = new JPanel();
-        pteste.setLayout(null);
+        thePanel = new JPanel();
+        thePanel.setLayout(null);
         
-        Component theVideo = this.video.getSwingComponent();
+        theVideo = this.video.getSwingComponent();
                 
           
-        pteste.add(this.bgImageFundoEsquerda);
-        pteste.add(theVideo);
+        thePanel.add(this.bgImageFundoEsquerda);
+        thePanel.add(theVideo);
         
-        pteste.setVisible(true);
+        thePanel.setVisible(true);
         theVideo.setVisible(true);
         this.bgImageFundoEsquerda.setVisible(true);
         this.bgImageFundoEsquerda.setBounds(0,0,429,301);
         theVideo.setBounds(0,301,429,319);
-        pteste.setBounds(0,0,429, 620); 
+        thePanel.setBounds(0,0,429, 620); 
         
         theVideo.repaint();
         this.bgImageFundoEsquerda.repaint();
-        pteste.repaint();
-        GameEngine.getInstance().getGameCanvas().setPanel(pteste);
+        thePanel.repaint();
+        GameEngine.getInstance().getGameCanvas().setPanel(thePanel);
         GameEngine.getInstance().setFramesPerSecond(100);
         this.guitarra.setMinorTime();
         this.musica.setInterval(1.0f);
         this.musica.refresh();
+        this.changeProgressImage();
     }
-
+    private void changeProgressImage(){
+        JLabel novoProgresso = this.guitarra.getImageProgress();
+        if(this.progresso != null){
+            thePanel.remove(this.progresso);
+        }
+        novoProgresso.setBounds(10,10,107,107);
+        novoProgresso.setVisible(true);
+        novoProgresso.setLayout(null);
+        this.progresso = novoProgresso;
+        thePanel.add(novoProgresso);
+        
+    }
     public void step(long timeElapsed) {
+        this.changeProgressImage();
         if(this.musicLoaded==false){
             
             /*int[][] notas = new int[Utilidades.getNumeroRandomico(5, 200)][6];

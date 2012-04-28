@@ -4,6 +4,7 @@
  */
 package guitarra;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import javaPlay.GameEngine;
 import javaPlay.GameObject;
 import javaPlay.Keyboard;
 import javaPlayExtras.Imagem;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import utilidades.Utilidades;
 
 /**
@@ -29,7 +32,7 @@ public class Guitarra extends GameObject{
         if(!pode){
             return false;
         }
-        return this.getProgresso(10)==100;
+        return this.getProgresso(20)==100;
     }
     protected float[][] notas = new float[0][0]; // Guarda uma matriz com as notas disponiveis para serem tocadas
     protected Esfera[] esferas; // Guarda um vetor com as esferas disponiveis para serem mostradas
@@ -42,6 +45,7 @@ public class Guitarra extends GameObject{
     protected float lastNote; // guarda o ultimo indice no qual foi adicionado uma nova nota
     protected float minorTime; // guarda o tempo que uma esfera demora ate descer
     protected HashMap<Integer, Integer> blocked; // Guarda o tempo em que cada esfera foi bloqueada
+    protected JLabel progressos[];
     public Guitarra(){
     }
     public void load(){
@@ -58,6 +62,10 @@ public class Guitarra extends GameObject{
             this.esferas[c].setSerie(c);
             this.blocked.put(this.esferas[c].getTecla(),0);
         }
+        this.progressos = new JLabel[7];
+        for(int c=0;c<7;++c){
+            this.progressos[c] = new JLabel(new ImageIcon("img_cenario/BARRINHAS/barra"+c+".png"));
+        }
         
     }
     public static Guitarra getInstance() {
@@ -69,6 +77,29 @@ public class Guitarra extends GameObject{
     }
     public void setLevel(int level){
         this.level = level+1;
+    }
+    public JLabel getImageProgress(){
+        float progresso = this.getProgresso();
+        JLabel imagem;
+        if(progresso == 100){
+            imagem = this.progressos[5];
+        }
+        else if(progresso >= 90){
+            imagem = this.progressos[4];
+        }
+        else if(progresso >= 75){
+            imagem = this.progressos[3];
+        }
+        else if(progresso >= 55){
+            imagem = this.progressos[2];
+        }
+        else if(progresso >= 40){
+            imagem = this.progressos[1];
+        }
+        else{
+            imagem = this.progressos[0];
+        }
+        return imagem;
     }
     private Esfera[] getNotas(){
         for(float[] nota: notas){
@@ -146,6 +177,10 @@ public class Guitarra extends GameObject{
     } 
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
+        if(this.getProgresso()<20){
+            GameEngine.getInstance().getGameCanvas().setPanel(null);
+            GameEngine.getInstance().setNextGameStateController(24);
+        }
         if(this.getPrecisionSecondsElapsed() != this.lastSecond){
             this.lastSecond = this.getPrecisionSecondsElapsed();
             Esfera[] novasNotas = this.getNotas();
@@ -195,6 +230,8 @@ public class Guitarra extends GameObject{
     }
 
     public void draw(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.drawString(this.getProgresso(20)+"% (total: "+this.getProgresso()+")", 10, 10);
         for(Esfera nota: this.notasEsferasAtuais){
             nota.draw(g);
         }
@@ -205,21 +242,22 @@ public class Guitarra extends GameObject{
     }
 
     public float getProgresso() {
-        int count = 0;
+        float count = 0;
         for(Esfera nota: this.notasEsferas){
             count += nota.foiPressionado()?1:0;
         }
-        return this.notasEsferas.size()/count;
+        return (((count+1)/(float)(this.notasEsferas.size()+1))*100.0f);
     }
     public float getProgresso(int lastSeconds){
-        int count = 0;
-        for(Esfera nota: this.notasEsferas){
-            if(nota.getSecond()<this.getSecondsElapsed()-10){
+        float count = 0, total = 0;
+        for(Esfera nota: this.notasEsferas){   
+            if(nota.getSecond()<this.getPrecisionSecondsElapsed()-lastSeconds){
                 continue;
             }
             count += nota.foiPressionado()?1:0;
+            total += 1;
         }
-        return ((count+1)/(this.notasEsferas.size()+1))*100.0f;
+        return ((count+1)/(float)(total+1))*100.0f;
     }
 
     public boolean isFirstNotePlayed() {
