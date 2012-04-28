@@ -118,7 +118,7 @@ public class MIDIReader {
                                 notas.add(lastNote);
                             }
                             if(realNotas.size() > 0){
-                                lastNote = realNotas.get(notas.size()-1);
+                                lastNote = realNotas.get(realNotas.size()-1);
                                 int theIndex = 0;
                                 float lastSecond = (float) 0.0;
                                 boolean exists = false;
