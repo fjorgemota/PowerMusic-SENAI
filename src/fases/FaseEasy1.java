@@ -48,7 +48,7 @@ public class FaseEasy1 implements GameStateController {
 
              //this.bgImagePlay = new Imagem("img_cenario/play.png");
              this.bgImageFundoDireita = new Imagem("img_cenario/FOTOS_BANDAS/acdc/acdc2.png");
-             this.bgImagePlayEfeito = new Imagem("img_cenario/play.png");
+            
 
 
         } catch (Exception ex) {
