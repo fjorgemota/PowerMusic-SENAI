@@ -5,6 +5,7 @@
 package utilidades;
 
 import java.awt.Component;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,9 +36,10 @@ public class Video implements ControllerListener, Runnable{
         this.load();
     }
     public URL getURL(){
+        
         try {
-            URL url = new URL("file://"+System.getProperty("user.dir")+"/"+this.filename);
-            return url;
+            File f = new File(this.filename);
+            return f.toURL();
         } catch (Exception ex) {
             Utilidades.alertar("Problema ao criar a URL para o video:"+ex.getMessage());
             return null;
