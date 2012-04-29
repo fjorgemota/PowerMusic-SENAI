@@ -91,7 +91,9 @@ public abstract class Esfera extends GameObject {
     public boolean podePressionar() {
         return !this.bloqueado &&  this.getY() >= 380 && this.getY() <= 455;
     }
-
+    public boolean podeTocar(){
+        return this.foiPressionado() && this.frame == 1;
+    }
     public void preLocate(long timeElapsed) {
         this.y += 1;
         this.imagem.setCurrAnimFrame(this.getCurrentStep());
