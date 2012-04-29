@@ -88,7 +88,7 @@ public class Intervalo implements GameStateController{
         if(!this.theImagem.contains("1")){
             g.setColor(Color.BLACK);
             g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
-            g.drawString(((int)Guitarra.getInstance().getProgresso())+"%",368,257);
+            g.drawString(((int)Guitarra.getInstance().getProgresso())+"%",365,29);
         }
     }
 
