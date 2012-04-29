@@ -14,7 +14,7 @@ public class ExtUtil {
 
     public final static String mid = "mid";
     public final static String mpg = "mpg";
-
+    public final static String mp3 = "mp3";
     /*
      * Get the extension of a file.
      */  

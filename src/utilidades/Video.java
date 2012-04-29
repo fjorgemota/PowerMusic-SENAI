@@ -9,13 +9,9 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.media.ControllerEvent;
-import javax.media.ControllerListener;
-import javax.media.Format;
-import javax.media.Manager;
-import javax.media.Player;
-import javax.media.PlugInManager;
-import javax.media.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.media.*;
 import net.sourceforge.jffmpeg.AudioDecoder;
 import net.sourceforge.jffmpeg.VideoDecoder;
 import sun.awt.PlatformFont;
@@ -29,6 +25,7 @@ public class Video implements ControllerListener, Runnable{
     private Player player = null;
     private boolean canPlay;
     private Thread theThread;
+    private boolean loop = false;
     public Video(String filename){
         super();
         this.filename = filename;
@@ -60,6 +57,13 @@ public class Video implements ControllerListener, Runnable{
             Utilidades.alertar("Erro ao criar o player:"+ex.getMessage()+" para o arquivo "+this.filename);
         }
     }
+    public void join(){
+        try {
+            theThread.join();
+        } catch (Exception ex) {
+            Utilidades.alertar("Erro ao aguardar pela Thread:"+ex.getMessage());
+        }
+    }
     public Component getSwingComponent(){
         while(!this.canPlay){
             continue;
@@ -74,6 +78,9 @@ public class Video implements ControllerListener, Runnable{
     }
     public float getActualTime(){
         return (float)player.getMediaTime().getSeconds();
+    }
+    public void setLoop(boolean loop){
+        this.loop = loop;
     }
     public boolean install(){
         VideoDecoder video = new VideoDecoder();
@@ -130,7 +137,11 @@ public class Video implements ControllerListener, Runnable{
             case Player.Prefetched:
             case Player.Realizing:
             case Player.Prefetching:
-                break;             
+                break;  
+        }
+        if(loop && ce instanceof EndOfMediaEvent){
+            this.reset();
+            this.play();
         }
     }
 }

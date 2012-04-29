@@ -50,7 +50,7 @@ public class MusicMIDI extends Musica{
         this.musicFile = musicFile;
     }
     public void start(){
-        this.setMusica(this.musicFile,this.videoFile,this.level);
+        this.setMusica(this.musicFile,this.videoFile, this.level);
         super.start();
     }
     public void gameOver() {
@@ -66,5 +66,6 @@ public class MusicMIDI extends Musica{
     void setVideo(String videoFile) {
         this.videoFile = videoFile;
     }
+
 
 }

@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlay.Keyboard;
+import javaPlayExtras.AudioPlayer;
 import javaPlayExtras.Imagem;
 import javaPlayExtras.Keys;
 import javax.swing.ImageIcon;
@@ -58,6 +59,7 @@ public abstract class Musica implements GameStateController {
          this.level = level;
          if(this.videoFile != null){
             this.video = new Video(this.videoFile);
+            this.video.join();
         }
     }
     public Musica(String musicFile,String videoFile, String fundo, String guitarra, int level){
@@ -165,7 +167,6 @@ public abstract class Musica implements GameStateController {
         }
         this.thePanel.repaint();
     }
-    @Override
     public void step(long timeElapsed) {
         Keyboard teclado = GameEngine.getInstance().getKeyboard();
         totalTimeElapsed += timeElapsed;
@@ -179,11 +180,21 @@ public abstract class Musica implements GameStateController {
             }
             
             this.pause = !this.pause;
-            if(this.pause){
-                this.video.pause();
+            if(this.video != null){
+                if(this.pause){
+                    this.video.pause();
+                }
+                else if(this.videoStarted){
+                    this.video.play();
+                }
             }
-            else{
-                this.video.play();
+            else if(this.musica != null){
+                if(this.pause){
+                    this.musica.stop();
+                }
+                else if(this.videoStarted){
+                    this.musica.play();
+                }
             }
         }
         if(this.pause){
@@ -230,7 +241,6 @@ public abstract class Musica implements GameStateController {
                 if(this.video != null){
                     if(this.guitarra.addVideoTime(this.video.getActualTime()*1000)>0.0){
                         timeElapsed = 0;
-                        System.out.println("Ainda nao terminou..resetando tempo");
                     }
                 }
             }
@@ -273,7 +283,7 @@ public abstract class Musica implements GameStateController {
         }
         else{
             if(this.musica != null){
-                this.musica.stop();
+                this.musica.reset();
             }
         }
         this.musicLoaded = false;

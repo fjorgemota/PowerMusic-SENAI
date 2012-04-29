@@ -8,10 +8,12 @@ import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlay.Mouse;
+import javaPlayExtras.AudioPlayer;
 import javaPlayExtras.Imagem;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
+import utilidades.MP3Filter;
 import utilidades.MidiFilter;
 import utilidades.Utilidades;
 import utilidades.VideoFilter;
@@ -85,6 +87,7 @@ public class MenuMidi implements GameStateController {
     public void start() {
         JFileChooser selector = new JFileChooser();
         int result;
+        selector.resetChoosableFileFilters();
         selector.setFileFilter(new MidiFilter());
         result = selector.showOpenDialog(GameEngine.getInstance().getGameCanvas());
         if(result == JFileChooser.APPROVE_OPTION){
@@ -92,7 +95,9 @@ public class MenuMidi implements GameStateController {
         }
         else{
             GameEngine.getInstance().setNextGameStateController(2);
+            return;
         }
+        selector.resetChoosableFileFilters();
         selector.setFileFilter(new VideoFilter());
         result = selector.showOpenDialog(GameEngine.getInstance().getGameCanvas()); 
         if(result == JFileChooser.APPROVE_OPTION){
