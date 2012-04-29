@@ -55,6 +55,9 @@ public class Intervalo implements GameStateController{
         } catch (Exception ex) {
             Utilidades.alertar(ex.getMessage());
         }
+        if(!theImagem.contains("1")){
+            Final.getInstance().atualiza();
+        }
     }
     public void step(long timeElapsed) {
          if (Utilidades.estaClicandoEm(650, 520, 89, 75)) {
@@ -68,6 +71,7 @@ public class Intervalo implements GameStateController{
         }
         
         if (Utilidades.estaClicandoEm(50, 520, 89, 75)) {
+            Final.getInstance().reset();
             GameEngine.getInstance().setNextGameStateController(2);
         }
 
@@ -89,6 +93,7 @@ public class Intervalo implements GameStateController{
             g.setColor(Color.BLACK);
             g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
             g.drawString(((int)Guitarra.getInstance().getProgresso())+"%",365,29);
+            Final.getInstance().reset();
         }
     }
 
