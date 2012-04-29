@@ -9,7 +9,9 @@ import java.awt.Component;
 import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
+import javaPlay.Keyboard;
 import javaPlayExtras.Imagem;
+import javaPlayExtras.Keys;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,17 +23,17 @@ import utilidades.Video;
  *
  * @author fernando_mota
  */
-public class Musica implements GameStateController {
+public abstract class Musica implements GameStateController {
     private int level;
-    private String musicFile;
+    private float[][] notas;
+    private String midiFile;
+    private String videoFile;
     private String bgFile;
     private String guitarraFile;
     private Imagem bgImageFundo;
-   
-    private Imagem bgImageGuitarra;
-    private Imagem bgImagePlayEfeito;
     private JLabel bgImageFundoEsquerda;
     private JLabel progresso;
+    private JLabel pontuacao;
     private Imagem bgImageFundoDireita;
     private Guitarra guitarra;
     private boolean musicLoaded = false;
@@ -40,64 +42,97 @@ public class Musica implements GameStateController {
     private Video video;
     private JPanel thePanel;
     private Component theVideo;
-    public Musica(String musicFile, String fundo, String guitarra, int level){
-         this.musicFile = musicFile;
+    private boolean pause = false;
+    private int totalTimeElapsed = 0;
+    public Musica(){
+    }
+    protected void setMusica(String musicFile, int level){
+        this.midiFile = musicFile;
+         this.guitarra = Guitarra.getInstance();
+         this.level = level;
+    }
+    public Musica(String musicFile,String videoFile, String fundo, String guitarra, int level){
+         this.midiFile = musicFile;
+         this.videoFile = videoFile;
          this.bgFile = fundo;
          this.guitarraFile = guitarra;
          this.guitarra = Guitarra.getInstance();
          this.level = level;
     }
-    @Override
+    public Musica(float[][] notas, String videoFile, String fundo, String guitarra, int level){
+         this.notas = notas;
+         this.videoFile = videoFile;
+         this.bgFile = fundo;
+         this.guitarraFile = guitarra;
+         this.guitarra = Guitarra.getInstance();
+         this.level = level;
+    }
     public void load() {
-        this.musica = new MIDIReader("musicas/"+this.musicFile+".mid");
-         this.video = new Video(this.musicFile+".mpg");
-         
-        try {
-            this.bgImageFundoEsquerda =  new JLabel(new ImageIcon(this.bgFile));
-            this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-            this.bgImageFundoDireita = new Imagem(this.guitarraFile);
+        if(this.videoFile != null){
+            this.video = new Video(this.videoFile);
+        }
+    }
+
+    public void unload() {
+    }
+    public abstract void gameOver();
+    public abstract void nextMusic();
+    public void start() {
+        if(this.midiFile != null){
+            this.musica = new MIDIReader(this.midiFile);
+        }
+        else{
+            this.musica = null;
+        }
+         try {
+            if(this.bgFile != null && this.guitarraFile != null){
+                this.bgImageFundoEsquerda =  new JLabel(new ImageIcon(this.bgFile));
+                this.bgImageFundoDireita = new Imagem(this.guitarraFile);
+            }
+            else{
+                this.bgImageFundoEsquerda  =new JLabel(new ImageIcon("img_cenario/fundo.png"));
+                this.bgImageFundoDireita  = new Imagem("img_cenario/guitarra_fundo.png");
+            }
+            
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         
-    }
-
-    @Override
-    public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void start() {
         this.guitarra.setLevel(this.level);
         thePanel = new JPanel();
         thePanel.setLayout(null);
-        
-        theVideo = this.video.getSwingComponent();
-                
+        if(this.video != null){
+            theVideo = this.video.getSwingComponent();
+        }     
           
         thePanel.add(this.bgImageFundoEsquerda);
-        thePanel.add(theVideo);
-        
         thePanel.setVisible(true);
-        theVideo.setVisible(true);
+        if(this.theVideo != null){
+            this.thePanel.add(theVideo);
+            this.theVideo.setVisible(true);
+            this.theVideo.setBounds(0,301,429,319);
+            this.theVideo.repaint();
+        }    
         this.bgImageFundoEsquerda.setVisible(true);
-        this.bgImageFundoEsquerda.setBounds(0,0,429,301);
-        theVideo.setBounds(0,301,429,319);
-        thePanel.setBounds(0,0,429, 620); 
-        
-        theVideo.repaint();
+        this.bgImageFundoEsquerda.setBounds(0,0,432,theVideo!=null?301:620);
+        thePanel.setBounds(0,0,429, 620);         
         this.bgImageFundoEsquerda.repaint();
         thePanel.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(thePanel);
-        GameEngine.getInstance().setFramesPerSecond(200);
         this.guitarra.setMinorTime();
-        this.musica.setInterval(0.5f);
-        this.musica.refresh();
+        if(this.musica != null){
+            this.musica.setInterval(0.5f);
+            this.musica.refresh();
+        }
         this.changeProgressImage();
+        this.changePontuation();
     }
      private void changeProgressImage(){
         JLabel novoProgresso = this.guitarra.getImageProgress();
+        if(this.progresso == novoProgresso){
+            return;
+        }
         if(this.progresso != null){
             thePanel.remove(this.progresso);
         }
@@ -105,13 +140,48 @@ public class Musica implements GameStateController {
         novoProgresso.setVisible(true);
         novoProgresso.setLayout(null);
         this.progresso = novoProgresso;
-        thePanel.add(novoProgresso, new Integer(1),0);
-        thePanel.repaint();
+        this.thePanel.add(novoProgresso, new Integer(1),0);
+        this.thePanel.repaint();
         
+    }
+     private void changePontuation(){
+        JLabel novoPontuacao =  this.guitarra.getImagePontuation();
+        if(this.pontuacao == null){
+              novoPontuacao.setBounds(-30,127,306,127);
+              novoPontuacao.setVisible(true);
+              novoPontuacao.setLayout(null);
+              this.pontuacao = novoPontuacao;
+              this.thePanel.add(novoPontuacao, new Integer(2),0); 
+        }
+        this.thePanel.repaint();
     }
     @Override
     public void step(long timeElapsed) {
+        Keyboard teclado = GameEngine.getInstance().getKeyboard();
+        totalTimeElapsed += timeElapsed;
+        
+        if(teclado.keyDown(Keys.P)){
+            if(totalTimeElapsed>200){
+                totalTimeElapsed = 0;
+            }
+            else{
+                return;
+            }
+            
+            this.pause = !this.pause;
+            if(this.pause){
+                this.video.pause();
+            }
+            else{
+                this.video.play();
+            }
+        }
+        if(this.pause){
+            return;
+        }
+        
        this.changeProgressImage();
+       this.changePontuation();
         if(this.musicLoaded==false){
             
             /*int[][] notas = new int[Utilidades.getNumeroRandomico(5, 200)][6];
@@ -122,43 +192,59 @@ public class Musica implements GameStateController {
                 }
             }*/
             
-            
-            this.musica.setDuration(video.getDuration());
-            float[][] notas = this.musica.getNotes();
-            //float[][] notas = Utilidades.loadNotesFromMIDI("musicas/SweetChildOMine.mid");
-            for(int c=0;c<notas.length;++c){
-                //notas[c][0] = notas[c][0]/1.05f;
+            if(this.musica != null){
+                if(this.video != null){
+                    this.musica.setDuration(video.getDuration());
+                }
+                this.notas = this.musica.getNotes();
             }
             this.guitarra.reset();
-            
-            this.guitarra.setNotas(notas);
+            this.guitarra.setNotas(this.notas);
             this.musicLoaded = true;
         }
         else{
             if(this.guitarra.isFirstNotePlayed() && this.videoStarted == false){
-                this.video.play();
+                if(this.video != null){
+                    this.video.play();
+                }
                 this.videoStarted = true;
             }
             else if(this.videoStarted == true){
-                timeElapsed = 0;
-                this.guitarra.addVideoTime(this.video.getActualTime()*1000);
+                if(this.video != null){
+                    timeElapsed = 0;
+                    this.guitarra.addVideoTime(this.video.getActualTime()*1000);
+                }
             }
             this.guitarra.step(timeElapsed);
         }
+        if(this.guitarra.isGameOver()){
+            GameEngine.getInstance().getGameCanvas().setPanel(null);
+            this.gameOver();
+        }
+        else if(this.guitarra.isTerminated()){
+            GameEngine.getInstance().getGameCanvas().setPanel(null);
+            if(this.guitarra.isWinned()){
+                this.nextMusic();
+            }
+            else{
+                this.gameOver();
+            }
+        }
     }
 
-    @Override
     public void draw(Graphics g) {
         // g.fillRect(0, 0, 3000, 2400);
         //this.bgImageFundo.draw(g, 0, 0);
-       
         this.bgImageFundoDireita.draw(g, 0, 0);
         this.guitarra.draw(g);
     }
 
-    @Override
     public void stop() {
-        this.video.pause();
+        if(this.video!=null){
+            this.video.reset();
+        }
+        this.musicLoaded = false;
+        this.videoStarted = false;
     }
     
 }

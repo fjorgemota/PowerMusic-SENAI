@@ -58,7 +58,7 @@ public class MIDIReader {
                     if(shortmsg.getCommand() == ShortMessage.PROGRAM_CHANGE){
                         program = shortmsg.getData1();
                     }
-                    else if(program>=0 && program <= 128){
+                    else{
                     //else if(program>=25 && program <= 40){
                     //else if(program== 30){
                         if(shortmsg.getCommand() == ShortMessage.NOTE_ON){
