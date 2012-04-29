@@ -34,6 +34,7 @@ public class MusicMIDI extends Musica{
     public static MusicMIDI instancia;
     private int level;
     private String musicFile;
+    private String videoFile;
     public MusicMIDI(){
     }
     public static MusicMIDI getInstance(){
@@ -49,7 +50,7 @@ public class MusicMIDI extends Musica{
         this.musicFile = musicFile;
     }
     public void start(){
-        this.setMusica(this.musicFile,this.level);
+        this.setMusica(this.musicFile,this.videoFile,this.level);
         super.start();
     }
     public void gameOver() {
@@ -58,7 +59,12 @@ public class MusicMIDI extends Musica{
     }
 
     public void nextMusic() {
-        GameEngine.getInstance().setNextGameStateController(25);
-        
+        Utilidades.alertar("Wow! Voce conseguiu tocar "+((int)Guitarra.getInstance().getProgresso())+"% dessa musica. E com isso fez "+Guitarra.getInstance().getPontuacao()+" pontos!");
+        GameEngine.getInstance().setNextGameStateController(2);
     }
+
+    void setVideo(String videoFile) {
+        this.videoFile = videoFile;
+    }
+
 }
