@@ -146,8 +146,12 @@ public class GameEngine
                 nextGameState = null;
             }			
         }
-
+        
         canvas.dispose();
+        Enumeration e = this.gameStateControllers.keys();
+        while(e.hasMoreElements()){
+            this.removeGameStateController((Integer)e.nextElement());
+        }
     }
 
 	public void setFramesPerSecond(int framesPerSecond) {
