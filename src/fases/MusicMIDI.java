@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MetaMessage;
@@ -22,87 +23,42 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Track;
+import javax.swing.JFileChooser;
 import utilidades.Utilidades;
 
 /**
  *
  * @author fernando_mota
  */
-public class MusicMIDI implements GameStateController{
-    private String filename;
-    Guitarra guitarra;
-    public MusicMIDI(String filename){
-        this.filename = filename;
-        this.guitarra = Guitarra.getInstance();
+public class MusicMIDI extends Musica{
+    public static MusicMIDI instancia;
+    private int level;
+    private String musicFile;
+    public MusicMIDI(){
     }
-    public String getFileName(){
-        return this.filename;
-    }
-    public void load() {
-
-
-        Sequence sequencia;
-        try {
-            sequencia = MidiSystem.getSequence(new File(this.getFileName()));
-        } catch (Exception ex) {
-            Utilidades.alertar(ex.getMessage());
-            return;
+    public static MusicMIDI getInstance(){
+        if(MusicMIDI.instancia == null){
+            MusicMIDI.instancia = new MusicMIDI();
         }
-        int trackNumber = 0, program = 0;
-        HashMap notesPlayed = new HashMap();
-        ArrayList< ArrayList > notas = new ArrayList< ArrayList>(); // Cria um ArrayList com as notas, que devem vir a ser a matriz com as notas por si so
-        int[] chords = new int[]{64, 69, 74, 79, 83, 88};
-        for (Track track:  sequencia.getTracks()) {
-            for(int c=0;c<track.size();++c){
-                MidiEvent event = track.get(c);
-                MidiMessage msg = event.getMessage();
-                if(msg instanceof ShortMessage){
-                    ShortMessage shortmsg = (ShortMessage) msg;
-                    if(shortmsg.getCommand() == ShortMessage.PROGRAM_CHANGE){
-                        program = shortmsg.getData1();
-                    }
-                    else if(program>=25 && program <= 32){
-                        if(shortmsg.getCommand() == ShortMessage.NOTE_ON){
-                            int note = shortmsg.getData1();
-                            int noteChord;
-                            for (int chord: chords){
-                                if (note < chord){
-                                    break;
-                                      //  noteChord = chord; 
-                                      
-                                     
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+        return MusicMIDI.instancia;
+    }
+    public void setLevel(int level){
+        this.level = level;
+    }
+    public void setMusic(String musicFile){
+        this.musicFile = musicFile;
+    }
+    public void start(){
+        this.setMusica(this.musicFile,this.level);
+        super.start();
+    }
+    public void gameOver() {
+        GameOver.getInstance().setMusica(25);
+        GameEngine.getInstance().setNextGameStateController(24);
     }
 
+    public void nextMusic() {
+        GameEngine.getInstance().setNextGameStateController(25);
+        
     }
-    public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void step(long timeElapsed) {
-      
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void stop() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
 }
