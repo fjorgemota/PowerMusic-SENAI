@@ -28,6 +28,7 @@ public class Guitarra extends GameObject{
     private boolean firstNotePlayed = false;
     private float lastVideoTime;
     private boolean lastNotePlayed;
+    private int isLastNotePlayed;
     public boolean podeEspecial() {
         boolean pode = Utilidades.sorteia();
         if(!pode){
@@ -190,7 +191,7 @@ public class Guitarra extends GameObject{
         return this.notas[this.notas.length-1][0];
     }
     public boolean isTerminated(){
-        return this.lastNotePlayed;
+        return this.lastNotePlayed && isLastNotePlayed>10000;
     }
     public boolean isWinned(){
         return this.getProgresso()>=75;
@@ -214,15 +215,43 @@ public class Guitarra extends GameObject{
     public float getPrecisionSecondsElapsed(){
         return (this.timeElapsed/1000.0f);
     }
-    public void addVideoTime(float seconds){
-        this.timeElapsed += seconds-this.lastVideoTime;
+    public float addVideoTime(float seconds){
+        float diff = seconds-this.lastVideoTime;
+        this.timeElapsed += diff;
         this.setLastVideoTime(seconds);
+        return diff;
     }
     public void setLastVideoTime(float seconds){
         this.lastVideoTime = seconds;
     } 
+    public boolean podeTocar(int corda){
+        for(Esfera nota: this.notasEsferasAtuais){
+            if(nota.getSerie() == corda && nota.podeTocar()){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Esfera[] podeTocar(){
+        ArrayList<Esfera> cordas = new ArrayList<Esfera>();
+        for(Esfera nota: this.notasEsferasAtuais){
+            if(nota.podeTocar()){
+                cordas.add(nota);
+            }
+        }
+        Esfera[] resultado = new Esfera[cordas.size()];
+        int c=0;
+        for(Esfera corda: cordas){
+            resultado[c] = corda;
+            ++c;
+        }
+        return resultado;
+    }
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
+        if(lastNotePlayed){
+            this.isLastNotePlayed += 10;
+        }
         if(this.getPrecisionSecondsElapsed() != this.lastSecond){
             this.lastSecond = this.getPrecisionSecondsElapsed();
             Esfera[] novasNotas = this.getNotas();
