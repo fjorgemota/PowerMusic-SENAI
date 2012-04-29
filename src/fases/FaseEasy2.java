@@ -17,58 +17,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import utilidades.Utilidades;
 
-
-
-public class FaseEasy2 implements GameStateController {
-
-    private Imagem bgImageFundo;
-    
-    private Imagem bgImageGuitarra;
-
-    private Imagem bgImageFundo1;
-    private Imagem bgImageFundo2;
-
-    public void load() {
-
-        try {
-
-            this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-           
-          
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot2.png");
-         
-
-
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-
+public class FaseEasy2 extends Musica {
+    public FaseEasy2(){
+        super("musicas/Gone.mid", "videos/Gone.mpg", "img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot1.png", "img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot2.png", 3);
     }
 
-    public void unload() {
+    public void gameOver() {
+        GameOver.getInstance().setMusica(16);
+        GameEngine.getInstance().setNextGameStateController(24);
     }
 
-    public void start() {
+    public void nextMusic() {
+        GameEngine.getInstance().setNextGameStateController(17);
         
-    }
-
-    public void step(long timeElapsed) {
-
-       
-    }
-
-    public void draw(Graphics g) {
-        g.fillRect(0, 0, 3000, 2400);
-        this.bgImageFundo.draw(g, 0, 0);
-
-    
-        this.bgImageFundo1.draw(g, 0, 0);
-        this.bgImageFundo2.draw(g, 427, 0);
-    }
-
-    public void stop() {
     }
 }
 

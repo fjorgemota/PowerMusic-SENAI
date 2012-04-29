@@ -19,54 +19,20 @@ import utilidades.Utilidades;
 
 
 
-public class FaseEasy3 implements GameStateController {
+public class FaseEasy3 extends Musica {
 
-    private Imagem bgImageFundo;
-   
-    private Imagem bgImageGuitarra;
-
-    private Imagem bgImageFundo1;
-    private Imagem bgImageFundo2;
-
-    public void load() {
-
-        try {
-
-            this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/capital_inicial/capinicial1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/capital_inicial/capinicial2.png");
-  
-
-
-
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-
+    public FaseEasy3(){
+        super("musicas/Independencia.mid", "videos/Independencia.mpg", "img_cenario/FOTOS_BANDAS/capital_inicial/capinicial1.png", "img_cenario/FOTOS_BANDAS/capital_inicial/capinicial2.png", 3);
     }
 
-    public void unload() {
+    public void gameOver() {
+        GameOver.getInstance().setMusica(17);
+        GameEngine.getInstance().setNextGameStateController(24);
     }
 
-    public void start() {
-    }
-
-    public void step(long timeElapsed) {
-
-      
-    }
-
-    public void draw(Graphics g) {
-        g.fillRect(0, 0, 3000, 2400);
-        this.bgImageFundo.draw(g, 0, 0);
-
-    
-        this.bgImageFundo1.draw(g, 0, 0);
-        this.bgImageFundo2.draw(g, 427, 0);
-    }
-
-    public void stop() {
+    public void nextMusic() {
+        Utilidades.alertar("Parabens! Voce acabou de concluir o nivel 'Facil'!");
+        GameEngine.getInstance().setNextGameStateController(2);
+        
     }
 }
