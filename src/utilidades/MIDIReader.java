@@ -387,7 +387,6 @@ public class MIDIReader {
         player.setMicrosecondPosition(0);
     }
     //Permite a execucao de uma nota do video
-
     public void tocar(float seconds, int corda) {
         if (!this.canPlay) {
             return;
