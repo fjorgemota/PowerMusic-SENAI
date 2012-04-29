@@ -4,6 +4,7 @@
  */
 package fases;
 
+import guitarra.Esfera;
 import guitarra.Guitarra;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -44,12 +45,20 @@ public abstract class Musica implements GameStateController {
     private Component theVideo;
     private boolean pause = false;
     private int totalTimeElapsed = 0;
+    private int finalTimeElapsed = 0;
     public Musica(){
     }
-    protected void setMusica(String musicFile, int level){
+    public MIDIReader getMusic(){
+        return this.musica;
+    }
+    protected void setMusica(String musicFile, String videoFile, int level){
         this.midiFile = musicFile;
+        this.videoFile = videoFile;
          this.guitarra = Guitarra.getInstance();
          this.level = level;
+         if(this.videoFile != null){
+            this.video = new Video(this.videoFile);
+        }
     }
     public Musica(String musicFile,String videoFile, String fundo, String guitarra, int level){
          this.midiFile = musicFile;
@@ -125,6 +134,7 @@ public abstract class Musica implements GameStateController {
             this.musica.setInterval(0.5f);
             this.musica.refresh();
         }
+        
         this.changeProgressImage();
         this.changePontuation();
     }
@@ -177,6 +187,10 @@ public abstract class Musica implements GameStateController {
             }
         }
         if(this.pause){
+             if(teclado.keyDown(Keys.E)){
+                 GameEngine.getInstance().getGameCanvas().setPanel(null);
+                 GameEngine.getInstance().setNextGameStateController(2);
+             }
             return;
         }
         
@@ -207,21 +221,35 @@ public abstract class Musica implements GameStateController {
                 if(this.video != null){
                     this.video.play();
                 }
+                else{
+                    this.musica.play();
+                }
                 this.videoStarted = true;
             }
             else if(this.videoStarted == true){
                 if(this.video != null){
-                    timeElapsed = 0;
-                    this.guitarra.addVideoTime(this.video.getActualTime()*1000);
+                    if(this.guitarra.addVideoTime(this.video.getActualTime()*1000)>0.0){
+                        timeElapsed = 0;
+                        System.out.println("Ainda nao terminou..resetando tempo");
+                    }
                 }
             }
             this.guitarra.step(timeElapsed);
+            if(this.video == null && this.musica != null){
+                for(Esfera nota: this.guitarra.podeTocar()){
+                    this.musica.tocar(nota.getSecond(), nota.getSerie());
+                }
+            }
         }
         if(this.guitarra.isGameOver()){
             GameEngine.getInstance().getGameCanvas().setPanel(null);
             this.gameOver();
         }
         else if(this.guitarra.isTerminated()){
+            if(this.video != null && this.videoStarted  == true && this.finalTimeElapsed > 1000 & timeElapsed > 0 && this.musicLoaded == true){
+                this.finalTimeElapsed += 1;
+                return;
+            }
             GameEngine.getInstance().getGameCanvas().setPanel(null);
             if(this.guitarra.isWinned()){
                 this.nextMusic();
@@ -242,6 +270,11 @@ public abstract class Musica implements GameStateController {
     public void stop() {
         if(this.video!=null){
             this.video.reset();
+        }
+        else{
+            if(this.musica != null){
+                this.musica.stop();
+            }
         }
         this.musicLoaded = false;
         this.videoStarted = false;
