@@ -31,8 +31,6 @@ public class FaseEasy3 extends Musica {
     }
 
     public void nextMusic() {
-        Utilidades.alertar("Parabens! Voce acabou de concluir o nivel 'Facil'!");
-        GameEngine.getInstance().setNextGameStateController(2);
-        
+        GameEngine.getInstance().setNextGameStateController(26);
     }
 }
