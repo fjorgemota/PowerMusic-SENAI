@@ -14,6 +14,7 @@ import javax.media.Format;
 import javax.media.Manager;
 import javax.media.Player;
 import javax.media.PlugInManager;
+import javax.media.Time;
 import net.sourceforge.jffmpeg.AudioDecoder;
 import net.sourceforge.jffmpeg.VideoDecoder;
 import sun.awt.PlatformFont;
@@ -35,7 +36,7 @@ public class Video implements ControllerListener, Runnable{
     }
     public URL getURL(){
         try {
-            URL url = new URL("file://"+System.getProperty("user.dir")+"/videos/"+this.filename);
+            URL url = new URL("file://"+System.getProperty("user.dir")+"/"+this.filename);
             return url;
         } catch (Exception ex) {
             Utilidades.alertar("Problema ao criar a URL para o video:"+ex.getMessage());
@@ -109,8 +110,15 @@ public class Video implements ControllerListener, Runnable{
     }
     public void pause(){
         this.player.stop();
+        
     }
-
+    public void reset(){
+        this.pause();
+        this.player.setMediaTime(new Time(0));
+    }
+    public void close(){
+       this.player.deallocate();
+    }
     public void controllerUpdate(ControllerEvent ce) {
         switch(this.player.getState()){
             case Player.Realized:
