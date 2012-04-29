@@ -43,6 +43,7 @@ public class PowerMusic {
         GameEngine.getInstance().addGameStateController(23, new IntervaloHard3());
         GameEngine.getInstance().addGameStateController(24, GameOver.getInstance());
         GameEngine.getInstance().addGameStateController(25, MusicMIDI.getInstance());
+        GameEngine.getInstance().addGameStateController(26, Final.getInstance());
         GameEngine.getInstance().setStartingGameStateController(2);
         GameEngine.getInstance().setFramesPerSecond(200);
         GameEngine.getInstance().run();
