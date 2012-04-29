@@ -43,6 +43,7 @@ public abstract class Musica implements GameStateController {
     private JPanel thePanel;
     private Component theVideo;
     private boolean pause = false;
+    private int totalTimeElapsed = 0;
     public Musica(){
     }
     protected void setMusica(String musicFile, int level){
@@ -157,7 +158,16 @@ public abstract class Musica implements GameStateController {
     @Override
     public void step(long timeElapsed) {
         Keyboard teclado = GameEngine.getInstance().getKeyboard();
+        totalTimeElapsed += timeElapsed;
+        
         if(teclado.keyDown(Keys.P)){
+            if(totalTimeElapsed>200){
+                totalTimeElapsed = 0;
+            }
+            else{
+                return;
+            }
+            
             this.pause = !this.pause;
             if(this.pause){
                 this.video.pause();
