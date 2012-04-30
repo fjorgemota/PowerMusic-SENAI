@@ -10,16 +10,19 @@ package fases;
  * @author Samara
  */
 
+import guitarra.Guitarra;
+import java.awt.Component;
 import java.awt.Graphics;
-import javaPlay.GameStateController;
-import java.awt.Graphics;
+import java.util.ArrayList;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlayExtras.Imagem;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import utilidades.Utilidades;
+import utilidades.MIDIReader;
+import utilidades.Video;
 // MÚSICAS DA FASE
 //Its my life
 //Swit of mine
@@ -32,6 +35,18 @@ public class FaseMedium1 implements GameStateController {
     private Imagem bgImageGuitarra;
     private Imagem bgImageFundo1;
     private Imagem bgImageFundo2;
+
+
+    private JLabel bgImageFundoEsquerda;
+    private JLabel progresso;
+    private Imagem bgImageFundoDireita;
+    private Guitarra guitarra;
+    private boolean musicLoaded = false;
+    private boolean videoStarted = false;
+    private MIDIReader musica;
+    private Video video;
+    private JPanel thePanel;
+    private Component theVideo;
 
     public void load() {
 
