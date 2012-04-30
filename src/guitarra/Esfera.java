@@ -68,7 +68,7 @@ public abstract class Esfera extends GameObject {
     }
 
     public int getPontos() {
-        return 10 + (this.especial ? 5 : 0);
+        return 10 + (this.especial ? 40 : 0);
     }
 
     public abstract void setSerie(int serie);
