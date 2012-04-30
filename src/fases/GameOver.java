@@ -29,12 +29,24 @@ import utilidades.Utilidades;
  * @author Samara
  */
 public class GameOver implements GameStateController{
+
+    
   
     private Imagem bgImagegameover;
     private Imagem bgImageReiniciar;
     private Imagem bgImageReiniciar1;
     private Imagem bgImageReiniciar2;
-    
+    private int faseMusica = 2;
+    public static GameOver instancia;
+    public static GameOver getInstance() {
+        if(GameOver.instancia == null){
+            GameOver.instancia = new GameOver();
+        }
+        return GameOver.instancia;
+    }
+    public void setMusica(int musica){
+        this.faseMusica = musica;
+    }
     public void load() {
         
          try {
@@ -69,7 +81,7 @@ public class GameOver implements GameStateController{
         
         
         if (Utilidades.estaClicandoEm(60, 535, 140, 60)) {
-            GameEngine.getInstance().setNextGameStateController(2);
+            GameEngine.getInstance().setNextGameStateController(this.faseMusica);
         }
 
         if (Utilidades.estaComOMouseEm(60, 535, 140, 60)) {

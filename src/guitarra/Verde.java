@@ -54,7 +54,7 @@ class Verde extends Esfera {
     }
 
     public void step(long timeElapsed) {
-        if (teclado.keyDown(this.tecla)) {
+        if (teclado.keyDown(this.tecla) && this.podePressionar()) {
             this.pressionar();
         }
         super.preLocate(timeElapsed);

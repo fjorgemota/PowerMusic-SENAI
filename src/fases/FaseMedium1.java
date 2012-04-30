@@ -25,69 +25,25 @@ import utilidades.MIDIReader;
 import utilidades.Video;
 // MÚSICAS DA FASE
 //Its my life
-//Swit of mine
+//Sweet Child O' Mine
 //Admiravel chip novo
 
-public class FaseMedium1 implements GameStateController {
-
-    private Imagem bgImageFundo;
- 
-    private Imagem bgImageGuitarra;
-    private Imagem bgImageFundo1;
-    private Imagem bgImageFundo2;
 
 
-    private JLabel bgImageFundoEsquerda;
-    private JLabel progresso;
-    private Imagem bgImageFundoDireita;
-    private Guitarra guitarra;
-    private boolean musicLoaded = false;
-    private boolean videoStarted = false;
-    private MIDIReader musica;
-    private Video video;
-    private JPanel thePanel;
-    private Component theVideo;
-
-    public void load() {
-
-        try {
-
-            this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-      
-            this.bgImageFundo1 = new Imagem("img_cenario/FOTOS_BANDAS/guns/guns1.png");
-            this.bgImageFundo2 = new Imagem("img_cenario/FOTOS_BANDAS/guns/guns2.png");
+public class FaseMedium1 extends Musica {
 
 
-
-
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-
+    public FaseMedium1(){
+        super("musicas/SweetChildOMine.mid", "videos/SweetChildOMine.mpg", "img_cenario/FOTOS_BANDAS/guns/guns1.png", "img_cenario/FOTOS_BANDAS/guns/guns2.png", 4);
     }
 
-    public void unload() {
+    public void gameOver() {
+        GameOver.getInstance().setMusica(18);
+        GameEngine.getInstance().setNextGameStateController(24);
     }
 
-    public void start() {
-    }
-
-    public void step(long timeElapsed) {
-
-      
-    }
-
-    public void draw(Graphics g) {
-        g.fillRect(0, 0, 3000, 2400);
-        this.bgImageFundo.draw(g, 0, 0);
-
-  
-        this.bgImageFundo1.draw(g, 0, 0);
-        this.bgImageFundo2.draw(g, 426, 0);
-    }
-
-    public void stop() {
+    public void nextMusic() {
+        GameEngine.getInstance().setNextGameStateController(19); 
     }
 }
 

@@ -68,13 +68,15 @@ public abstract class Esfera extends GameObject {
     }
 
     public int getPontos() {
-        return 10 + (this.especial ? 5 : 0);
+        return 10 + (this.especial ? 40 : 0);
     }
 
     public abstract void setSerie(int serie);
 
     public void pressionar() {
-        Guitarra.getInstance().adicionaPontos(this.getPontos());
+        if(this.pressionado == false){
+            Guitarra.getInstance().adicionaPontos(this.getPontos());
+        }
         this.pressionado = true;
     }
     //public abstract void pressionar();
@@ -87,9 +89,11 @@ public abstract class Esfera extends GameObject {
         return this.bloqueado;
     }
     public boolean podePressionar() {
-        return !this.bloqueado &&  this.getY() >= 390 && this.getY() <= 448;
+        return !this.bloqueado &&  this.getY() >= 380 && this.getY() <= 455;
     }
-
+    public boolean podeTocar(){
+        return this.foiPressionado() && this.frame == 1;
+    }
     public void preLocate(long timeElapsed) {
         this.y += 1;
         this.imagem.setCurrAnimFrame(this.getCurrentStep());

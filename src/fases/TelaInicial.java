@@ -26,6 +26,7 @@ import javax.media.Format;
 import javax.swing.*;
 import net.sourceforge.jffmpeg.AudioDecoder;
 import net.sourceforge.jffmpeg.VideoDecoder;
+
 public class TelaInicial implements GameStateController {
 
     private Imagem bgImageHelp;
@@ -97,7 +98,7 @@ public class TelaInicial implements GameStateController {
         }
 
         if (Utilidades.estaClicandoEm(590, 555, 89, 75)) {
-            System.exit(0);
+            GameEngine.getInstance().requestShutdown();
         }
 
         if (Utilidades.estaComOMouseEm(548, 385, 200, 75)) {
