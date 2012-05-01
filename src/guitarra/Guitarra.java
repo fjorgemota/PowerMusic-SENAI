@@ -28,7 +28,6 @@ public class Guitarra extends GameObject{
     private boolean firstNotePlayed = false;
     private float lastVideoTime;
     private boolean lastNotePlayed;
-    private int isLastNotePlayed;
     public boolean podeEspecial() {
         boolean pode = Utilidades.sorteia();
         if(!pode){
@@ -171,7 +170,7 @@ public class Guitarra extends GameObject{
        }
     }
     public float getAutoMinorTime(){
-        return (620/(float)GameEngine.getInstance().getFramesPerSecond());
+        return (620/(float)GameEngine.getInstance().getFramesPerSecond())+(this.notas.length>0?this.notas[0][0]:0);
     }
     public void setMinorTime(){
         this.minorTime = this.getAutoMinorTime();
@@ -191,7 +190,7 @@ public class Guitarra extends GameObject{
         return this.notas[this.notas.length-1][0];
     }
     public boolean isTerminated(){
-        return this.lastNotePlayed && isLastNotePlayed>100000;
+        return this.lastNotePlayed;
     }
     public boolean isWinned(){
         return this.getProgresso()>=75;
@@ -249,9 +248,6 @@ public class Guitarra extends GameObject{
     }
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
-        if(lastNotePlayed){
-            this.isLastNotePlayed += 1;
-        }
         if(this.getPrecisionSecondsElapsed() != this.lastSecond){
             this.lastSecond = this.getPrecisionSecondsElapsed();
             Esfera[] novasNotas = this.getNotas();
