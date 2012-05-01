@@ -28,7 +28,6 @@ public class Final implements GameStateController{
     }
     public void atualiza(){
         this.totalPontos += Guitarra.getInstance().getPontuacao();
-        System.out.println(this.totalPontos+" pontos");
     }
     public void reset(){
         this.totalPontos = 0;
@@ -40,6 +39,7 @@ public class Final implements GameStateController{
     }
 
     public void start() {
+        this.atualiza();
         try{
             this.img = new Imagem("imagens/final.png");
         }
