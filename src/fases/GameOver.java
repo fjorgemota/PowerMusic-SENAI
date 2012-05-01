@@ -51,12 +51,12 @@ public class GameOver implements GameStateController{
         
          try {
 
-            this.bgImagegameover = new Imagem("img_cenario/gameover.png");
+            this.bgImagegameover = new Imagem("imagens/gameover.png");
             
             
 
-             this.bgImageReiniciar1 = new Imagem("img_cenario/reiniciar.png");
-             this.bgImageReiniciar2 = new Imagem("img_cenario/efeito_reiniciar.png");
+             this.bgImageReiniciar1 = new Imagem("imagens/reiniciar.png");
+             this.bgImageReiniciar2 = new Imagem("imagens/efeito_reiniciar.png");
              this.bgImageReiniciar =this.bgImageReiniciar1;
              
 

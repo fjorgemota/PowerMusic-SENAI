@@ -19,7 +19,7 @@ import utilidades.Utilidades;
 public class FaseMedium2 extends Musica {
 
     public FaseMedium2(){
-        super("musicas/AdmiravelChipNovo.mid", "videos/AdmiravelChipNovo.mpg", "img_cenario/FOTOS_BANDAS/Pitty/pitty1.png", "img_cenario/FOTOS_BANDAS/Pitty/pitty2.png", 4);
+        super("musicas/AdmiravelChipNovo.mid", "videos/AdmiravelChipNovo.mpg", "imagens/FOTOS_BANDAS/Pitty/pitty1.png", "imagens/FOTOS_BANDAS/Pitty/pitty2.png", 4);
     }
 
     public void gameOver() {

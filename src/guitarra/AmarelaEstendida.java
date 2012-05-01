@@ -19,7 +19,7 @@ public class AmarelaEstendida extends Esfera{
         super();
         if(AmarelaEstendida.imagemCache==null){
             try{
-                //AmarelaEstendida.imagemCache = new Sprite("img_cenario/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
+                //AmarelaEstendida.imagemCache = new Sprite("imagens/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
             }
             catch(Exception e){
                 Utilidades.alertar(e.getMessage());
@@ -31,7 +31,7 @@ public class AmarelaEstendida extends Esfera{
         super(second);
         if(AmarelaEstendida.imagemCache==null){
             try{
-                //AmarelaEstendida.imagemCache = new Sprite("img_cenario/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
+                //AmarelaEstendida.imagemCache = new Sprite("imagens/amareloinicio"+(this.isEspecial()?"-especial":"")+".png");
             }
             catch(Exception e){
                 Utilidades.alertar(e.getMessage());

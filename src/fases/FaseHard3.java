@@ -21,7 +21,7 @@ import utilidades.Utilidades;
 public class FaseHard3 extends Musica {
 
     public FaseHard3(){
-        super("musicas/HeroesOfOurTime.mid", "videos/HeroesOfOurTime.mpg", "img_cenario/FOTOS_BANDAS/DragonForce/dragon1.png", "img_cenario/FOTOS_BANDAS/DragonForce/dragon2.png", 5);
+        super("musicas/HeroesOfOurTime.mid", "videos/HeroesOfOurTime.mpg", "imagens/FOTOS_BANDAS/DragonForce/dragon1.png", "imagens/FOTOS_BANDAS/DragonForce/dragon2.png", 5);
     }
 
     public void gameOver() {

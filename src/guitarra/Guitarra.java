@@ -68,9 +68,9 @@ public class Guitarra extends GameObject{
         }
         this.progressos = new JLabel[7];
         for(int c=0;c<7;++c){
-            this.progressos[c] = new JLabel(new ImageIcon("img_cenario/BARRINHAS/barra"+c+".png"));
+            this.progressos[c] = new JLabel(new ImageIcon("imagens/BARRINHAS/barra"+c+".png"));
         }
-        this.pontuacao = new JLabel(new ImageIcon("img_cenario/pontuacao.png"));
+        this.pontuacao = new JLabel(new ImageIcon("imagens/pontuacao.png"));
         this.pontuacao.setLayout(null);
         this.realPontuacao = new JLabel();
         this.realPontuacao.setBounds(107,45,167,30);

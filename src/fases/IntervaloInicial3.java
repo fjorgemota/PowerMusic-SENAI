@@ -17,7 +17,7 @@ import utilidades.Utilidades;
  */
 public class IntervaloInicial3 extends Intervalo{
     public IntervaloInicial3(){
-        super(10,"img_cenario/Intervalos/easy3.png");
+        super(10,"imagens/Intervalos/easy3.png");
     }
 }
     

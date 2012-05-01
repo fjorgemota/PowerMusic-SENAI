@@ -40,7 +40,7 @@ public class Final implements GameStateController{
 
     public void start() {
         try{
-            this.img = new Imagem("img_cenario/final.png");
+            this.img = new Imagem("imagens/final.png");
         }
         catch(Exception ex){
             Utilidades.alertar("Erro ao carregar a imagem de final:"+ex.getMessage());

@@ -17,6 +17,6 @@ import utilidades.Utilidades;
 public class IntervaloHard3 extends Intervalo {
 
     public IntervaloHard3(){
-        super(14,"img_cenario/Intervalos/hard3.png");
+        super(14,"imagens/Intervalos/hard3.png");
     }
 }

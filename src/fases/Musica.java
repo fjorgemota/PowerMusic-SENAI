@@ -101,8 +101,8 @@ public abstract class Musica implements GameStateController {
                 this.bgImageFundoDireita = new Imagem(this.guitarraFile);
             }
             else{
-                this.bgImageFundoEsquerda  =new JLabel(new ImageIcon("img_cenario/fundo.png"));
-                this.bgImageFundoDireita  = new Imagem("img_cenario/guitarra_fundo.png");
+                this.bgImageFundoEsquerda  =new JLabel(new ImageIcon("imagens/fundo.png"));
+                this.bgImageFundoDireita  = new Imagem("imagens/guitarra_fundo.png");
             }
             
             
