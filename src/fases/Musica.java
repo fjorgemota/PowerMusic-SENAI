@@ -42,6 +42,7 @@ public abstract class Musica implements GameStateController {
     private boolean videoStarted = false;
     private MIDIReader musica;
     private Video video;
+    private JLabel novideo;
     private JPanel thePanel;
     private Component theVideo;
     private boolean pause = false;
@@ -60,6 +61,9 @@ public abstract class Musica implements GameStateController {
             this.video = new Video(this.videoFile);
             this.video.join();
         }
+         else{
+             this.novideo = new JLabel(new ImageIcon("imagens/danca.gif"));
+         }
     }
     public Musica(String musicFile,String videoFile, String fundo, String guitarra, int level){
          this.midiFile = musicFile;
@@ -81,6 +85,9 @@ public abstract class Musica implements GameStateController {
         if(this.videoFile != null){
             this.video = new Video(this.videoFile);
         }
+        else{
+             this.novideo = new JLabel(new ImageIcon("imagens/danca.gif"));
+         }
     }
 
     public void unload() {
@@ -124,11 +131,18 @@ public abstract class Musica implements GameStateController {
             this.theVideo.setBounds(0,301,429,319);
             this.theVideo.repaint();
         }    
+        
         this.bgImageFundoEsquerda.setVisible(true);
         this.bgImageFundoEsquerda.setBounds(0,0,432,theVideo!=null?301:620);
         thePanel.setBounds(0,0,429, 620);         
         this.bgImageFundoEsquerda.repaint();
         thePanel.repaint();
+        if(this.theVideo == null){
+            this.thePanel.add(this.novideo, new Integer(3),0 );
+            this.novideo.setVisible(true);
+            this.novideo.setBounds(150,520,100,60);
+            this.novideo.repaint();
+        }
         GameEngine.getInstance().getGameCanvas().setPanel(thePanel);
         if(this.musica != null){
             this.musica.setInterval(0.5f);
