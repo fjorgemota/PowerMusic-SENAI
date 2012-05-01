@@ -28,6 +28,7 @@ public class Final implements GameStateController{
     }
     public void atualiza(){
         this.totalPontos += Guitarra.getInstance().getPontuacao();
+        System.out.println(this.totalPontos+" pontos");
     }
     public void reset(){
         this.totalPontos = 0;
@@ -56,12 +57,10 @@ public class Final implements GameStateController{
     public void draw(Graphics g) {
         this.img.draw(g, 0,0);
         g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
-        g.drawString(this.totalPontos+"",575,506);
+        g.drawString(this.totalPontos+"",600,520);
     }
 
-    @Override
     public void stop() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
