@@ -5,19 +5,6 @@
 package fases;
 
 import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javaPlay.GameEngine;
-import javaPlay.GameStateController;
-import javaPlayExtras.Imagem;
-import utilidades.Utilidades;
-
-/**
- *
- * @author Samara
- */
-
-import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlayExtras.Imagem;
