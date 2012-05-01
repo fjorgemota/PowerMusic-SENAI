@@ -86,6 +86,7 @@ public class MenuFases implements GameStateController {
     }
 
     public void start() {
+        Final.getInstance().reset();
     }
 
     public void step(long timeElapsed) {
