@@ -58,6 +58,9 @@ public class Intervalo implements GameStateController{
         if(!theImagem.contains("1")){
             Final.getInstance().atualiza();
         }
+        else{
+            Final.getInstance().reset();
+        }
     }
     public void step(long timeElapsed) {
          if (Utilidades.estaClicandoEm(650, 520, 89, 75)) {
@@ -93,7 +96,6 @@ public class Intervalo implements GameStateController{
             g.setColor(Color.BLACK);
             g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
             g.drawString(((int)Guitarra.getInstance().getProgresso())+"%",365,260);
-            Final.getInstance().reset();
         }
     }
 
