@@ -46,7 +46,6 @@ public abstract class Musica implements GameStateController {
     private Component theVideo;
     private boolean pause = false;
     private int totalTimeElapsed = 0;
-    private int finalTimeElapsed = 0;
     public Musica(){
     }
     public MIDIReader getMusic(){
@@ -239,7 +238,8 @@ public abstract class Musica implements GameStateController {
             }
             else if(this.videoStarted == true){
                 if(this.video != null){
-                    if(this.guitarra.addVideoTime(this.video.getActualTime()*1000)>0.0){
+                    this.guitarra.addVideoTime(this.video.getActualTime()*1000);
+                    if(!this.video.isTerminated()){
                         timeElapsed = 0;
                     }
                 }
@@ -256,9 +256,10 @@ public abstract class Musica implements GameStateController {
             this.gameOver();
         }
         else if(this.guitarra.isTerminated()){
-            if(this.video != null && this.videoStarted  == true && this.finalTimeElapsed > 1000 & timeElapsed > 0 && this.musicLoaded == true){
-                this.finalTimeElapsed += 1;
-                return;
+            if(this.video != null){
+                if(!this.video.isTerminated()){
+                    return;
+                }
             }
             GameEngine.getInstance().getGameCanvas().setPanel(null);
             if(this.guitarra.isWinned()){
