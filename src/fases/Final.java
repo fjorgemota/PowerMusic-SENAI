@@ -57,7 +57,7 @@ public class Final implements GameStateController{
     public void draw(Graphics g) {
         this.img.draw(g, 0,0);
         g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
-        g.drawString(this.totalPontos+"",600,520);
+        g.drawString(this.totalPontos+"",640,520);
     }
 
     public void stop() {
