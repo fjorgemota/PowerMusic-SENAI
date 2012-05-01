@@ -191,7 +191,7 @@ public class Guitarra extends GameObject{
         return this.notas[this.notas.length-1][0];
     }
     public boolean isTerminated(){
-        return this.lastNotePlayed && isLastNotePlayed>10000;
+        return this.lastNotePlayed && isLastNotePlayed>100000;
     }
     public boolean isWinned(){
         return this.getProgresso()>=75;
@@ -250,7 +250,7 @@ public class Guitarra extends GameObject{
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
         if(lastNotePlayed){
-            this.isLastNotePlayed += 10;
+            this.isLastNotePlayed += 1;
         }
         if(this.getPrecisionSecondsElapsed() != this.lastSecond){
             this.lastSecond = this.getPrecisionSecondsElapsed();
