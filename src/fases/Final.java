@@ -39,8 +39,8 @@ public class Final implements GameStateController{
     }
     public void load() {  
         try {
-        this.bgImageMenu1 = new Imagem("img_cenario/menu.png");
-             this.bgImageMenu2 = new Imagem("img_cenario/efeito_menu.png");
+        this.bgImageMenu1 = new Imagem("imagens/menu.png");
+             this.bgImageMenu2 = new Imagem("imagens/efeito_menu.png");
              this.bgImageMenu =this.bgImageMenu1;
     }  catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
