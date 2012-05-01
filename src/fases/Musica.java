@@ -130,7 +130,6 @@ public abstract class Musica implements GameStateController {
         this.bgImageFundoEsquerda.repaint();
         thePanel.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(thePanel);
-        this.guitarra.setMinorTime();
         if(this.musica != null){
             this.musica.setInterval(0.5f);
             this.musica.refresh();
@@ -224,6 +223,7 @@ public abstract class Musica implements GameStateController {
             }
             this.guitarra.reset();
             this.guitarra.setNotas(this.notas);
+            this.guitarra.setMinorTime();
             this.musicLoaded = true;
         }
         else{
