@@ -170,15 +170,13 @@ public class Guitarra extends GameObject{
        }
     }
     public float getAutoMinorTime(){
-        return (620/(float)GameEngine.getInstance().getFramesPerSecond())+(this.notas.length>0?this.notas[0][0]:0);
+        return (620/(float)GameEngine.getInstance().getFramesPerSecond())+(this.notas.length>0?this.notas[0][0]-(620/(float)GameEngine.getInstance().getFramesPerSecond()):0);
     }
-    public void setMinorTime(){
+        public void setMinorTime(){
         this.minorTime = this.getAutoMinorTime();
-        System.out.println("Cada musica tera subtraido cerca de "+this.minorTime+" segundos");
     }
     public void setMinorTime(float minorTime){
         this.minorTime = minorTime;
-        System.out.println("Cada musica tera subtraido cerca de "+this.minorTime+" segundos");
     }
     public boolean isGameOver(){
         return this.getProgresso(30)<=20;
