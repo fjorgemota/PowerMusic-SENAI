@@ -33,6 +33,7 @@ public class Final implements GameStateController{
     }
     public void atualiza(){
         this.totalPontos += Guitarra.getInstance().getPontuacao();
+        System.out.println(this.totalPontos+" pontos");
     }
     public void reset(){
         this.totalPontos = 0;
@@ -53,7 +54,7 @@ public class Final implements GameStateController{
 
     public void start() {
         try{
-            this.img = new Imagem("img_cenario/final.png");
+            this.img = new Imagem("imagens/final.png");
         }
         catch(Exception ex){
             Utilidades.alertar("Erro ao carregar a imagem de final:"+ex.getMessage());
@@ -76,13 +77,15 @@ public class Final implements GameStateController{
     public void draw(Graphics g) {
         this.img.draw(g, 0,0);
         g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
+<<<<<<< HEAD
         g.drawString(this.totalPontos+"",590,560);
         this.bgImageMenu.draw(g, 60, 535);
+=======
+        g.drawString(this.totalPontos+"",640,520);
+>>>>>>> 04d9a08437584025f1274cc2af2273f24aeb3f4e
     }
 
-    @Override
     public void stop() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

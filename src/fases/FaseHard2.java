@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import utilidades.Utilidades;
 public class FaseHard2 extends Musica {
     public FaseHard2(){
-        super("musicas/ThroughTheFireAndFlames.mid", "videos/ThroughTheFireAndFlames.mpg", "img_cenario/FOTOS_BANDAS/DragonForce/dragon3.png", "img_cenario/FOTOS_BANDAS/DragonForce/dragon4.png", 5);
+        super("musicas/ThroughTheFireAndFlames.mid", "videos/ThroughTheFireAndFlames.mpg", "imagens/FOTOS_BANDAS/DragonForce/dragon3.png", "imagens/FOTOS_BANDAS/DragonForce/dragon4.png", 5);
     }
     public void gameOver() {
         GameOver.getInstance().setMusica(22);

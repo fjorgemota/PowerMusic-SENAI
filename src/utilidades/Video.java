@@ -26,9 +26,11 @@ public class Video implements ControllerListener, Runnable{
     private boolean canPlay;
     private Thread theThread;
     private boolean loop = false;
+    private boolean terminated;
     public Video(String filename){
         super();
         this.filename = filename;
+        this.terminated = false;
         this.install();
         this.load();
     }
@@ -82,6 +84,9 @@ public class Video implements ControllerListener, Runnable{
     public void setLoop(boolean loop){
         this.loop = loop;
     }
+    public boolean isTerminated(){
+        return terminated;
+    }
     public boolean install(){
         VideoDecoder video = new VideoDecoder();
         ArrayList<Format> formatsvideo = new ArrayList<Format>();
@@ -116,6 +121,7 @@ public class Video implements ControllerListener, Runnable{
     }
     public void play(){
         this.player.start();
+        this.terminated = false;
     }
     public void pause(){
         this.player.stop();
@@ -139,7 +145,10 @@ public class Video implements ControllerListener, Runnable{
             case Player.Prefetching:
                 break;  
         }
-        if(loop && ce instanceof EndOfMediaEvent){
+        if(ce instanceof EndOfMediaEvent){
+            this.terminated = true;
+        }
+        if(loop && this.terminated){
             this.reset();
             this.play();
         }

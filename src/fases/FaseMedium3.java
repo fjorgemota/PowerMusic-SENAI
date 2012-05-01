@@ -19,7 +19,7 @@ import utilidades.Utilidades;
 public class FaseMedium3 extends Musica {
 
     public FaseMedium3(){
-         super("musicas/ItsMyLife.mid", "videos/ItsMyLife.mpg", "img_cenario/FOTOS_BANDAS/bon_jovi/bonjovi1.png", "img_cenario/FOTOS_BANDAS/bon_jovi/bonjovi2.png", 4);
+         super("musicas/ItsMyLife.mid", "videos/ItsMyLife.mpg", "imagens/FOTOS_BANDAS/bon_jovi/bonjovi1.png", "imagens/FOTOS_BANDAS/bon_jovi/bonjovi2.png", 4);
     }
 
     public void gameOver() {

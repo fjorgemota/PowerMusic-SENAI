@@ -19,14 +19,16 @@ public class MIDINote {
     private int velocity;
     private int status;
     private float second;
-    public MIDINote(int channel, int note, int velocity, float second) {
+    private int instrument;
+    public MIDINote(int channel, int note, int velocity, int instrument, float second) {
         this.channel = channel;
         this.note = note;
         this.velocity = velocity;
         this.second = second;
         this.status = ShortMessage.NOTE_ON;
+        this.instrument = instrument;
     }
-    public MIDINote(MidiEvent ev, Sequence sequencia, MidiUtils.TempoCache tempoProcessor){
+    public MIDINote(MidiEvent ev, Sequence sequencia, MidiUtils.TempoCache tempoProcessor, int instrument){
         MidiMessage msg = ev.getMessage();
         ShortMessage smsg = (ShortMessage)msg;
         this.channel = smsg.getChannel();
@@ -34,11 +36,14 @@ public class MIDINote {
         this.velocity = smsg.getData2();
         this.status = smsg.getStatus();
         this.second =  MidiUtils.tick2microsecond(sequencia, ev.getTick(), tempoProcessor)/1000000.0f;
+        this.instrument = instrument;
     }
     public int getChannel() {
         return channel;
     }
-
+    public int getInstrument() {
+        return instrument;
+    }
     public void setChannel(int channel) {
         this.channel = channel;
     }

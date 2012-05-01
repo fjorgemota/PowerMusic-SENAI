@@ -56,24 +56,24 @@ public class TelaInicial implements GameStateController {
         System.out.println("]");
         System.out.println(notas.toString());*/
         try {
-            this.bgImageHelp1 = new Imagem("img_cenario/help.png");
-            this.bgImageHelp2 = new Imagem("img_cenario/Help2.png");
+            this.bgImageHelp1 = new Imagem("imagens/help.png");
+            this.bgImageHelp2 = new Imagem("imagens/Help2.png");
             this.bgImageHelp = this.bgImageHelp1;
 
-            this.bgImageFundo = new Imagem("img_cenario/logicamentefeito.png");
+            this.bgImageFundo = new Imagem("imagens/logicamentefeito.png");
 
-            this.bgImageNewGame1 = new Imagem("img_cenario/newgame.png");
-            this.bgImageNewGame2 = new Imagem("img_cenario/newgame2.png");
+            this.bgImageNewGame1 = new Imagem("imagens/newgame.png");
+            this.bgImageNewGame2 = new Imagem("imagens/newgame2.png");
             this.bgImageNewGame = this.bgImageNewGame1;
 
 
 
-            this.bgImageExit1 = new Imagem("img_cenario/exit.png");
-            this.bgImageExit2 = new Imagem("img_cenario/exit2.png");
+            this.bgImageExit1 = new Imagem("imagens/exit.png");
+            this.bgImageExit2 = new Imagem("imagens/exit2.png");
             this.bgImageExit  = this.bgImageExit1;
          
             
-            this.bgImage = new Imagem("img_cenario/logicamentefeito.png");
+            this.bgImage = new Imagem("imagens/logicamentefeito.png");
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

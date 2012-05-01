@@ -20,7 +20,7 @@ class Vermelha extends Esfera {
     public Vermelha(){
         super();
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_vermelho.png",9,49,28);
+            this.imagem = new Sprite("imagens/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_vermelho.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
@@ -30,7 +30,7 @@ class Vermelha extends Esfera {
     public Vermelha(float second){
         super(second);
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_vermelho.png",9,49,28);
+            this.imagem = new Sprite("imagens/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_vermelho.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());

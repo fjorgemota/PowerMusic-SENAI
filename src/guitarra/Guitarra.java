@@ -28,7 +28,6 @@ public class Guitarra extends GameObject{
     private boolean firstNotePlayed = false;
     private float lastVideoTime;
     private boolean lastNotePlayed;
-    private int isLastNotePlayed;
     public boolean podeEspecial() {
         boolean pode = Utilidades.sorteia();
         if(!pode){
@@ -68,9 +67,9 @@ public class Guitarra extends GameObject{
         }
         this.progressos = new JLabel[7];
         for(int c=0;c<7;++c){
-            this.progressos[c] = new JLabel(new ImageIcon("img_cenario/BARRINHAS/barra"+c+".png"));
+            this.progressos[c] = new JLabel(new ImageIcon("imagens/BARRINHAS/barra"+c+".png"));
         }
-        this.pontuacao = new JLabel(new ImageIcon("img_cenario/pontuacao.png"));
+        this.pontuacao = new JLabel(new ImageIcon("imagens/pontuacao.png"));
         this.pontuacao.setLayout(null);
         this.realPontuacao = new JLabel();
         this.realPontuacao.setBounds(107,45,167,30);
@@ -171,15 +170,13 @@ public class Guitarra extends GameObject{
        }
     }
     public float getAutoMinorTime(){
-        return (620/(float)GameEngine.getInstance().getFramesPerSecond());
+        return (620/(float)GameEngine.getInstance().getFramesPerSecond())+(this.notas.length>0?this.notas[0][0]-(620/(float)GameEngine.getInstance().getFramesPerSecond()):0);
     }
-    public void setMinorTime(){
+        public void setMinorTime(){
         this.minorTime = this.getAutoMinorTime();
-        System.out.println("Cada musica tera subtraido cerca de "+this.minorTime+" segundos");
     }
     public void setMinorTime(float minorTime){
         this.minorTime = minorTime;
-        System.out.println("Cada musica tera subtraido cerca de "+this.minorTime+" segundos");
     }
     public boolean isGameOver(){
         return this.getProgresso(30)<=20;
@@ -191,7 +188,7 @@ public class Guitarra extends GameObject{
         return this.notas[this.notas.length-1][0];
     }
     public boolean isTerminated(){
-        return this.lastNotePlayed && isLastNotePlayed>10000;
+        return this.lastNotePlayed;
     }
     public boolean isWinned(){
         return this.getProgresso()>=75;
@@ -249,9 +246,6 @@ public class Guitarra extends GameObject{
     }
     public void step(long timeElapsed) {
         this.timeElapsed += timeElapsed;
-        if(lastNotePlayed){
-            this.isLastNotePlayed += 10;
-        }
         if(this.getPrecisionSecondsElapsed() != this.lastSecond){
             this.lastSecond = this.getPrecisionSecondsElapsed();
             Esfera[] novasNotas = this.getNotas();

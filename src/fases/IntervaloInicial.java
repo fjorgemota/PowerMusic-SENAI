@@ -22,6 +22,6 @@ import utilidades.Utilidades;
 public class IntervaloInicial extends Intervalo {
 
     public IntervaloInicial(){
-        super(5,"img_cenario/Intervalos/easy1.png");
+        super(5,"imagens/Intervalos/easy1.png");
     }
 }

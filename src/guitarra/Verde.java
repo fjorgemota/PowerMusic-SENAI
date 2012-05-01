@@ -21,7 +21,7 @@ class Verde extends Esfera {
     public Verde() {
         super();
         try {
-            this.imagem = new Sprite("img_cenario/Sprites/" + (this.isEspecial() ? "efeito" : "sprite") + "_verde.png", 9, 49, 28);
+            this.imagem = new Sprite("imagens/Sprites/" + (this.isEspecial() ? "efeito" : "sprite") + "_verde.png", 9, 49, 28);
         } catch (Exception e) {
             Utilidades.alertar(e.getMessage());
         }
@@ -30,7 +30,7 @@ class Verde extends Esfera {
     public Verde(float second) {
         super(second);
         try {
-            this.imagem = new Sprite("img_cenario/Sprites/" + (this.isEspecial() ? "efeito" : "sprite") + "_verde.png", 9, 49, 28);
+            this.imagem = new Sprite("imagens/Sprites/" + (this.isEspecial() ? "efeito" : "sprite") + "_verde.png", 9, 49, 28);
         } catch (Exception e) {
             Utilidades.alertar(e.getMessage());
         }

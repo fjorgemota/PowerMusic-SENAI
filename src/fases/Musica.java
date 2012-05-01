@@ -46,7 +46,6 @@ public abstract class Musica implements GameStateController {
     private Component theVideo;
     private boolean pause = false;
     private int totalTimeElapsed = 0;
-    private int finalTimeElapsed = 0;
     public Musica(){
     }
     public MIDIReader getMusic(){
@@ -101,8 +100,8 @@ public abstract class Musica implements GameStateController {
                 this.bgImageFundoDireita = new Imagem(this.guitarraFile);
             }
             else{
-                this.bgImageFundoEsquerda  =new JLabel(new ImageIcon("img_cenario/fundo.png"));
-                this.bgImageFundoDireita  = new Imagem("img_cenario/guitarra_fundo.png");
+                this.bgImageFundoEsquerda  =new JLabel(new ImageIcon("imagens/fundo.png"));
+                this.bgImageFundoDireita  = new Imagem("imagens/guitarra_fundo.png");
             }
             
             
@@ -131,7 +130,6 @@ public abstract class Musica implements GameStateController {
         this.bgImageFundoEsquerda.repaint();
         thePanel.repaint();
         GameEngine.getInstance().getGameCanvas().setPanel(thePanel);
-        this.guitarra.setMinorTime();
         if(this.musica != null){
             this.musica.setInterval(0.5f);
             this.musica.refresh();
@@ -225,6 +223,7 @@ public abstract class Musica implements GameStateController {
             }
             this.guitarra.reset();
             this.guitarra.setNotas(this.notas);
+            this.guitarra.setMinorTime();
             this.musicLoaded = true;
         }
         else{
@@ -239,7 +238,8 @@ public abstract class Musica implements GameStateController {
             }
             else if(this.videoStarted == true){
                 if(this.video != null){
-                    if(this.guitarra.addVideoTime(this.video.getActualTime()*1000)>0.0){
+                    this.guitarra.addVideoTime(this.video.getActualTime()*1000);
+                    if(!this.video.isTerminated()){
                         timeElapsed = 0;
                     }
                 }
@@ -256,9 +256,10 @@ public abstract class Musica implements GameStateController {
             this.gameOver();
         }
         else if(this.guitarra.isTerminated()){
-            if(this.video != null && this.videoStarted  == true && this.finalTimeElapsed > 1000 & timeElapsed > 0 && this.musicLoaded == true){
-                this.finalTimeElapsed += 1;
-                return;
+            if(this.video != null){
+                if(!this.video.isTerminated()){
+                    return;
+                }
             }
             GameEngine.getInstance().getGameCanvas().setPanel(null);
             if(this.guitarra.isWinned()){

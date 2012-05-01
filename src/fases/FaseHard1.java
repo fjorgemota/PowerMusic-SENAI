@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class FaseHard1 extends Musica {
 
     public FaseHard1(){
-        super("musicas/UmMinutoParaOFimDoMundo.mid", "videos/UmMinutoParaOFimDoMundo.mpg", "img_cenario/FOTOS_BANDAS/cpm22/cpm1.png", "img_cenario/FOTOS_BANDAS/cpm22/cpm2.png", 5);
+        super("musicas/UmMinutoParaOFimDoMundo.mid", "videos/UmMinutoParaOFimDoMundo.mpg", "imagens/FOTOS_BANDAS/cpm22/cpm1.png", "imagens/FOTOS_BANDAS/cpm22/cpm2.png", 5);
     }
 
     public void gameOver() {
