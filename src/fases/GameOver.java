@@ -36,7 +36,18 @@ public class GameOver implements GameStateController{
     }
     public void load() {
         
-         try {
+         
+                
+    }
+
+     
+   
+     public void unload() {
+    }
+
+    
+    public void start() {    
+        try {
 
             this.bgImagegameover = new Imagem("imagens/gameover.png");
             
@@ -51,16 +62,6 @@ public class GameOver implements GameStateController{
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-                
-    }
-
-     
-   
-     public void unload() {
-    }
-
-    
-    public void start() {     
     }
     
     

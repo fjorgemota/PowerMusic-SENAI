@@ -38,13 +38,7 @@ public class Final implements GameStateController{
         this.totalPontos = 0;
     }
     public void load() {  
-        try {
-        this.bgImageMenu1 = new Imagem("imagens/menu.png");
-             this.bgImageMenu2 = new Imagem("imagens/efeito_menu.png");
-             this.bgImageMenu =this.bgImageMenu1;
-    }  catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+        
                 
     }
 
@@ -55,9 +49,12 @@ public class Final implements GameStateController{
         this.atualiza();
         try{
             this.img = new Imagem("imagens/final.png");
+            this.bgImageMenu1 = new Imagem("imagens/menu.png");
+             this.bgImageMenu2 = new Imagem("imagens/efeito_menu.png");
+             this.bgImageMenu =this.bgImageMenu1;
         }
         catch(Exception ex){
-            Utilidades.alertar("Erro ao carregar a imagem de final:"+ex.getMessage());
+            Utilidades.alertar("Erro ao carregar a imagem:"+ex.getMessage());
         }
     }
 
