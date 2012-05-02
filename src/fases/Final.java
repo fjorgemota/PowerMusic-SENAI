@@ -61,7 +61,7 @@ public class Final implements GameStateController{
 
     @Override
     public void stop() {
-        throw new UnsupportedOperationException("Not supported yet.");
+     
     }
     
 }
