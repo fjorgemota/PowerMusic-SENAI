@@ -7,6 +7,7 @@ package javaPlay;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.HashMap;
 import javaPlay.GameCanvas;
 import javaPlay.GameEngine;
 
@@ -21,25 +22,30 @@ public class Sprite
     private int animFrameWidth;
     private int animFrameHeight;
     private int MAX_COUNT = 100;
-
+    protected static HashMap<String,Image> cache = new HashMap<String, Image>();
     public Sprite(String filename, int animFrameCount, int animFrameWidth,
             int animFrameHeight) throws Exception
     {
-        image = Toolkit.getDefaultToolkit().getImage(filename);
+        if(!Sprite.cache.containsKey(filename)){
+            image = Toolkit.getDefaultToolkit().getImage(filename);
 
-        int count = 0;
+            int count = 0;
 
-        while(image.getWidth(null) == -1)
-        {
-            Thread.sleep(10);
-            count++;
-
-            if(count == MAX_COUNT)
+            while(image.getWidth(null) == -1)
             {
-                throw new Exception("Imagem \""+filename+"\" n�o pode ser carregada");
-            }
-        }
+                Thread.sleep(10);
+                count++;
 
+                if(count == MAX_COUNT)
+                {
+                    throw new Exception("Imagem \""+filename+"\" n�o pode ser carregada");
+                }
+            }
+            Sprite.cache.put(filename, image);
+        }
+        else{
+            image = Sprite.cache.get(filename);
+        }
         this.animFrameCount = animFrameCount;
         this.animFrameWidth = animFrameWidth;
         this.animFrameHeight = animFrameHeight;
