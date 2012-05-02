@@ -23,7 +23,7 @@ public class FaseMedium3 extends Musica {
     }
 
     public void gameOver() {
-        GameOver.getInstance().setMusica(19);
+        GameOver.getInstance().setMusica(20);
         GameEngine.getInstance().setNextGameStateController(24);
     }
 

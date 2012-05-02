@@ -49,15 +49,13 @@ public class MIDINote {
     }
 
     public int getChord() {
-        int[] chords = new int[]{21, 43, 63, 84, 106, 128};   //int[] chords = new int[]{64, 69, 74, 79, 83, 88};
-        int noteChord = 1;
-        for(int chord : chords) {
-            if (note < chord) {
-                break;
+        //int[] chords = new int[]{21, 43, 63, 84, 106, 128};   //int[] chords = new int[]{64, 69, 74, 79, 83, 88};
+        for(int noteChord = 5;noteChord>0;noteChord--) {
+            if (note%noteChord==0) {
+                return noteChord;
             }
-            noteChord++;
         }
-        return noteChord;
+        return 1;
     }
     public float getSecond(){
         return this.second;
