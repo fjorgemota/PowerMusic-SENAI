@@ -49,31 +49,31 @@ public class MenuFases implements GameStateController {
     public void load() {
         try {
             
-            this.bgImagePergunta = new Imagem("img_cenario/pergunta.png");
+            this.bgImagePergunta = new Imagem("imagens/pergunta.png");
             
-            this.bgImageFacil1 = new Imagem("img_cenario/facil.png");
-            this.bgImageFacil2 = new Imagem("img_cenario/easy2.png");
+            this.bgImageFacil1 = new Imagem("imagens/facil.png");
+            this.bgImageFacil2 = new Imagem("imagens/easy2.png");
             this.bgImageFacil = this.bgImageFacil1;
             
            
-            this.bgImageMedio1 = new Imagem("img_cenario/medio.png");
-            this.bgImageMedio2 = new Imagem("img_cenario/medium2.png");
+            this.bgImageMedio1 = new Imagem("imagens/medio.png");
+            this.bgImageMedio2 = new Imagem("imagens/medium2.png");
             this.bgImageMedio = this.bgImageMedio1;
             
-            this.bgImageDificil1 = new Imagem("img_cenario/hard.png");
-            this.bgImageDificil2 = new Imagem ("img_cenario/hard_efeito.png");
+            this.bgImageDificil1 = new Imagem("imagens/hard.png");
+            this.bgImageDificil2 = new Imagem ("imagens/hard_efeito.png");
             this.bgImageDificil = this.bgImageDificil1;
             
-            this.bgImageVoltar1 = new Imagem("img_cenario/voltar.png");
-            this.bgImageVoltar2 = new Imagem("img_cenario/voltar2.png");
+            this.bgImageVoltar1 = new Imagem("imagens/voltar.png");
+            this.bgImageVoltar2 = new Imagem("imagens/voltar2.png");
             this.bgImageVoltar = this.bgImageVoltar1;
             
-            this.bgImageFundo = new Imagem("img_cenario/fundo.png");
-            this.bgImageDanca = new Imagem("img_cenario/danca.gif");
-            this.bgImageEstrela = new Imagem("img_cenario/estrela.gif");
+            this.bgImageFundo = new Imagem("imagens/fundo.png");
+            this.bgImageDanca = new Imagem("imagens/danca.gif");
+            this.bgImageEstrela = new Imagem("imagens/estrela.gif");
             
-            this.bgImageMidi1 = new Imagem("img_cenario/Midi.png");
-            this.bgImageMidi2 = new Imagem("img_cenario/midi_efeito.png");
+            this.bgImageMidi1 = new Imagem("imagens/Midi.png");
+            this.bgImageMidi2 = new Imagem("imagens/midi_efeito.png");
             this.bgImageMidi = this.bgImageMidi1;
             
         } catch (Exception ex) {
@@ -86,6 +86,7 @@ public class MenuFases implements GameStateController {
     }
 
     public void start() {
+        Final.getInstance().reset();
     }
 
     public void step(long timeElapsed) {

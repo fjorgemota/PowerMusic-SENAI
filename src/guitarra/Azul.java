@@ -18,7 +18,7 @@ class Azul extends Esfera {
     public Azul(){
         super();
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
+            this.imagem = new Sprite("imagens/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
@@ -28,7 +28,7 @@ class Azul extends Esfera {
     public Azul(float second){
         super(second);
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
+            this.imagem = new Sprite("imagens/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_azul.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());

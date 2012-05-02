@@ -34,7 +34,7 @@ public class FaseMedium1 extends Musica {
 
 
     public FaseMedium1(){
-        super("musicas/SweetChildOMine.mid", "videos/SweetChildOMine.mpg", "img_cenario/FOTOS_BANDAS/guns/guns1.png", "img_cenario/FOTOS_BANDAS/guns/guns2.png", 4);
+        super("musicas/SweetChildOMine.mid", "videos/SweetChildOMine.mpg", "imagens/FOTOS_BANDAS/guns/guns1.png", "imagens/FOTOS_BANDAS/guns/guns2.png", 4);
     }
 
     public void gameOver() {

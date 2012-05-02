@@ -62,7 +62,7 @@ public class MIDIReader {
                         //else if(program>=25 && program <= 40){
                         //else if(program== 30){
                         if (shortmsg.getCommand() == ShortMessage.NOTE_ON) {
-                            MIDINote midiNote = new MIDINote(event, sequencia, tempoProcessor);
+                            MIDINote midiNote = new MIDINote(event, sequencia, tempoProcessor, program);
                             //tocador.start();
                             int noteChord = midiNote.getChord();
                             float noteSecond = midiNote.getSecond();
@@ -394,6 +394,7 @@ public class MIDIReader {
         corda = 6-corda;
         try {
             for (MIDINote nota : this.notas) {
+                
                 if (nota.getSecond() == seconds && nota.getChord() == corda) {
                      this.recebedor.send(nota.getShortMessage(), -1);
                      return;

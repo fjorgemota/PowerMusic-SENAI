@@ -20,7 +20,7 @@ class Laranja extends Esfera {
     public Laranja(){
         super();
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_laranja.png",9,49,28);
+            this.imagem = new Sprite("imagens/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_laranja.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());
@@ -30,7 +30,7 @@ class Laranja extends Esfera {
     public Laranja(float second){
         super(second);
         try{
-            this.imagem = new Sprite("img_cenario/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_laranja.png",9,49,28);
+            this.imagem = new Sprite("imagens/Sprites/"+(this.isEspecial()?"efeito":"sprite")+"_laranja.png",9,49,28);
         }
         catch(Exception e){
             Utilidades.alertar(e.getMessage());

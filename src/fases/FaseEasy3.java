@@ -22,7 +22,7 @@ import utilidades.Utilidades;
 public class FaseEasy3 extends Musica {
 
     public FaseEasy3(){
-        super("musicas/Independencia.mid", "videos/Independencia.mpg", "img_cenario/FOTOS_BANDAS/capital_inicial/capinicial1.png", "img_cenario/FOTOS_BANDAS/capital_inicial/capinicial2.png", 3);
+        super("musicas/Independencia.mid", "videos/Independencia.mpg", "imagens/FOTOS_BANDAS/capital_inicial/capinicial1.png", "imagens/FOTOS_BANDAS/capital_inicial/capinicial2.png", 3);
     }
 
     public void gameOver() {

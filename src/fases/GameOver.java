@@ -5,19 +5,6 @@
 package fases;
 
 import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javaPlay.GameEngine;
-import javaPlay.GameStateController;
-import javaPlayExtras.Imagem;
-import utilidades.Utilidades;
-
-/**
- *
- * @author Samara
- */
-
-import java.awt.Graphics;
 import javaPlay.GameEngine;
 import javaPlay.GameStateController;
 import javaPlayExtras.Imagem;
@@ -49,21 +36,7 @@ public class GameOver implements GameStateController{
     }
     public void load() {
         
-         try {
-
-            this.bgImagegameover = new Imagem("img_cenario/gameover.png");
-            
-            
-
-             this.bgImageReiniciar1 = new Imagem("img_cenario/reiniciar.png");
-             this.bgImageReiniciar2 = new Imagem("img_cenario/efeito_reiniciar.png");
-             this.bgImageReiniciar =this.bgImageReiniciar1;
-             
-
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
+         
                 
     }
 
@@ -73,7 +46,22 @@ public class GameOver implements GameStateController{
     }
 
     
-    public void start() {     
+    public void start() {    
+        try {
+
+            this.bgImagegameover = new Imagem("imagens/gameover.png");
+            
+            
+
+             this.bgImageReiniciar1 = new Imagem("imagens/reiniciar.png");
+             this.bgImageReiniciar2 = new Imagem("imagens/efeito_reiniciar.png");
+             this.bgImageReiniciar =this.bgImageReiniciar1;
+             
+
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }
     
     

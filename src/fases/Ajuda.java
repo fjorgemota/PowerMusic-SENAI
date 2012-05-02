@@ -21,13 +21,13 @@ public class Ajuda implements GameStateController {
 
     public void load() {
         try {
-            this.bgImagePiano = new Imagem("img_cenario/musica.gif");
+            this.bgImagePiano = new Imagem("imagens/musica.gif");
             
-            this.bgImageVoltar1 = new Imagem("img_cenario/voltar.png");
-            this.bgImageVoltar2 = new Imagem("img_cenario/voltar2.png");
+            this.bgImageVoltar1 = new Imagem("imagens/voltar.png");
+            this.bgImageVoltar2 = new Imagem("imagens/voltar2.png");
             this.bgImageVoltar = this.bgImageVoltar1;
             
-            this.bgImageHelp_desc = new Imagem("img_cenario/help_desc.png");
+            this.bgImageHelp_desc = new Imagem("imagens/help_desc.png");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

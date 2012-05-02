@@ -42,13 +42,13 @@ public class Intervalo implements GameStateController{
             this.bgImageEasy2 = new Imagem(theImagem);
 
 
-             this.bgImagePlay1 = new Imagem("img_cenario/play.png");
-             this.bgImagePlay2= new Imagem("img_cenario/play_efeito.png");
+             this.bgImagePlay1 = new Imagem("imagens/play.png");
+             this.bgImagePlay2= new Imagem("imagens/play_efeito.png");
              this.bgImagePlay = this.bgImagePlay1;
             
 
-             this.bgImageVoltar1 = new Imagem("img_cenario/voltar.png");
-             this.bgImageVoltar2 = new Imagem("img_cenario/voltar2.png");
+             this.bgImageVoltar1 = new Imagem("imagens/voltar.png");
+             this.bgImageVoltar2 = new Imagem("imagens/voltar2.png");
              this.bgImageVoltar =this.bgImageVoltar1;
              
 
@@ -92,8 +92,7 @@ public class Intervalo implements GameStateController{
         if(!this.theImagem.contains("1")){
             g.setColor(Color.BLACK);
             g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
-            g.drawString(((int)Guitarra.getInstance().getProgresso())+"%",365,29);
-            Final.getInstance().reset();
+            g.drawString(((int)Guitarra.getInstance().getProgresso())+"%",360,260);
         }
     }
 

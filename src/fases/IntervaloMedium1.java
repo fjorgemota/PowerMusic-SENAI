@@ -18,7 +18,7 @@ import utilidades.Utilidades;
 public class IntervaloMedium1 extends Intervalo {
 
     public IntervaloMedium1(){
-        super(6,"img_cenario/Intervalos/medium1.png");
+        super(6,"imagens/Intervalos/medium1.png");
     }
 }
 

@@ -22,7 +22,7 @@ import utilidades.Video;
 public class FaseEasy1 extends Musica {
 
     public FaseEasy1(){
-        super("musicas/TNT.mid", "videos/TNT.mpg", "img_cenario/FOTOS_BANDAS/acdc/acdc1.png", "img_cenario/FOTOS_BANDAS/acdc/acdc2.png", 3);
+        super("musicas/TNT.mid", "videos/TNT.mpg", "imagens/FOTOS_BANDAS/acdc/acdc1.png", "imagens/FOTOS_BANDAS/acdc/acdc2.png", 3);
     }
 
     public void gameOver() {

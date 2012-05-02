@@ -19,7 +19,7 @@ import utilidades.Utilidades;
 
 public class FaseEasy2 extends Musica {
     public FaseEasy2(){
-        super("musicas/Gone.mid", "videos/Gone.mpg", "img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot1.png", "img_cenario/FOTOS_BANDAS/Switchfoot/switchfoot2.png", 3);
+        super("musicas/Gone.mid", "videos/Gone.mpg", "imagens/FOTOS_BANDAS/Switchfoot/switchfoot1.png", "imagens/FOTOS_BANDAS/Switchfoot/switchfoot2.png", 3);
     }
 
     public void gameOver() {
