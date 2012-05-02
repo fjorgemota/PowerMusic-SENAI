@@ -75,10 +75,9 @@ public class Final implements GameStateController{
         this.img.draw(g, 0,0);
         g.setFont(g.getFont().deriveFont(Font.BOLD,36.0f));
 
-        g.drawString(this.totalPontos+"",590,560);
         this.bgImageMenu.draw(g, 60, 535);
 
-        g.drawString(this.totalPontos+"",640,520);
+        g.drawString(this.totalPontos+"",630,540);
 
     }
 
