@@ -59,7 +59,7 @@ public class MIDIReader {
                     if (shortmsg.getCommand() == ShortMessage.PROGRAM_CHANGE) {
                         program = shortmsg.getData1();
                     } else {
-                        //else if(program>=25 && program <= 40){
+                        //}else if(program>=25 && program <= 40){
                         //else if(program== 30){
                         if (shortmsg.getCommand() == ShortMessage.NOTE_ON) {
                             MIDINote midiNote = new MIDINote(event, sequencia, tempoProcessor, program);
