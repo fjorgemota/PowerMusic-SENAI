@@ -80,8 +80,9 @@ public class MIDINote {
     }
     public ShortMessage getShortMessage(){
         try {
-
-            return new ShortMessage(this.status,this.channel, this.note, this.velocity);
+            ShortMessage msg = new ShortMessage();
+            msg.setMessage(this.status,this.channel, this.note, this.velocity);
+            return msg;
         } catch (Exception ex) {
             Utilidades.alertar("Erro durante o processamento do MIDI:"+ex.getMessage());
         }
